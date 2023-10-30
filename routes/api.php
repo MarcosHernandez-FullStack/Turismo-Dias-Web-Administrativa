@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\FAQController;
+use App\Http\Controllers\Api\ServicioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => 'faq'], function ($router) {
-
     Route::get('/all', [FAQController::class, 'index']);
+});
+
+Route::group(['prefix' => 'servicio'], function ($router) {
+    Route::get('/all', [ServicioController::class, 'index']);
 });
