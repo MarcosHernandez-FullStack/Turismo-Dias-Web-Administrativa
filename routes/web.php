@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\BienvenidoComponent;
+use App\Http\Controllers\Web\ConfiguracionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,4 @@ use App\Http\Livewire\BienvenidoComponent;
 }); */
 
 Route::get('/', BienvenidoComponent::class)->name('bienvenido');
+Route::get('/configuracion', [ConfiguracionController::class, 'render'])->name('configuracion');
