@@ -239,6 +239,42 @@
                                 <p>Servicios</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('ambientes') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Ambientes</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('faqs') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Faqs</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('institucional') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Institucionales</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('rutas') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Rutas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('terminos-condiciones') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Termino Condiciones</p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Valores</p>
+                            </a>
+                        </li> --}}
                         {{-- <li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
