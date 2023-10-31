@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\FAQController;
-use App\Http\Controllers\Api\InstitucionalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,13 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => 'faq'], function ($router) {
-
     Route::get('/all', [FAQController::class, 'index']);
 });
-
-Route::group(['prefix' => 'nosotros'], function ($router) {
-
-    Route::get('/all', [InstitucionalController::class, 'index']);
-});
-
-
