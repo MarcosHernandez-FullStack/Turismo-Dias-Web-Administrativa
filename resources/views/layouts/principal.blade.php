@@ -185,13 +185,13 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link" style="justify-content: center; display: flex;">
-        <img src="{{ asset('assets/img/turismo-dias-logo.png') }}" style="opacity: .8; width: 100%;height: 100%;">
+      <a href="index3.html" class="brand-link" style="background-color:white; justify-content: center; display: flex;">
+        <img src="{{ asset('assets/img/turismo-dias-logo.png') }}" style="opacity: .8; width: 60%;height: 80%;">
         {{-- <span class="brand-text font-weight-light">AdminLTE 3</span> --}}
       </a>
 
       <!-- Sidebar -->
-      <div class="sidebar">
+      <div style="background-color: rgb(9, 63, 68);" class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
@@ -203,7 +203,7 @@
         </div>
 
         <!-- SidebarSearch Form -->
-        <div class="form-inline">
+       {{--  <div class="form-inline">
           <div class="input-group" data-widget="sidebar-search">
             <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
@@ -212,14 +212,14 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> --}}
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            {{-- <li class="nav-header">MULTI LEVEL EXAMPLE</li> --}}
+            <li class="nav-header">EMPRESA</li>
             <li class="nav-item">
               <a href="{{ route('configuracion') }}" class="nav-link">
                 <i class="fa-solid fa-gear nav-icon"></i>
@@ -227,6 +227,82 @@
               </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('configuracion') }}" class="nav-link">
+                    <i class="fa-solid fa-house nav-icon"></i>
+                  <p>Institucional (Nosotros)</p>
+                </a>
+              </li>
+
+            <li class="nav-header">SECCIONES</li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa-solid fa-bus-simple nav-icon"></i>
+                  <p>Servicios</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-map-location-dot nav-icon"></i>
+                  <p>Ciudades</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-house-chimney-user nav-icon"></i>
+                  <p>Ambientes</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-route nav-icon"></i>
+                  <p>Rutas</p>
+                </a>
+            </li>
+
+            <li class="nav-item menu-close">
+                <a href="#" class="nav-link ">
+                  <i class="nav-icon fa-solid fa-suitcase-rolling"></i>
+                  <p>
+                    Condiciones de viaje
+                    <i class="right fas fa-angle-left"></i>
+
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./index.html" class="nav-link active">
+                      <i class="fa-solid fa-file-circle-question nav-icon"></i>
+
+                      <p>Preguntas y respuestas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./index2.html" class="nav-link">
+                      <i class="fa-solid fa-calendar-days nav-icon"></i>
+
+                      <p>Calendario de eventos</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./index3.html" class="nav-link">
+                      <i class="fa-solid fa-file-contract nav-icon"></i>
+                      <p>Términos y condiciones</p>
+
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./index3.html" class="nav-link">
+                        <i class="fa-solid fa-book-bookmark nav-icon"></i>
+                      <p>Libro de reclamaciones</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+           {{--  <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="fa-solid fa-book-open nav-icon"></i>
                 <p>Libro de Reclamaciones</p>
@@ -243,7 +319,7 @@
                 <i class="fas fa-circle nav-icon"></i>
                 <p>Servicios</p>
               </a>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -888,7 +964,7 @@
       <section class="content-header">
         <div class="container-fluid">
           @yield('content-header')
-          
+
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content-header -->
