@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\FAQController;
+use App\Http\Controllers\Api\LibroReclamacionController;
 use App\Http\Controllers\Api\ServicioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,8 @@ Route::group(['prefix' => 'faq'], function ($router) {
 
 Route::group(['prefix' => 'servicio'], function ($router) {
     Route::get('/all', [ServicioController::class, 'index']);
+});
+
+Route::group(['prefix' => 'libro-reclamacion'], function ($router) {
+    Route::post('/add', [LibroReclamacionController::class, 'store']);
 });
