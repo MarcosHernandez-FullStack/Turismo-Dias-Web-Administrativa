@@ -9,10 +9,10 @@
                             </div>
                         @endif
                         <div class="row my-1 d-flex justify-content-between align-items-center">
-                            <div class="row col-sm-12 col-md-6">
+                           {{--  <div class="row col-sm-12 col-md-6">
                                 <div class="border-info border-bottom text-info h1 font-weight-bolder"
                                     style="border-bottom-width:5px !important">{{$label}}s</div>
-                            </div>
+                            </div> --}}
                             <div class="row col-sm-12 col-md-2 justify-content-end">
                                 <button type="button" class="btn btn-info btn-sm rounded-pill" data-toggle="modal"
                                     data-target="#modal_usuario" wire:click="{{$create_function}}">

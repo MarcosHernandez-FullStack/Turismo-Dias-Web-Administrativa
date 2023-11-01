@@ -8,7 +8,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             {{--  <h1 class="card-title">Configuración de Página Web</h1> --}}
-                            <h5><i style="color: #6a6b6c" class="fa-solid fa-gear"></i> <b>CONFIGURACIÓN DE LA PÁGINA</b></h5>
+                            <h5><i style="color: #17a2b8" class="fa-solid fa-gear mr-1"></i>
+                                <b style="color: rgb(48, 48, 48)">CONFIGURACIÓN DE LA PÁGINA</b></h5>
 
                         </div>
                         <div class="col-sm-6">
