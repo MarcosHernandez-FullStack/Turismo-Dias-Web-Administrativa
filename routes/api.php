@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\FAQController;
+use App\Http\Controllers\Api\LibroReclamacionController;
 use App\Http\Controllers\Api\ServicioController;
 use App\Http\Controllers\Api\InstitucionalController;
 use App\Http\Controllers\Api\BienvenidoController;
@@ -37,4 +38,7 @@ Route::group(['prefix' => 'nosotros'], function ($router) {
 
 Route::group(['prefix' => 'bienvenido'], function ($router) {
     Route::get('/all', [BienvenidoController::class, 'index']);
+});
+Route::group(['prefix' => 'libro-reclamacion'], function ($router) {
+    Route::post('/add', [LibroReclamacionController::class, 'store']);
 });

@@ -10,6 +10,7 @@ class Valor extends Model
     use HasFactory;
     protected $table = 'valor';
     protected $guarded = [];
+    protected $connection = 'mysql';
 
     public function institucional()
     {
