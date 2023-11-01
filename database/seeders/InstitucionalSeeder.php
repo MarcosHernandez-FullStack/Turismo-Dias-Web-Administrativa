@@ -22,8 +22,8 @@ class InstitucionalSeeder extends Seeder
                     'breve_historia' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
                     'mision' => 'Proporcionar una mejora constante de los servicios de transporte de pasajeros y de carga; con la tecnología más avanzada, ofreciendo un servicio personalizado y profesional, donde los clientes se sientan seguros y cómodos.',
                     'vision' => 'Ser una de las principales empresas de transporte de personas y de carga del Perú, siempre cuidando que la calidad y excelencia del servicio, beneficien tanto a los trabajadores como a los clientes.',
-                    'ruta_foto_principal' => 'public/servicios/principal/DISEÑO WEB.jpg',
-                    'ruta_foto_secundaria' => 'public/servicios/principal/DISEÑO WEB.jpg',
+                    'ruta_foto_principal' => 'public/nosotros/principal/DISEÑO_WEB.jpg',
+                    'ruta_foto_secundaria' => 'public/nosotros/principal/ECOMMERCE.jpg',
                     'estado' => '1'
 
                 ],             

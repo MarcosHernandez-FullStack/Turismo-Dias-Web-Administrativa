@@ -15,13 +15,13 @@ class InstitucionalController extends Controller
         try {
             $institucional = Institucional::with(['valores' => function ($query) {
                 $query->where('estado', '1');
-            }])->where('estado', '1')->get();
-
+            }])->where('estado', '1')->first();
+         
             return response()->json([
                 "status" => "success",
                 "data" =>[
-                    "institucional" => $institucional->map(function ($institucional) {
-                        return [
+                    
+                        
                             "id" => $institucional->id,
                             "nombre" => $institucional->slogan_home,
                             "breve_historia" => $institucional->breve_historia,
@@ -37,8 +37,8 @@ class InstitucionalController extends Controller
                                     "institucional_id"=>$valor->institucional_id,
                                 ];
                             }),
-                        ];
-                    }),
+                     
+                  
                 ]   
                     
                 
