@@ -46,7 +46,7 @@
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="{{ asset('assets/img/turismo-dias-logo.png') }}" alt="AdminLTELogo" height="80"
+      <img class="animation__shake" src="{{ asset('assets/img/turismo-dias-logo.png') }}" alt="AdminLTELogo" height="50"
         width="80">
     </div>
 
@@ -255,10 +255,10 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{ route('ambientes') }}" class="nav-link">
-                <i class="fas fa-circle nav-icon"></i>
-                <p>Ambientes</p>
-              </a>
+                <a href="{{ route('ambientes') }}" class="nav-link">
+                    <i class="fas fa-laptop-house nav-icon"></i>
+                    <p>Ambientes</p>
+                </a>
             </li>
 
             <li class="nav-item">

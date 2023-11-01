@@ -1,6 +1,21 @@
 <div>
     <div class="row mb-2">
         <div class="col-12">
+            <div class="card card-default color-palette-box">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{--  <h1 class="card-title">Configuración de Página Web</h1> --}}
+                            <h5><i style="color: #17a2b8" class="fa-solid fa-route  mr-1"></i>
+                                 <b style="color: rgb(48, 48, 48)">RUTAS: SALIDAS, LLEGADAS Y TIPOS DE BUSES</b></h5>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
             <div class="card shadow-lg m-0 px-2" style="border-radius: 25px">
                 <!-- /.card-header -->
                 <div class="card-body p-3">
