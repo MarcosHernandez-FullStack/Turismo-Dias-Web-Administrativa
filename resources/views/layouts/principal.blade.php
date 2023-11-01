@@ -231,11 +231,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('configuracion') }}" class="nav-link">
-                <i class="fa-solid fa-house nav-icon"></i>
-                <p>Institucional (Nosotros)</p>
-              </a>
-            </li>
+                <a href="{{ route('institucional') }}" class="nav-link">
+                    <i class="fa-solid fa-house nav-icon"></i>
+                  <p>Institucional (Nosotros)</p>
+                </a>
+              </li>
 
             <li class="nav-header">SECCIONES</li>
             <li class="nav-item">
@@ -260,10 +260,10 @@
             </li>
 
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fa-solid fa-route nav-icon"></i>
-                <p>Rutas</p>
-              </a>
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-route nav-icon"></i>
+                  <p>Rutas</p>
+                </a>
             </li>
 
             <li class="nav-item menu-close">
@@ -273,12 +273,12 @@
                   Condiciones de viaje
                   <i class="right fas fa-angle-left"></i>
 
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
-                    <i class="fa-solid fa-file-circle-question nav-icon"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./index.html" class="nav-link active">
+                      <i class="fa-solid fa-file-circle-question nav-icon"></i>
 
                     <p>Preguntas y respuestas</p>
                   </a>
@@ -287,13 +287,13 @@
                   <a href="./index2.html" class="nav-link">
                     <i class="fa-solid fa-calendar-days nav-icon"></i>
 
-                    <p>Calendario de eventos</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
-                    <i class="fa-solid fa-file-contract nav-icon"></i>
-                    <p>Términos y condiciones</p>
+                      <p>Calendario de eventos</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./index3.html" class="nav-link">
+                      <i class="fa-solid fa-file-contract nav-icon"></i>
+                      <p>Términos y condiciones</p>
 
                   </a>
                 </li>

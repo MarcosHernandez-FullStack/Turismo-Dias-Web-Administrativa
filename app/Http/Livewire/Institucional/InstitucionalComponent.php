@@ -15,33 +15,26 @@ class InstitucionalComponent extends Component
 
     use WithPagination;
     use WithFileUploads;
-    public $institucional,$ruta_foto_principal,$ruta_foto_secundaria,$valores_collection,$valor_id=-1,$foto_principal_guardada,$foto_secundaria_guardada;
+    public $institucional,$ruta_foto_principal,$ruta_foto_secundaria,$valores_collection,$valor_id=-1;
     public $descripcion;
     public $search, $sort, $direction;
     public $form, $vista;
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
-    /* public $paginacion, $paginationTheme; */
 
-    //CONSTRUCTOR EN DONDE SE INICIALIZAN VARIABLES
-    public function mount()
-    {
+    public function mount(){
         $this->sort ='id';
         $this->direction ='asc';
-        $this->form = 'create'; //create, update
-        $this->vista = 'form'; //form
-       /*  $this->paginacion = 3;
-        $this->paginationTheme = 'bootstrap'; */
+        $this->form = 'create';
+        $this->vista = 'form';
         $this->institucional= Institucional::count() ? Institucional::first() : new Institucional();
         $this->valores_collection = $this->institucional->valores;
     }
 
-     //FUNCION PARA RESETEAR NUMERO DE PAGINACION
      public function updatingSearch(){
         $this->resetPage();
     }
 
-    //FUNCION PARA REGISTRAR LAS VALIDACIONES DINAMICAS
     protected function rules(){
         return [
            'institucional.slogan_home' => 'required',
@@ -54,7 +47,6 @@ class InstitucionalComponent extends Component
         ];
    }
 
-   //PROPIEDAD PARA PERSONALIZAR MENSAJES DE VALIDACION
    protected $messages = [
             'institucional.slogan_home.required' => 'El slogan es requerido',
             'institucional.breve_historia.required' => 'La breve historia es requerida',
@@ -69,18 +61,15 @@ class InstitucionalComponent extends Component
             'valores_collection.*.descripcion.required' => 'La descripción es requerida',
    ];
 
-   //FUNCION PARA MOSTRAR ERRORES DE VALIDACION EN TIEMPO REAL
    public function updated($propertyName){
        $this->validateOnly($propertyName);
    }
 
-   //FUNCION PARA RESETEAR VARIABLES Y ERRORES DE VALIDACION
    public function resetError(){
        $this->resetErrorBag();
        $this->resetValidation();
    }
 
-   //FUNCION PARA MOSTRAR LA VISTA DEL MODAL
    public function showModal($vista, $form){
        $this->resetError();
        if($form == 'create'){
@@ -92,36 +81,13 @@ class InstitucionalComponent extends Component
        $this->form = $form;
    }
 
-    public function render()
-    {
-        // $institucional=Institucional::first();
+    public function render(){
         $ciudades=Valor::where('estado','=','1')->get();
         return view('livewire.institucional.institucional-component', compact('ciudades'))
                 ->extends('layouts.principal')
                 ->section('content');
     }
 
-
-    //FUNCION PARA GUARDAR EN BASE DE DATOS
-    public function save(){
-        $this->validate();
-         //GUARDAR FOTO
-         if($this->ruta_foto_principal && $this->ruta_foto_secundaria){
-            $this->institucional->ruta_foto_principal = $this->ruta_foto_principal->store('public/institucionales/principal');
-            $this->institucional->ruta_foto_secundaria = $this->ruta_foto_secundaria->store('public/institucionales/secundaria');
-        }
-        $servicioCreado= new Institucional();
-        $servicioCreado=$this->institucional;
-        $servicioCreado->save();
-        foreach($this->valores_collection as $ciudad)
-        {
-            $servicioCreado->ciudades()->attach($ciudad);
-        }
-        session()->flash('message', 'Institucional registrado con éxito');
-        $this->dispatchBrowserEvent('closeModal');
-    }
-
-    //FUNCION PARA AGREGAR ELEMENTOS AL beneficio_collection
     public function addValorCollection(){
         $this->validate([
             'descripcion' => 'required',
@@ -130,54 +96,20 @@ class InstitucionalComponent extends Component
         $this->reset('descripcion');
     }
 
-     //FUNCION PARA ELIMINAR ELEMENTOS DEL beneficio_collection
      public function deleteValorCollection($indiceElemento){
-        $this->valores_collection->pull($indiceElemento); // Elimina el elemento en el índice $indiceElemento y lo devuelve
+        $this->valores_collection->pull($indiceElemento);
     }
 
-    public function imprimir()
-    {
-        dd($this->valores_collection->all());
-    }
-
-    //FUNCION PARA REDIRIGIR AL SUBSERVICIO
-    public function rediregirProyectos($servicio_id){
-        return redirect()->route('proyectos', ['servicio_id' => $servicio_id]);
-    }
-
-    //FUNCION PARA CAMBIAR EL ESTADO DEL MODELO
     public function cambiarEstado($id){
         if($this->institucional->estado == 1){
             $this->institucional->update(['estado' => '0']);
         }else{
             $this->institucional->update(['estado' => '1']);
         }
-        session()->flash('message', 'Estado del Institucional actualizado con éxito');    //ENVIAR MENSAJE DE CONFIRMACION
-    }
-
-    //FUNCION PARA CONSULTAR EN BASE DE DATOS Y LLENAR LOS CAMPOS DEL FORMULARIO
-    public function edit($id){
-        $this->showModal("form", "update");
-        $this->institucional=Institucional::find($id);
-       /*  $this->ruta_foto_principal=$this->institucional->ruta_foto_principal;
-        $this->ruta_foto_secundaria=$this->institucional->ruta_foto_secundaria; */
-        $this->foto_principal_guardada = $this->institucional->ruta_foto_principal;
-        $this->foto_secundaria_guardada = $this->institucional->ruta_foto_secundaria;
-        $this->valor_id=-1;
-       /*  $this->reset('ruta_foto_principal','ruta_foto_secundaria'); */
+        session()->flash('message', 'Estado del Institucional actualizado con éxito');  
     }
 
     public function update(){
-        /* if($this->institucional->) */
-       /*  if($this->ruta_foto_principal) 
-            $this->institucional->ruta_foto_principal = $this->ruta_foto_principal->store('public/institucionales/principal');
-        else
-            $this->institucional->ruta_foto_principal=$this->institucional->ruta_foto_principal;
-        if($this->ruta_foto_secundaria) 
-            $this->institucional->ruta_foto_secundaria = $this->ruta_foto_secundaria->store('public/institucionales/secundaria');
-        else
-            $this->institucional->ruta_foto_secundaria=$this->institucional->ruta_foto_secundaria; */
-
         $this->validate();
         if($this->ruta_foto_principal){
             if($this->ruta_foto_principal!=$this->institucional->ruta_foto_principal) 
@@ -203,9 +135,7 @@ class InstitucionalComponent extends Component
                 $valor->delete();
             }
         }
-
         session()->flash('message', 'Institucional actualizado con éxito');
-        // $this->dispatchBrowserEvent('closeModal');
     }
 
     public function saveServicioValor(){
