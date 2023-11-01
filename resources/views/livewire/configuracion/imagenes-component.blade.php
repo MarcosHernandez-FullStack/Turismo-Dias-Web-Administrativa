@@ -63,3 +63,18 @@
         </div>
     </div>
 </div>
+@push('scripts')
+  <script>
+    FilePond.registerPlugin(FilePondPluginImagePreview);
+    // Get a reference to the file input element
+    const inputElement = document.querySelector('input[type="file"]');
+    // Create a FilePond instance
+    const pond = FilePond.create(inputElement,{
+      labelIdle: 'Arrastra y suelta tus archivos, o <span class="filepond--label-action"> Busca </span>',
+      credits : {},
+      allowMultiple: false,
+      acceptedFileTypes: ['image/*'],
+      checkValidity:true,
+    });
+  </script>
+@endpush
