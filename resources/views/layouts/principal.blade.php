@@ -33,6 +33,8 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
   <!-- filepond -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/filepond.css') }}">
+  <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet" />
   <!-- sweetalert -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/sweetalert2.min.css') }}">
 
@@ -231,11 +233,11 @@
               </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('institucional') }}" class="nav-link">
-                    <i class="fa-solid fa-house nav-icon"></i>
-                  <p>Institucional (Nosotros)</p>
-                </a>
-              </li>
+              <a href="{{ route('institucional') }}" class="nav-link">
+                <i class="fa-solid fa-house nav-icon"></i>
+                <p>Institucional (Nosotros)</p>
+              </a>
+            </li>
 
             <li class="nav-header">SECCIONES</li>
             <li class="nav-item">
@@ -260,10 +262,10 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fa-solid fa-route nav-icon"></i>
-                  <p>Rutas</p>
-                </a>
+              <a href="#" class="nav-link">
+                <i class="fa-solid fa-route nav-icon"></i>
+                <p>Rutas</p>
+              </a>
             </li>
 
             <li class="nav-item menu-close">
@@ -273,12 +275,12 @@
                   Condiciones de viaje
                   <i class="right fas fa-angle-left"></i>
 
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./index.html" class="nav-link active">
-                      <i class="fa-solid fa-file-circle-question nav-icon"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./index.html" class="nav-link active">
+                    <i class="fa-solid fa-file-circle-question nav-icon"></i>
 
                     <p>Preguntas y respuestas</p>
                   </a>
@@ -287,23 +289,24 @@
                   <a href="./index2.html" class="nav-link">
                     <i class="fa-solid fa-calendar-days nav-icon"></i>
 
-                      <p>Calendario de eventos</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
-                      <i class="fa-solid fa-file-contract nav-icon"></i>
-                      <p>Términos y condiciones</p>
-
+                    <p>Calendario de eventos</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="./index3.html" class="nav-link">
-                    <i class="fa-solid fa-book-bookmark nav-icon"></i>
-                    <p>Libro de reclamaciones</p>
+                    <i class="fa-solid fa-file-contract nav-icon"></i>
+                    <p>Términos y condiciones</p>
+
                   </a>
                 </li>
               </ul>
+            </li>
+            
+            <li class="nav-item">
+              <a href="./index3.html" class="nav-link">
+                <i class="fa-solid fa-book-bookmark nav-icon"></i>
+                <p>Libro de reclamaciones</p>
+              </a>
             </li>
 
             {{-- <li class="nav-item">
@@ -1612,6 +1615,7 @@
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
   <script src="{{ asset('assets/dist/js/fa-icons.min.js') }}"></script>
+  <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
   <script src="{{ asset('assets/dist/js/filepond.js') }}"></script>
   <script src="{{ asset('assets/dist/js/sweetalert2.all.min.js') }}"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -1663,13 +1667,7 @@
             )
         });
   </script>
-  <script>
-    // Get a reference to the file input element
-    const inputElement = document.querySelector('input[type="file"]');
-
-    // Create a FilePond instance
-    const pond = FilePond.create(inputElement);
-  </script>
+  
   @livewireScripts
   @stack('scripts')
 </body>
