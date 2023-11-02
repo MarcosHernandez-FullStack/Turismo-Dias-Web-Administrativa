@@ -33,10 +33,11 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
   <!-- filepond -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/filepond.css') }}">
-  <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ asset('assets/dist/css/filepond-plugin-image-preview.css') }}">
+  
   <!-- sweetalert -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/sweetalert2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/dist/css/app.css') }}">
 
   @livewireStyles
 </head>
@@ -1582,6 +1583,7 @@
   </div>
   <!-- ./wrapper -->
 
+  
   <!-- jQuery -->
   <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -1615,9 +1617,14 @@
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
   <script src="{{ asset('assets/dist/js/fa-icons.min.js') }}"></script>
-  <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+
+  <script src="{{ asset('assets/dist/js/filepond-plugin-image-preview.js') }}"></script>
+  <script src="{{ asset('assets/dist/js/filepond-plugin-file-validate-type.js') }}"></script>
+  <script src="{{ asset('assets/dist/js/filepond-plugin-file-validate-size.js') }}"></script>
+
   <script src="{{ asset('assets/dist/js/filepond.js') }}"></script>
   <script src="{{ asset('assets/dist/js/sweetalert2.all.min.js') }}"></script>
+  
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   {{-- <script src="{{ asset('assets/dist/js/pages/dashboard.js')}}"></script> --}}
 
@@ -1666,9 +1673,12 @@
             'info'
             )
         });
+        FilePond.registerPlugin(FilePondPluginFileValidateSize);
+    FilePond.registerPlugin(FilePondPluginFileValidateType);
   </script>
   
   @livewireScripts
+  <script src="{{ asset('assets/dist/js/alpine.min.js') }}"></script>
   @stack('scripts')
 </body>
 
