@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\BienvenidoComponent;
 use App\Http\Controllers\Web\ConfiguracionController;
+use App\Http\Controllers\Adds\ImagenTemporalController;
 use App\Http\Livewire\Ambiente\AmbienteComponent;
 use App\Http\Livewire\Faq\FaqComponent;
 use App\Http\Livewire\Institucional\InstitucionalComponent;
@@ -38,4 +39,5 @@ Route::get('/rutas', RutaComponent::class)->name('rutas');
 Route::get('/terminos-condiciones', TerminoCondicionComponent::class)->name('terminos-condiciones');
 
 // Route::get('/valores', ValorComponent::class)->name('valores'); //en detalle insinstitucional
+
 
