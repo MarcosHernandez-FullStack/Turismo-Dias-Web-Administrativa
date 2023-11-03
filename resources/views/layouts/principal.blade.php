@@ -304,7 +304,7 @@
             </li>
             
             <li class="nav-item">
-              <a href="./index3.html" class="nav-link">
+              <a href="{{ route('libro-reclamaciones') }}" class="nav-link">
                 <i class="fa-solid fa-book-bookmark nav-icon"></i>
                 <p>Libro de reclamaciones</p>
               </a>

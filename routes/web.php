@@ -9,6 +9,8 @@ use App\Http\Livewire\Faq\FaqComponent;
 use App\Http\Livewire\Institucional\InstitucionalComponent;
 use App\Http\Livewire\Ruta\RutaComponent;
 use App\Http\Livewire\TerminoCondicion\TerminoCondicionComponent;
+use App\Http\Livewire\LibroReclamacion\LibroReclamacionComponent;
+
 // use App\Http\Livewire\Valor\ValorComponent;
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,8 @@ Route::get('/', BienvenidoComponent::class)->name('bienvenido');
 Route::get('/configuracion', [ConfiguracionController::class, 'render'])->name('configuracion');
 
 Route::get('/ambientes', AmbienteComponent::class)->name('ambientes');
+
+Route::get('/libro-reclamaciones', LibroReclamacionComponent::class)->name('libro-reclamaciones');
 
 Route::get('/faqs', FaqComponent::class)->name('faqs');
 
