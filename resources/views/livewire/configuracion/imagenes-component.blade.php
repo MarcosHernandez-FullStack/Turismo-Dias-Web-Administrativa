@@ -17,7 +17,7 @@
     @endif>
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-info text-light">
           <h5 class="modal-title" id="ImagenesModalTitle">Multimedia</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -222,8 +222,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" wire:click="save">Guardar</button>
+          <button type="button" class="btn btn-sm rounded-pill btn-secondary" data-dismiss="modal"><i class="fas fa-times" aria-hidden="true"></i> Cerrar</button>
+          <button type="button" class="btn btn-sm rounded-pill btn-info" wire:click="save"><i class="fas fa-save" aria-hidden="true"></i> Guardar</button>
         </div>
       </div>
     </div>
