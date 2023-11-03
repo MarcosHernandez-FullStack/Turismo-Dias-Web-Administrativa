@@ -17,6 +17,7 @@ class CreateTerminoCondicionTable extends Migration
             $table->id();
             $table->string('seccion');
             $table->string('descripcion');
+            $table->bigInteger('orden')->nullable();
             $table->enum('estado', [0, 1])->default(1);
             $table->timestamps();
         });
