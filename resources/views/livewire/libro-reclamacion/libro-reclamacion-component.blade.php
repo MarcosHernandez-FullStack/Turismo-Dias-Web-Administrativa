@@ -125,7 +125,7 @@
                                         <table class="table table-hover table-striped">
                                             <tbody>
                                                 @forelse ($reclamos as $key => $reclamo)
-                                                <tr wire:click="edit({{ $reclamo->id }})" style="cursor: pointer;">
+                                                <tr >
                                                     <td class="mailbox-name">{{ $reclamo->nombre_completo_consumidor }}</td>
                                                     <td class="mailbox-subject"><b>{{ $reclamo->descripcion_bien }}</b>
                                                     </td>
@@ -135,10 +135,11 @@
                                                     @if ($this->filtroEstado == null)
                                                         <td class="mailbox-subject">{{ $reclamo->estado == '1' ? "Nuevo" : $reclamo->estado == '2' ? "Atendido" : "Archivado" }}</td>
                                                     @endif
+                                                    <td><button wire:click="edit({{ $reclamo->id }})" class="btn btn-sm rounded-pill btn-warning"><i class="fa-solid fa-eye"></i> Ver</button></td>
                                                 </tr>
                                                 @empty
                                                 <tr>
-                                                    <td @if ($this->filtroEstado == null) colspan="5" @else colspan="4" @endif class="text-center">
+                                                    <td @if ($this->filtroEstado == null) colspan="6" @else colspan="5" @endif class="text-center">
                                                         <h4>No hay registros</h4>
                                                     </td>
                                                 </tr>
