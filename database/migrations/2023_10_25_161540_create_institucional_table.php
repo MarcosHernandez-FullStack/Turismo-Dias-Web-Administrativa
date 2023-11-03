@@ -15,7 +15,7 @@ class CreateInstitucionalTable extends Migration
     {
         Schema::create('institucional', function (Blueprint $table) {
             $table->id();
-            $table->string('slogan_home');
+            $table->string('slogan_home',70);
             $table->string('breve_historia');
             $table->string('mision');
             $table->string('vision');

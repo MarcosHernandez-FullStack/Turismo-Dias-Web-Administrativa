@@ -15,7 +15,7 @@ class CreateValorTable extends Migration
     {
         Schema::create('valor', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
+            $table->string('descripcion',30);
             $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo 
             $table->foreignId('institucional_id')->constrained('institucional');
             $table->timestamps();
