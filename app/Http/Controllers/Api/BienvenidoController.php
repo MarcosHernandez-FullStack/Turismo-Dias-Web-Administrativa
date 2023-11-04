@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Servicio;
 use App\Models\Institucional;
 use App\Models\Ruta;
+use App\Models\TipoBus;
+use Carbon\Carbon;
 
 class BienvenidoController extends Controller
 {
@@ -18,7 +20,9 @@ class BienvenidoController extends Controller
                 $query->where('estado', '1');
             }])->where('estado', '1')->first();
             $servicios = Servicio::where('estado', '1')->get();
-            $rutas = Ruta::where('estado', '1')->get();
+            $tipobuses = TipoBus::with(['rutas' => function ($query) {
+                $query->where('estado', '1');
+            }])->where('estado', '1')->get();
 
             return response()->json([
                 "status" => "success",
@@ -46,15 +50,22 @@ class BienvenidoController extends Controller
                                 ];
 
                             }),
-                            "rutas" => $rutas->map(function ($ruta) {
+                            "tipobuses" => $tipobuses->map(function ($tipobus) {
                                 return [
-                                    "id" => $ruta->id,
-                                    "ciudad_origen" => $ruta->ciudad_origen->descripcion,
-                                    "ciudad_destino" => $ruta->ciudad_destino->descripcion,
-                                    "hora_salida" => $ruta->hora_salida,
-                                    "hora_llegada" => $ruta->hora_llegada,
-                                    "tipo_bus" =>$ruta->tipo_bus->nombre,
-                                    "estado" => $ruta->estado
+                                    "id" => $tipobus->id,
+                                    "nombre" => $tipobus->nombre,
+                                    "ruta_foto" => env("APP_URL") . Storage::url($tipobus->ruta_foto),
+                                    "rutas" => $tipobus->rutas->take(2)->map(function ($ruta) {
+                                        return [
+                                            "id"=>$ruta->id,
+                                            "ciudad_origen" => $ruta->ciudad_origen->descripcion,
+                                            "ciudad_destino" => $ruta->ciudad_destino->descripcion,
+                                            "hora_salida" => Carbon::parse($ruta->hora_salida)->format('h:i a'),
+                                            "hora_llegada" => Carbon::parse($ruta->hora_llegada)->format('h:i a'),
+                                            
+                                        ]; 
+                                    }),
+                                    
                                 ];
 
                             }),       
