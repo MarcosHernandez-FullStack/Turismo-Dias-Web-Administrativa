@@ -27,7 +27,7 @@ class CreateLibroReclamacionTable extends Migration
             $table->enum('tipo_reclamacion_detalle', [1, 2]); // '1' Reclamo, '2' Queja
             $table->string('descripcion_reclamacion_detalle');
             $table->string('pedido_reclamacion_detalle');
-            $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo 
+            $table->enum('estado', [0, 1, 2])->default(1); // '0' Archivado, '1' Nuevo, '2' Atendido
             $table->timestamps();
         });
     }

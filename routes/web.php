@@ -3,11 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\BienvenidoComponent;
 use App\Http\Controllers\Web\ConfiguracionController;
+use App\Http\Controllers\Adds\ImagenTemporalController;
 use App\Http\Livewire\Ambiente\AmbienteComponent;
 use App\Http\Livewire\Faq\FaqComponent;
 use App\Http\Livewire\Institucional\InstitucionalComponent;
 use App\Http\Livewire\Ruta\RutaComponent;
 use App\Http\Livewire\TerminoCondicion\TerminoCondicionComponent;
+use App\Http\Livewire\LibroReclamacion\LibroReclamacionComponent;
+
 // use App\Http\Livewire\Valor\ValorComponent;
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +32,8 @@ Route::get('/configuracion', [ConfiguracionController::class, 'render'])->name('
 
 Route::get('/ambientes', AmbienteComponent::class)->name('ambientes');
 
+Route::get('/libro-reclamaciones', LibroReclamacionComponent::class)->name('libro-reclamaciones');
+
 Route::get('/faqs', FaqComponent::class)->name('faqs');
 
 Route::get('/institucional', InstitucionalComponent::class)->name('institucional');
@@ -38,4 +43,5 @@ Route::get('/rutas', RutaComponent::class)->name('rutas');
 Route::get('/terminos-condiciones', TerminoCondicionComponent::class)->name('terminos-condiciones');
 
 // Route::get('/valores', ValorComponent::class)->name('valores'); //en detalle insinstitucional
+
 
