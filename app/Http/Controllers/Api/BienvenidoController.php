@@ -10,6 +10,7 @@ use App\Models\Institucional;
 use App\Models\Ruta;
 use App\Models\TipoBus;
 use Carbon\Carbon;
+use App\Models\Configuracion;
 
 class BienvenidoController extends Controller
 {
@@ -23,23 +24,33 @@ class BienvenidoController extends Controller
             $tipobuses = TipoBus::with(['rutas' => function ($query) {
                 $query->where('estado', '1');
             }])->where('estado', '1')->get();
-
+            $configuracion = Configuracion::where('estado', '1')->first();
+            $fecha_inicio = date('d/m/Y', strtotime($institucional->fecha_inicio));
+            $fechaActual = now();
+            $aniosDeDiferencia = $fechaActual->diffInYears($fecha_inicio);
             return response()->json([
                 "status" => "success",
                 "data" => [
-                            "id" => $institucional->id,
-                            "nombre" => $institucional->slogan_home,
-                            "breve_historia" => $institucional->breve_historia,
-                            "ruta_foto_principal" =>  env("APP_URL") . Storage::url($institucional->ruta_foto_principal),
-                            "ruta_foto_secundaria" =>  env("APP_URL") . Storage::url($institucional->ruta_foto_secundaria),
-                            "valores" => $institucional->valores->map(function ($valor) {
-                                return [
-                                    "id" => $valor->id,
-                                    "descripcion" => $valor->descripcion,
-                                    "estado" => $valor->estado,
-                                    "institucional_id"=>$valor->institucional_id,
-                                ];
-                            }),
+                            
+                            "institucional" => [  
+                                
+
+                                    "id" => $institucional->id,
+                                    "slogan_home" => $institucional->slogan_home,
+                                    /*"fecha_inicio"=>date('d/m/Y', strtotime($institucional->fecha_inicio)),*/
+                                    "aniosDeDiferencia" =>$aniosDeDiferencia,
+                                    "breve_historia" => $institucional->breve_historia,
+                                    "ruta_foto_principal" =>  env("APP_URL") . Storage::url($institucional->ruta_foto_principal),
+                                    "ruta_foto_secundaria" =>  env("APP_URL") . Storage::url($institucional->ruta_foto_secundaria),
+                                    "valores" => $institucional->valores->map(function ($valor) {
+                                        return [
+                                            "id" => $valor->id,
+                                            "descripcion" => $valor->descripcion,
+                                            "estado" => $valor->estado,
+                                            "institucional_id"=>$valor->institucional_id,
+                                        ];
+                                    }),
+                            ],
                             "servicios"  => $servicios->map(function ($servicio) {
                                 return [
                                     "id" => $servicio->id,
@@ -68,7 +79,12 @@ class BienvenidoController extends Controller
                                     
                                 ];
 
-                            }),       
+                            }),  
+                            "configuracion" =>[
+                                "foto" => env("APP_URL") . Storage::url($configuracion->ruta_foto_principal),
+                                "slogan" => $configuracion->slogan,
+                                "video" => $configuracion->ruta_video
+                            ]    
                 ],
             ], 200); // 200 OK para indicar una respuesta exitosa.
 
