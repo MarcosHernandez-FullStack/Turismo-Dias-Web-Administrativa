@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoBusSeeder::class);
         $this->call(RutaSeeder::class);
         $this->call(FaqSeeder::class);
-        $this->call(InstitucionalSeeder::class);
-        $this->call(ValorSeeder::class);
         $this->call(LibroReclamacionSeeder::class);
     }
 }

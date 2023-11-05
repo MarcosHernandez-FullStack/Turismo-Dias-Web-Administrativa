@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Institucional;
+use App\Models\Configuracion;
 use Illuminate\Support\Facades\Storage;
 
 class InstitucionalController extends Controller
@@ -16,13 +17,15 @@ class InstitucionalController extends Controller
             $institucional = Institucional::with(['valores' => function ($query) {
                 $query->where('estado', '1');
             }])->where('estado', '1')->first();
+
+            $configuracion = Configuracion::where('estado', '1')->first();
          
             return response()->json([
                 "status" => "success",
                 "data" =>[
                     
-                        
-                            "id" => $institucional->id,
+                    "institucional" => [
+                        "id" => $institucional->id,
                             "nombre" => $institucional->slogan_home,
                             "breve_historia" => $institucional->breve_historia,
                             "mision" => $institucional->mision,
@@ -37,6 +40,10 @@ class InstitucionalController extends Controller
                                     "institucional_id"=>$valor->institucional_id,
                                 ];
                             }),
+                        ],
+                    "fotoHeader" => env("APP_URL") . Storage::url($configuracion->ruta_foto_header_seccion)
+                   
+                            
                      
                   
                 ]   
