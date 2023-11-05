@@ -34,7 +34,7 @@ class CreateConfiguracionTable extends Migration
             $table->string('subtitulo_libro_reclamacion')->nullable();
             $table->string('subtitulo_evento')->nullable();
             $table->string('subtitulo_termino_condicion')->nullable();
-            $table->string('ruta_foto_header_seccion');
+            $table->string('ruta_foto_header_seccion')->nullable();
             $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo 
             $table->timestamps();
         });

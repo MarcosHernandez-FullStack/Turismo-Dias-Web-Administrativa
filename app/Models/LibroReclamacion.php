@@ -30,7 +30,7 @@ class LibroReclamacion extends Model
         ];
 
         foreach ($units as $unit => $value) {
-            if ($value > 0) {
+            if ($value >= 1) {
                 if ($unit == 'mes'){
                     $unit = $value > 1 ? $unit.'es': $unit; // Agregar 's' para plural si el valor es mayor que 1
                 }else{

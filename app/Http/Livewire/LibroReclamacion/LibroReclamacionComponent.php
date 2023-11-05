@@ -17,6 +17,7 @@ class LibroReclamacionComponent extends Component
     public $paginacion = 6; 
     public $filtroEstado='1';
     public $tab = 'reclamante';
+    public $fechaIntroducida;
 
     public function mount(){
         $this->sort ='id';
@@ -60,12 +61,18 @@ class LibroReclamacionComponent extends Component
 
     public function render()
     {
+        $fechaIntroducida=$this->fechaIntroducida;
         if ($this->filtroEstado!== null){
-            $reclamos=LibroReclamacion::where('estado','=',$this->filtroEstado)->paginate($this->paginacion);
+            $reclamos=LibroReclamacion::when($fechaIntroducida,function ($query) use ($fechaIntroducida) {
+                $query->whereDate('created_at', '=', $fechaIntroducida);
+            })->where('estado','=',$this->filtroEstado)->orderBy('created_at', 'desc')->paginate($this->paginacion);
         }else{
-            $reclamos=LibroReclamacion::paginate($this->paginacion);
+            $reclamos=LibroReclamacion::when($fechaIntroducida,function ($query) use ($fechaIntroducida) {
+                $query->whereDate('created_at', '=', $fechaIntroducida);
+            })->orderBy('created_at', 'desc')->paginate($this->paginacion);
         }
-        return view('livewire.libro-reclamacion.libro-reclamacion-component',compact('reclamos'))
+        $nroReclamosNuevos=LibroReclamacion::where('estado','=','1')->count();
+        return view('livewire.libro-reclamacion.libro-reclamacion-component',compact('reclamos','nroReclamosNuevos'))
                 ->extends('layouts.principal')
                 ->section('content');
     }
@@ -92,4 +99,7 @@ class LibroReclamacionComponent extends Component
         $this->filtroEstado=$filtroEstado;
     }
     
+    public function refrescarTabla(){
+        $this->render();
+    }
 }
