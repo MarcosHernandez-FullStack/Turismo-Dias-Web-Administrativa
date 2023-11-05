@@ -47,8 +47,8 @@
                                         @forelse ($rutas as $key => $ruta)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ Carbon\Carbon::parse($ruta->hora_salida)->format('h:i A')}}</td>
-                                                <td>{{ Carbon\Carbon::parse($ruta->hora_llegada)->format('h:i A')}}</td>
+                                                <td>{{ $ruta->hora_salida}}</td>
+                                                <td>{{ $ruta->hora_llegada}}</td>
                                                 <td>{{ $ruta->ciudad_origen->descripcion }}</td>
                                                 <td>{{ $ruta->ciudad_destino->descripcion }}</td>
                                                 <td>{{ $ruta->tipo_bus->nombre }}</td>
@@ -68,7 +68,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="4" class="text-center">
+                                                <td colspan="8" class="text-center">
                                                     <h4>No hay registros</h4>
                                                 </td>
                                             </tr>

@@ -62,7 +62,7 @@
                                     <label for="breve_historia" class="form-label">
                                         Breve historia
                                     </label>
-                                    <textarea type="text" class="form-control form-control-sm rounded-lg" id="breve_historia"
+                                    <textarea type="text" rows="4" class="form-control form-control-sm rounded-lg" id="breve_historia"
                                         wire:model='institucional.breve_historia'>
                                     </textarea>
                                     @error('institucional.breve_historia')
@@ -73,7 +73,7 @@
                                     <label for="mision" class="form-label">
                                         Misión
                                     </label>
-                                    <textarea type="text" class="form-control form-control-sm rounded-lg" id="mision"
+                                    <textarea type="text" rows="5" class="form-control form-control-sm rounded-lg" id="mision"
                                         wire:model='institucional.mision'>
                                     </textarea>
                                     @error('institucional.mision')
@@ -84,7 +84,7 @@
                                     <label for="vision" class="form-label">
                                         Visión
                                     </label>
-                                    <textarea type="text" class="form-control form-control-sm rounded-lg" id="vision"
+                                    <textarea type="text" rows="5" class="form-control form-control-sm rounded-lg" id="vision"
                                         wire:model='institucional.vision'>
                                     </textarea>
                                     @error('institucional.vision')
@@ -155,28 +155,23 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-
-                        <div class="row col-md-12 my-1 d-flex justify-content-between align-items-center">
-                           {{--  <div class="row col-md-6 col-md-6">
-                                <div class="border-info border-bottom text-info h1 font-weight-bolder"
-                                    style="border-bottom-width:5px !important">Valores</div>
-                            </div> --}}
-                            <div class="row col-md-6 col-md-2 justify-content-end">
-                                <button type="button" class="btn btn-info btn-sm rounded-pill"
-                                    wire:click="addValorCollection">
-                                    <i class="fas fa-plus"></i>
-                                    Añadir Valor
-                                </button>
-                            </div>
-                        </div>
                         <div class="row col-md-12">
-                            <div class="col-md-12 row">
-                                <div class="form-group col-md-12">
-                                    <label for="descripcion" class="form-label">
-                                        Valor
-                                    </label>
-                                    <input type="text" class="form-control form-control-sm rounded-pill"
-                                        id="descripcion" wire:model='descripcion'>
+                            <div class="row col-md-12">
+                                <div class="form-inline col-md-12">
+                                    <div class="form-group flex-grow-1">
+                                        <label for="descripcion" class="form-label">
+                                            Valor
+                                        </label>
+                                        <input type="text" class="flex-grow-1 form-control form-control-sm rounded-pill mx-2"
+                                            id="descripcion" wire:model='descripcion'>
+                                    </div>
+                                    <button type="button" class="form-control form-control-sm btn btn-info btn-sm rounded-pill"
+                                    wire:click="addValorCollection">
+                                        <i class="fas fa-plus"></i>
+                                        Añadir Valor
+                                    </button>
+                                </div>
+                                <div class="col-md-12">
                                     @error('descripcion')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -201,9 +196,15 @@
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $valor->descripcion }}</td>
-                                                    <td><span role="button"
-                                                            class="badge rounded-pill bg-{{ $valor->estado == '1' ? 'success' : 'warning' }}"
-                                                            wire:click='cambiarEstado({{ $valor->id }})'>{{ $valor->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                    <td>
+                                                        @if ($valor->id)
+                                                            
+                                                        <span role="button"
+                                                        class="badge rounded-pill bg-{{ $valor->estado == '1' ? 'success' : 'warning' }}"
+                                                        wire:click='cambiarEstado({{ $valor->id }})'>{{ $valor->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                        @else
+                                                        pendiente
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         <button type="button"
@@ -229,12 +230,6 @@
                         </div>
                     </div>
                     <div class="row col-md-12 col-md-2 justify-content-end">
-                        @if ($institucional->id)
-                            <button role="button"
-                                class="btn rounded-pill btn-sm {{ $institucional->estado ? 'bg-success' : 'bg-warning' }}"
-                                wire:click='cambiarEstado({{ $institucional->id }})'>{{ $institucional->estado ? 'ACTIVO' : 'INACTIVO' }}
-                            </button>
-                        @endif
                         <button type="button" class="btn btn-warning btn-sm rounded-pill" wire:click="update">
                             <i class="fas fa-edit"></i>
                             Guardar Todo

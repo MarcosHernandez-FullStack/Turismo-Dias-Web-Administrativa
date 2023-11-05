@@ -263,7 +263,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('rutas') }}" class="nav-link">
                 <i class="fa-solid fa-route nav-icon"></i>
                 <p>Rutas</p>
               </a>
@@ -280,7 +280,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
+                  <a href="{{ route('faqs') }}" class="nav-link active">
                     <i class="fa-solid fa-file-circle-question nav-icon"></i>
 
                     <p>Preguntas y respuestas</p>
@@ -294,7 +294,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
+                  <a href="{{ route('terminos-condiciones') }}" class="nav-link">
                     <i class="fa-solid fa-file-contract nav-icon"></i>
                     <p>Términos y condiciones</p>
 
