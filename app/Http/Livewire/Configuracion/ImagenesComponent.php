@@ -23,7 +23,7 @@ class ImagenesComponent extends Component
     //LA VALIDACIOND E LAS IMAGENES SE HACE CON FILEPOND
     protected $rules = [
         //'ruta_foto_principal' => 'image|max:1024',
-        'configuracion.ruta_video' => 'url|max:255',
+        'configuracion.ruta_video' => 'nullable|url|max:255',
         //'ruta_foto_header_seccion' => 'image|max:1024',
     ];
 
@@ -88,27 +88,18 @@ class ImagenesComponent extends Component
         $this->validate();
         if($this->ruta_foto_principal){
             if($this->ruta_foto_principal!=$this->configuracion->ruta_foto_principal) {
-                if (Storage::disk('configuracion')->exists($this->configuracion->ruta_foto_principal)) {
-                    Storage::disk('configuracion')->delete($this->configuracion->ruta_foto_principal);
+                if (Storage::exists($this->configuracion->ruta_foto_principal)) {
+                    Storage::delete($this->configuracion->ruta_foto_principal);
                 }
-                $this->configuracion->ruta_foto_principal = $this->ruta_foto_principal->store('/','configuracion');
+                $this->configuracion->ruta_foto_principal = $this->ruta_foto_principal->store('public/configuracion');
             }
-        }
-        if($this->ruta_video){
-            if($this->ruta_video!=$this->configuracion->ruta_video) {
-                if (Storage::disk('configuracion')->exists($this->configuracion->ruta_video)) {
-                    Storage::disk('configuracion')->delete($this->configuracion->ruta_video);
-                }
-                $this->configuracion->ruta_video = $this->ruta_video->store('/','configuracion');
-            }
-            
         }
         if($this->ruta_foto_header_seccion){
             if($this->ruta_foto_header_seccion!=$this->configuracion->ruta_foto_header_seccion) {
-                if (Storage::disk('configuracion')->exists($this->configuracion->ruta_foto_header_seccion)) {
-                    Storage::disk('configuracion')->delete($this->configuracion->ruta_foto_header_seccion);
+                if (Storage::exists($this->configuracion->ruta_foto_header_seccion)) {
+                    Storage::delete($this->configuracion->ruta_foto_header_seccion);
                 }
-                $this->configuracion->ruta_foto_header_seccion = $this->ruta_foto_header_seccion->store('/','configuracion');
+                $this->configuracion->ruta_foto_header_seccion = $this->ruta_foto_header_seccion->store('public/configuracion');
             }
         }
         if ($this->configuracion==$this->configuracionOriginal){

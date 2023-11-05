@@ -15,11 +15,11 @@ class SubtitulosComponent extends Component
 
     //DEFINICION DE REGLAS DE VALIDACION
     protected $rules = [
-        'configuracion.subtitulo_servicio' => 'required|max:80',
-        'configuracion.subtitulo_ruta' => 'required|max:80',
-        'configuracion.subtitulo_libro_reclamacion' => 'required|max:80',
-        'configuracion.subtitulo_evento' => 'required|max:80',
-        'configuracion.subtitulo_termino_condicion' => 'required|max:80',
+        'configuracion.subtitulo_servicio' => 'required|max:130',
+        'configuracion.subtitulo_ruta' => 'required|max:130',
+        'configuracion.subtitulo_libro_reclamacion' => 'required|max:130',
+        'configuracion.subtitulo_evento' => 'required|max:130',
+        'configuracion.subtitulo_termino_condicion' => 'required|max:130',
     ];
 
    protected $messages = [
@@ -28,11 +28,11 @@ class SubtitulosComponent extends Component
         'configuracion.subtitulo_libro_reclamacion.required' => 'El Subtítulo del Libro de Reclamaciones es obligatorio.',
         'configuracion.subtitulo_evento.required' => 'El Subtítulo de Eventos es obligatorio.',
         'configuracion.subtitulo_termino_condicion.required' => 'El Subtítulo de Terminos y Condiciones es obligatorio.',
-        'configuracion.subtitulo_servicio.max:80' => 'El Subtítulo solo puede tener un máximo de 80 caracteres.',
-        'configuracion.subtitulo_ruta.max:80' => 'El Subtítulo solo puede tener un máximo de 80 caracteres.',
-        'configuracion.subtitulo_libro_reclamacion.max:80' => 'El Subtítulo solo puede tener un máximo de 80 caracteres.',
-        'configuracion.subtitulo_evento.max:80' => 'El Subtítulo solo puede tener un máximo de 80 caracteres.',
-        'configuracion.subtitulo_termino_condicion.max:80' => 'El Subtítulo solo puede tener un máximo de 80 caracteres.',
+        'configuracion.subtitulo_servicio.max' => 'El Subtítulo solo puede tener un máximo de 130 caracteres.',
+        'configuracion.subtitulo_ruta.max' => 'El Subtítulo solo puede tener un máximo de 130 caracteres.',
+        'configuracion.subtitulo_libro_reclamacion.max' => 'El Subtítulo solo puede tener un máximo de 130 caracteres.',
+        'configuracion.subtitulo_evento.max' => 'El Subtítulo solo puede tener un máximo de 130 caracteres.',
+        'configuracion.subtitulo_termino_condicion.max' => 'El Subtítulo solo puede tener un máximo de 130 caracteres.',
     ];
     
     //SE VERIFICA SI EXISTE LA CONFIGURACON, DE LO CONTRARIO CREA UNA 

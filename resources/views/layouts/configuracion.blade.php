@@ -32,20 +32,17 @@
     <div class="col-12">
         <div class="card shadow-lg m-0 " style="border-radius: 25px">
             <div class="card-body">
-                <div class="row ">
-                    <div class="col-12 col-lg-5 mx-auto mb-3">
+                <div class="row p-5">
+                    <div class="col-12 col-lg-5 mx-auto mb-4">
                         @livewire('configuracion.general-component')
                     </div>
-                    <div class="col-12 col-lg-5 mx-auto mb-3">
+                    <div class="col-12 col-lg-5 mx-auto mb-4">
                         @livewire('configuracion.subtitulos-component')
                     </div>
-
-                </div>
-                <div class="row ">
-                    <div class="col-12 col-lg-5 mx-auto mb-3">
+                    <div class="col-12 col-lg-5 mx-auto mb-4 mt-4">
                         @livewire('configuracion.contacto-component')
                     </div>
-                    <div class="col-12 col-lg-5 mx-auto mb-3">
+                    <div class="col-12 col-lg-5 mx-auto mb-4 mt-4">
                         @livewire('configuracion.imagenes-component')
                     </div>
                 </div>

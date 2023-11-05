@@ -11,20 +11,38 @@ class ContactoComponent extends Component
     public $configuracionOriginal;
     //VARIABLE PARA VERIFICAR SI EL MODAL ESTA ABIERTO O CERRADO
     //DEBIDO A QUE LA VALIDACION  RENDERIZA DE NUEVO EL COMPONENTE, SE CIERRA AUTOMATICAMENTE
-    public $verModal=false; 
+    public $verModal=false;
 
     //DEFINICION DE REGLAS DE VALIDACION
     protected $rules = [
-        'configuracion.celular_principal' => 'required',
-        'configuracion.correo_principal' => 'required',
+        'configuracion.celular_principal' => 'required|max:9',
+        'configuracion.correo_principal' => 'required|max:30',
+        'configuracion.celular_secundario' => 'nullable|max:9',
+        'configuracion.correo_secundario' => 'nullable|max:30',
+        'configuracion.link_facebook' => 'nullable|url|max:50',
+        'configuracion.link_instagram' => 'nullable|url|max:50',
+        'configuracion.link_youtube' => 'nullable|url|max:50',
+        'configuracion.link_linkedln' => 'nullable|url|max:50',
     ];
 
    protected $messages = [
         'configuracion.celular_principal.required' => 'El teléfono/celular principal es obligatorio.',
         'configuracion.correo_principal.required' => 'El correo principal es obligatorio.',
+        'configuracion.celular_principal.max' => 'El teléfono/celular principal debe tener un máximo de 9 caracteres.',
+        'configuracion.correo_principal.max' => 'El correo principal debe tener un máximo de 30 caracteres.',
+        'configuracion.celular_secundario.max' => 'El teléfono/celular secundario debe tener un máximo de 9 caracteres.',
+        'configuracion.correo_secundario.max' => 'El correo secundario debe tener un máximo de 30 caracteres.',
+        'configuracion.link_facebook.max' => 'El link de Facebook debe tener un máximo de 50 caracteres.',
+        'configuracion.link_instagram.max' => 'El link de Instagram debe tener un máximo de 50 caracteres.',
+        'configuracion.link_youtube.max' => 'El link de Youtube debe tener un máximo de 50 caracteres.',
+        'configuracion.link_linkedln.max' => 'El link de Linkedln debe tener un máximo de 50 caracteres.',
+        'configuracion.link_facebook.url' => 'El link de Facebook debe ser una URL.',
+        'configuracion.link_instagram.url' => 'El link de Instagram debe ser una URL.',
+        'configuracion.link_youtube.url' => 'El link de Youtube debe ser una URL.',
+        'configuracion.link_linkedln.url' => 'El link de Linkedln debe ser una URL.',
     ];
-    
-    //SE VERIFICA SI EXISTE LA CONFIGURACON, DE LO CONTRARIO CREA UNA 
+
+    //SE VERIFICA SI EXISTE LA CONFIGURACON, DE LO CONTRARIO CREA UNA
     public function mount(){
         $this->configuracion=Configuracion::first();
         if(!isset($this->configuracion)){
@@ -80,7 +98,7 @@ class ContactoComponent extends Component
             $this->configuracionOriginal=$this->configuracion; //LE ASIGAN AL AUXILIAR DE ORIGINAL PARA UNA POSTERIOR EDICIÓN
             $this->dispatchBrowserEvent('success',['mensaje' => 'El registro se ha guardado correctamente!']);
         }
-        
+
     }
 
 }
