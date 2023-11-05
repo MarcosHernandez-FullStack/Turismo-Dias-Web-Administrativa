@@ -21,6 +21,7 @@ class RutaComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
 
+    
     public function mount(){
         $this->sort ='id';
         $this->direction ='asc';
