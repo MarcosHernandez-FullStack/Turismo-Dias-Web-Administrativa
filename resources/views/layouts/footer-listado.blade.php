@@ -10,6 +10,5 @@
         <div class="float-right">
             {{ $elementosListado->links() }}
         </div>
-       
     </div>
 </div>

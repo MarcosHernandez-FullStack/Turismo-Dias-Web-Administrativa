@@ -20,16 +20,20 @@ class ImagenesComponent extends Component
     public $tab='ruta_foto_principal_tab';
 
     //DEFINICION DE REGLAS DE VALIDACION
+    //LA VALIDACIOND E LAS IMAGENES SE HACE CON FILEPOND
     protected $rules = [
-        'ruta_foto_principal' => 'max:1024',
-        'ruta_video' => 'max:102400',
-        'ruta_foto_header_seccion' => 'max:1024',
+        //'ruta_foto_principal' => 'image|max:1024',
+        'configuracion.ruta_video' => 'url|max:255',
+        //'ruta_foto_header_seccion' => 'image|max:1024',
     ];
 
    protected $messages = [
-        'ruta_foto_principal.max:1024' => 'El tamaño máximo del archivo debe ser de 1MB.',
-        'ruta_foto_principal.max:102400' => 'El tamaño máximo del archivo debe ser de 100MB.',
-        'ruta_foto_header_seccion.max:1024' => 'El tamaño máximo del archivo debe ser de 1MB.',
+        //'ruta_foto_principal.image' => 'El archivo debe ser de tipo imagen.',
+        'configuracion.ruta_video.url' => 'El texto debe ser una URL.',
+        //'ruta_foto_header_seccion.image' => 'El archivo debe ser de tipo imagen.',
+        //'ruta_foto_principal.max:1024' => 'El tamaño máximo del archivo debe ser de 1MB.',
+        'configuracion.ruta_video.max:255' => 'El tamaño máximo de la URL es de 255 caracteres.',
+        //'ruta_foto_header_seccion.max:1024' => 'El tamaño máximo del archivo debe ser de 1MB.',
     ];
     
     //SE VERIFICA SI EXISTE LA CONFIGURACON, DE LO CONTRARIO CREA UNA 
