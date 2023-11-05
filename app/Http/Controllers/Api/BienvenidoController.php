@@ -37,7 +37,6 @@ class BienvenidoController extends Controller
 
                                     "id" => $institucional->id,
                                     "slogan_home" => $institucional->slogan_home,
-                                    /*"fecha_inicio"=>date('d/m/Y', strtotime($institucional->fecha_inicio)),*/
                                     "aniosDeDiferencia" =>$aniosDeDiferencia,
                                     "breve_historia" => $institucional->breve_historia,
                                     "ruta_foto_principal" =>  env("APP_URL") . Storage::url($institucional->ruta_foto_principal),
