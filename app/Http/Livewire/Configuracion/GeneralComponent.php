@@ -16,10 +16,10 @@ class GeneralComponent extends Component
 
     //DEFINICION DE REGLAS DE VALIDACION
     protected $rules = [
-        'configuracion.razon_social' => 'required',
-        'configuracion.nombre' => 'required',
-        'configuracion.slogan' => 'required',
-        'configuracion.horario_atencion_principal' => 'required',
+        'configuracion.razon_social' => 'required|max:50',
+        'configuracion.nombre' => 'required|max:50',
+        'configuracion.slogan' => 'required|max:70',
+        'configuracion.horario_atencion_principal' => 'required|max:20',
     ];
 
    protected $messages = [
@@ -27,6 +27,10 @@ class GeneralComponent extends Component
         'configuracion.nombre.required' => 'El nombre es obligatorio.',
         'configuracion.slogan.required' => 'El eslogan es obligatorio.',
         'configuracion.horario_atencion_principal.required' => 'El horario de atención principal es obligatorio.',
+        'configuracion.razon_social.max:50' => 'La razón social debe tener 50 caracteres como máximo.',
+        'configuracion.nombre.max:50' => 'El nombre debe tener 50 caracteres como máximo.',
+        'configuracion.slogan.max:70' => 'El eslogan debe tener 70 caracteres como máximo.',
+        'configuracion.horario_atencion_principal.max:20' => 'El horario de atención principal debe tener 20 caracteres como máximo.',
     ];
     
     //SE VERIFICA SI EXISTE LA CONFIGURACON, DE LO CONTRARIO CREA UNA 

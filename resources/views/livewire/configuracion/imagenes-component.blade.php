@@ -95,7 +95,7 @@
                         @if (isset($ruta_foto_principal))
                         <img src="{{ $ruta_foto_principal->temporaryUrl() }}" alt="...">
                         @elseif (isset($configuracion->ruta_foto_principal))
-                        <img src="{{ Storage::disk('configuracion')->url($configuracion->ruta_foto_principal) }}"
+                        <img src="{{ Storage::url($configuracion->ruta_foto_principal) }}"
                           alt="...">
                         @else
                         <img src="{{ asset('assets/img/2835x1890.png') }}" alt="...">
@@ -176,7 +176,7 @@
                         @if (isset($ruta_foto_header_seccion))
                         <img src="{{ $ruta_foto_header_seccion->temporaryUrl() }}" alt="...">
                         @elseif (isset($configuracion->ruta_foto_header_seccion))
-                        <img src="{{ Storage::disk('configuracion')->url($configuracion->ruta_foto_header_seccion)  }}"
+                        <img src="{{ Storage::url($configuracion->ruta_foto_header_seccion)  }}"
                           alt="...">
                         @endif
                       </div>
