@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\InstitucionalController;
 use App\Http\Controllers\Api\BienvenidoController;
 use App\Http\Controllers\Api\FooterController;
 use App\Http\Controllers\Api\TerminoCondicionController;
+use App\Http\Controllers\Api\RutaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -52,5 +53,11 @@ Route::group(['prefix' => 'configuracion'], function ($router) {
 
 Route::group(['prefix' => 'termino-condicion'], function ($router) {
     Route::get('/all', [TerminoCondicionController::class, 'index']);
+});
+
+Route::group(['prefix' => 'rutas'], function ($router) {
+    Route::get('/principal', [RutaController::class, 'principal']);
+    Route::get('/detallesDeUnaCiudad/{ciudad_id}', [RutaController::class, 'detallesDeUnaCiudad']);
+
 });
 
