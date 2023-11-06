@@ -77,7 +77,7 @@
                               },
                               revert: (filename, load) => {
                                 @this.removeUpload('ruta_foto_principal',filename,load)
-      
+
                               },
                             },
                           });">
@@ -158,7 +158,7 @@
                               },
                               revert: (filename, load) => {
                                 @this.removeUpload('ruta_foto_header_seccion',filename,load)
-      
+
                               },
                             },
                           });">
@@ -172,7 +172,7 @@
                   </div>
                   <div class="row">
                     <div class="col-12 p-0">
-                      <div class="contenedor-imagen" style="height: 423px!important;">
+                      <div class="contenedor-imagen-header" style="height: 423px!important;">
                         @if (isset($ruta_foto_header_seccion))
                         <img src="{{ $ruta_foto_header_seccion->temporaryUrl() }}" alt="...">
                         @elseif (isset($configuracion->ruta_foto_header_seccion))
@@ -205,7 +205,7 @@
     window.addEventListener('showModalImagenes', event => {
         $("#ImagenesModal").modal('show');
     });
-    
+
 
 </script>
 @endpush
