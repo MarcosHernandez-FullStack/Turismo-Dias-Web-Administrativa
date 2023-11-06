@@ -19,6 +19,11 @@
             <div class="card shadow-lg m-0 px-2" style="border-radius: 25px">
                 <!-- /.card-header -->
                 <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-12">
+                            @livewire('tipo-bus.tipo-bus-component')
+                        </div>
+                    </div>
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         @include('layouts.header-listado', [
                             'label' => 'Ruta',

@@ -1,9 +1,8 @@
-@extends('layouts.modal')
-@section('contenido_modal')
+
     <form>
         <div class="modal-header bg-info text-light">
             <h5 class="modal-title">
-                {{ $form == 'create' ? 'Crear' : 'Editar' }} Servicio
+                {{ $form == 'create' ? 'Crear' : 'Editar' }} Tipo de Bus
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
@@ -14,23 +13,23 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" wire:model='servicio.nombre'
-                            class="form-control @error('servicio.nombre') is-invalid @enderror" id="nombre"
-                            placeholder="Ingresar Nombre del Servicio">
-                        @error('servicio.nombre')
+                        <input type="text" wire:model='tipoBus.nombre'
+                            class="form-control @error('tipoBus.nombre') is-invalid @enderror" id="nombre"
+                            placeholder="Ingresar Nombre del Tipo de Bus">
+                        @error('tipoBus.nombre')
                             <span id="nombre-error" class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripción</label>
-                        <textarea wire:model='servicio.descripcion' class="form-control @error('servicio.descripcion') is-invalid @enderror"
-                            id="descripcion" rows="3" placeholder="Ingresar Descripción del Servicio"></textarea>
-                        @error('servicio.descripcion')
+                        <textarea wire:model='tipoBus.descripcion' class="form-control @error('tipoBus.descripcion') is-invalid @enderror"
+                            id="descripcion" rows="2" placeholder="Ingresar Descripción del Tipo de Bus"></textarea>
+                        @error('tipoBus.descripcion')
                             <span id="descripcion-error" class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Imagen del Servicio</label>
+                        <label>Imagen del Tipo de Bus</label>
                         <div wire:ignore x-data x-init="FilePond.create($refs.input_ruta_foto, {
                             labelIdle: 'Arrastra y suelta tus archivos, o <span class=\'filepond--label-action\'> Busca </span>',
                             credits: {},
@@ -56,6 +55,7 @@
                                     @this.removeUpload('ruta_foto', filename, load)
 
                                 },
+
                             },
                         });">
                             <input wire:model='ruta_foto' type="file" x-ref="input_ruta_foto" name="ruta_foto">
@@ -67,14 +67,14 @@
                     </div>
                     <div class="row p-0 m-0">
                         <div class="col-12 p-0 m-0 d-flex justify-content-center">
-                            <div class="contenedor-imagen" style="height: 200px!important;width: 280px!important;">
+                            <div class="contenedor-imagen" style="height: 200px!important;width: 348px!important;">
                                 @if (isset($ruta_foto))
                                 <img src="{{ $ruta_foto->temporaryUrl() }}" alt="...">
-                                @elseif (isset($this->servicio->ruta_foto))
-                                <img src="{{ Storage::url($this->servicio->ruta_foto) }}"
+                                @elseif (isset($this->tipoBus->ruta_foto))
+                                <img src="{{ Storage::url($this->tipoBus->ruta_foto) }}"
                                   alt="...">
                                 @else
-                                <img src="{{ asset('assets/img/350x250.png') }}" alt="...">
+                                <img src="{{ asset('assets/img/1280x720.png') }}" alt="...">
                                 @endif
                               </div>
                         </div>
@@ -90,4 +90,3 @@
                 {{ $form == 'create' ? 'Registrar' : 'Actualizar' }}</button>
         </div>
     </form>
-@endsection

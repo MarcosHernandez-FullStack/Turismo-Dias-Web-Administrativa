@@ -41,7 +41,7 @@ class ServicioComponent extends Component
         return [
             'servicio.nombre' => 'required|max:35',
             'servicio.descripcion' => 'required|max:255',
-            'ruta_foto' => 'required',
+            'ruta_foto' => 'nullable',
         ];
     }
 
@@ -99,6 +99,7 @@ class ServicioComponent extends Component
         $this->servicio->save();
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+        $this->ruta_foto=null;
 
     }
 
