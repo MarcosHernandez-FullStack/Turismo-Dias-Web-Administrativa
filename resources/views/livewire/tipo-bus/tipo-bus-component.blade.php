@@ -1,14 +1,14 @@
 <div>
-    <div id="accordion">
+    <div id="accordionTipoBus">
         <div class="card card-info">
             <div class="card-header">
                 <h4 class="card-title w-100">
-                    <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
-                        <i class="fa-solid fa-van-shuttle"></i> Tipo de Bus
+                    <a class="d-block w-100" data-toggle="collapse" href="#collapseTipoBus">
+                        <i class="fa-solid fa-van-shuttle"></i> Tipos de Bus
                     </a>
                 </h4>
             </div>
-            <div wire:ignore.self id="collapseThree" class="collapse" data-parent="#accordion">
+            <div wire:ignore.self id="collapseTipoBus" class="collapse" data-parent="#accordionTipoBus">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
@@ -84,13 +84,5 @@
         window.addEventListener('showModalTipoBus', event => {
             $("#modalTipoBus").modal('show');
         });
-        window.addEventListener('showCollapseTipoBus', event => {
-            $('#myCollapsible').collapse('show');
-        });
-        window.addEventListener('showCollapseTipoBus', event => {
-            $('#collapseThree').collapse('show');
-        });
-
-
     </script>
 @endpush

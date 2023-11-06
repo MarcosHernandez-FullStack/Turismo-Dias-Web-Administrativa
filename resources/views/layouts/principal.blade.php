@@ -253,12 +253,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <!--li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-map-location-dot nav-icon"></i>
                                 <p>Ciudades</p>
                             </a>
-                        </li>
+                        </li-->
 
                         <li class="nav-item">
                             <a href="{{ route('ambientes') }}" class="nav-link">

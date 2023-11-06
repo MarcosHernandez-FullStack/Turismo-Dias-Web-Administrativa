@@ -24,6 +24,11 @@
                             @livewire('tipo-bus.tipo-bus-component')
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            @livewire('ciudad.ciudad-component')
+                        </div>
+                    </div>
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         @include('layouts.header-listado', [
                             'label' => 'Ruta',
@@ -59,7 +64,7 @@
                                                 <td>{{ $ruta->tipo_bus->nombre }}</td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $ruta->estado == '1' ? 'success' : 'warning' }}"
-                                                        wire:click='cambiarEstado({{ $ruta->id }})'>{{ $ruta->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                        wire:click='confirmarCambioEstado({{ $ruta->id }})'>{{ $ruta->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
                                                 </td>
                                                 <td>
                                                     <button type="button"

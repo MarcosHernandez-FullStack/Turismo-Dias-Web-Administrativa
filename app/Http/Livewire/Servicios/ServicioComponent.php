@@ -78,7 +78,6 @@ class ServicioComponent extends Component
     public function render()
     {
         $servicios = Servicio::where('nombre', 'like', '%' . $this->search . '%')
-            ->where('estado', '=', '1')
             ->orderBy($this->sort, $this->direction)->paginate($this->paginacion);
         return view('livewire.servicios.servicio-component', compact('servicios'))
             ->extends('layouts.principal')
@@ -111,8 +110,9 @@ class ServicioComponent extends Component
 
     public function confirmarCambioEstado($id)
     {
+        $servicio = Servicio::find($id);
         $this->dispatchBrowserEvent('mostrar-confirmacion', [
-            'mensaje' => '¿Estás seguro de que deseas desactivar este servicio?',
+            'mensaje' => '¿Estás seguro de que deseas '.(($servicio->estado == 1) ? 'desactivar':'activar').' este servicio?',
             'evento' => 'cambiar-estado',
             'data' => $id,
         ]);
@@ -125,7 +125,7 @@ class ServicioComponent extends Component
         }else{
             $servicio->update(['estado' => '1']);
         }
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'El servicio ha sido desactivado!']);
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El servicio ha sido '.(($servicio->estado == 1) ? 'activado':'desactivado').'!']);
     }
 
 
