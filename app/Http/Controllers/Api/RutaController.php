@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ciudad;
@@ -23,7 +23,7 @@ class RutaController extends Controller
                         return [
                             "id" => $ciudad->id,
                             "descripcion" => $ciudad->descripcion,
-                           
+
                         ];
 
                     }),
@@ -33,7 +33,7 @@ class RutaController extends Controller
                         "correo_principal" => $configuracion->correo_principal,
                         "correo_secundario" => $configuracion->correo_secundario,
                         "horario_atencion_principal" => $configuracion->horario_atencion_principal,
-                    ] 
+                    ]
                 ],
             ], 200); // 200 OK para indicar una respuesta exitosa.
         } catch (\Exception $e) {
@@ -62,10 +62,11 @@ class RutaController extends Controller
                 "data" => [
                     "tipo_buses"  => $tipo_buses->map(function ($tipo_bus) use ($ciudad_id) {
                         return [
-                            
+
                                 "id"=>$tipo_bus->id,
                                 "nombre"=>$tipo_bus->nombre,
                                 "descripcion"=>$tipo_bus->descripcion,
+                                "ruta_foto_tipo_bus" => env("APP_URL") . Storage::url($tipo_bus->ruta_foto),
                                 "rutas" => $tipo_bus->rutas
                                     ->filter(function ($ruta) use ($ciudad_id) {return $ruta->estado == '1' && $ruta->ciudad_origen_id==$ciudad_id;})
                                     ->map(function ($ruta) {
@@ -76,13 +77,13 @@ class RutaController extends Controller
                                     "hora_llegada" => $ruta->hora_llegada,
                                     "nombre_tipo_bus" => $ruta->tipo_bus->nombre,
                                     "descripcion_tipo_bus" => $ruta->tipo_bus->descripcion,
-                                    "ruta_foto_tipo_bus" =>$ruta->tipo_bus->ruta_foto,
+
                                     "estado_tipo_bus" => $ruta->tipo_bus->estado];
                                     })
                                     ->sortBy('hora_salida') //ordena de para ordenar de manera ascendente respecto a la hora_salida
                                     ->values(), //se usa al final para reindexar los elementos de la colección, lo cual puede ser útil en caso de que quieras tener índices de 0 en adelante.
                         ];
-                    }),  
+                    }),
                 ],
             ], 200); // 200 OK para indicar una respuesta exitosa.
         } catch (\Exception $e) {
