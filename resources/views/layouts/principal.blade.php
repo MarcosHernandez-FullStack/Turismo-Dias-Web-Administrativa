@@ -39,6 +39,8 @@
     <link rel="stylesheet" href="{{ asset('assets/dist/css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dist/css/app.css') }}">
 
+
+
     @livewireStyles
 </head>
 
@@ -292,7 +294,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
+                                    <a href="{{ route('eventos') }}" class="nav-link">
                                         <i class="fa-solid fa-calendar-days nav-icon"></i>
 
                                         <p>Calendario de eventos</p>
@@ -1629,6 +1631,11 @@
 
     <script src="{{ asset('assets/dist/js/filepond.js') }}"></script>
     <script src="{{ asset('assets/dist/js/sweetalert2.all.min.js') }}"></script>
+    <!-- InputMask -->
+    <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+    <!-- date-range-picker -->
+    <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {{-- <script src="{{ asset('assets/dist/js/pages/dashboard.js')}}"></script> --}}
