@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(InstitucionalSeeder::class);
         $this->call(ValorSeeder::class);
         $this->call(TerminoCondicionSeeder::class);
+        $this->call(FeriadoSeeder::class);
     }
 }
