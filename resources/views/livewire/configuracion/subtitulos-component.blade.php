@@ -6,7 +6,7 @@
             <p>Establece los subtitulos de cada una de las vistas de tu página web</p>
         </div>
         <div class="icon">
-            <i class="fa-brands fa-slack"></i>
+            <i class="fa-solid fa-closed-captioning"></i>
         </div>
         <a class="small-box-footer">
             Ver más <i class="fas fa-arrow-circle-right"></i>

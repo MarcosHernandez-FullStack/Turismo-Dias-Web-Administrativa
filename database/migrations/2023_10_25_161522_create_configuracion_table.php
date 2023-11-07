@@ -16,6 +16,7 @@ class CreateConfiguracionTable extends Migration
         Schema::create('configuracion', function (Blueprint $table) {
             $table->id();
             $table->string('ruta_foto_principal')->nullable();
+            $table->string('ruta_logo')->nullable();
             $table->string('slogan')->nullable();
             $table->string('ruta_video')->nullable();
             $table->string('celular_principal')->nullable();
@@ -26,6 +27,7 @@ class CreateConfiguracionTable extends Migration
             $table->string('link_facebook')->nullable();
             $table->string('link_instagram')->nullable();
             $table->string('link_youtube')->nullable();
+            $table->string('link_twitter')->nullable();
             $table->string('link_linkedln')->nullable();
             $table->string('razon_social')->nullable();
             $table->string('nombre')->nullable();
