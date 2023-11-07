@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LibroReclamacionSeeder::class);
         $this->call(InstitucionalSeeder::class);
         $this->call(ValorSeeder::class);
+        $this->call(TerminoCondicionSeeder::class);
     }
 }

@@ -42,10 +42,10 @@
                                     <thead>
                                         <tr>
                                             <th style="width:20px" rowspan="1" colspan="1">#</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Seccion</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Descripcion</th>
+                                            <th style="width:75px" rowspan="1" colspan="1">Seccion</th>
+                                            <th style="width:300px" rowspan="1" colspan="1">Descripcion</th>
                                             <th style="width:50px" rowspan="1" colspan="1">Estado</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Opciones</th>
+                                            <th style="width:50px" rowspan="1" colspan="1">Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>

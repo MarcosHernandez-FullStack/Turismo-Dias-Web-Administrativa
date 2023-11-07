@@ -43,6 +43,7 @@ class InstitucionalComponent extends Component
            'institucional.vision' => 'required|max:255',
            'ruta_foto_principal' => (!$this->institucional->id)?'required|image|max:2048':'nullable|image|max:2048',
            'ruta_foto_secundaria' => (!$this->institucional->id)?'required|image|max:2048':'nullable|image|max:2048',
+           'institucional.fecha_inicio' => 'required|date',
            'valores_collection.*.descripcion' => 'required',
         ];
    }
@@ -62,6 +63,8 @@ class InstitucionalComponent extends Component
             'ruta_foto_secundaria.required' => 'La foto secundaria es requerida',
             'ruta_foto_secundaria.image' => 'La foto secundaria debe ser una imagen',
             'ruta_foto_secundaria.max' => 'La foto secundaria debe pesar menos de 2MB',
+            'institucional.fecha_inicio.required' => 'La fecha de inicio es requerida',
+            'institucional.fecha_inicio.date' => 'La fecha de inicio debe ser una fecha',
             'valores_collection.*.descripcion.required' => 'La descripción es requerida',
    ];
 

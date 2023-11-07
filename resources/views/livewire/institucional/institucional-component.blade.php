@@ -48,13 +48,23 @@
                         </div> --}}
                         <div class="row col-md-12">
                             <div class="col-md-12 row">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-6">
                                     <label for="slogan_home" class="form-label">
                                         Eslogan (Acerca de Nosotros)
                                     </label>
                                     <input type="text" class="form-control form-control-sm rounded-pill"
                                         id="slogan_home" wire:model='institucional.slogan_home'>
                                     @error('institucional.slogan_home')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="fecha_inicio" class="form-label">
+                                        Fecha de inicio
+                                    </label>
+                                    <input type="date" class="form-control form-control-sm rounded-pill"
+                                        id="fecha_inicio" wire:model='institucional.fecha_inicio'>
+                                    @error('institucional.fecha_inicio')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

@@ -10,7 +10,7 @@
             </button>
         </div>
         <div class="modal-body row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
                 <label for="seccion" class="form-label">
                     Seccion
                 </label>
@@ -19,11 +19,11 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
                 <label for="descripcion" class="form-label">
                     Descripcion
                 </label>
-                <input type="text" class="form-control form-control-sm rounded-pill" id="descripcion" wire:model='termino_condicion.descripcion'>
+                <textarea class="form-control form-control-sm rounded-lg" rows="5" id="descripcion" wire:model='termino_condicion.descripcion'></textarea>
                 @error('termino_condicion.descripcion')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror

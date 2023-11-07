@@ -76,6 +76,12 @@
                                                         wire:click="edit({{ $ambiente->id }})"><i
                                                             class="fas fa-pen"></i>
                                                     </button>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-secondary btn-sm rounded-pill"
+                                                        data-toggle="modal" data-target="#modal_usuario"
+                                                        wire:click="detail({{ $ambiente->id }})"><i
+                                                            class="fas fa-eye"></i>
+                                                    </button>
                                                 </td>
 
                                             </tr>
