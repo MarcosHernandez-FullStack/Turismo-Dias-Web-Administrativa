@@ -45,11 +45,8 @@
                                             <th style="width:20px" rowspan="1" colspan="1">#</th>
                                             <th style="width:100px" rowspan="1" colspan="1">Nombre</th>
                                             <th style="width:50px" rowspan="1" colspan="1">Tipo</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Coord. longitud</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Coord. latitud</th>
                                             <th style="width:100px" rowspan="1" colspan="1">Direccion</th>
                                             <th style="width:100px" rowspan="1" colspan="1">Horario atencion</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Telefono</th>
                                             <th style="width:100px" rowspan="1" colspan="1">Ciudad</th>
                                             <th style="width:100px" rowspan="1" colspan="1">Estado</th>
                                             <th style="width:100px" rowspan="1" colspan="1">Opciones</th>
@@ -65,11 +62,8 @@
                                                     @if ($ambiente->tipo == '2') Terrapuerto @endif
                                                     @if ($ambiente->tipo == '3') Almacen @endif
                                                  </td>
-                                                <td>{{ $ambiente->coordenada_longitud }}</td>
-                                                <td>{{ $ambiente->coordenada_latitud }}</td>
                                                 <td>{{ $ambiente->direccion }}</td>
                                                 <td>{{ $ambiente->horario_atencion }}</td>
-                                                <td>{{ $ambiente->telefono }}</td>
                                                 <td>{{ $ambiente->ciudad->descripcion }}</td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $ambiente->estado == '1' ? 'success' : 'warning' }}"
@@ -82,12 +76,18 @@
                                                         wire:click="edit({{ $ambiente->id }})"><i
                                                             class="fas fa-pen"></i>
                                                     </button>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-secondary btn-sm rounded-pill"
+                                                        data-toggle="modal" data-target="#modal_usuario"
+                                                        wire:click="detail({{ $ambiente->id }})"><i
+                                                            class="fas fa-eye"></i>
+                                                    </button>
                                                 </td>
 
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="4" class="text-center">
+                                                <td colspan="11" class="text-center">
                                                     <h4>No hay registros</h4>
                                                 </td>
                                             </tr>

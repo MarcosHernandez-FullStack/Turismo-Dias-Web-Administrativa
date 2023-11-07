@@ -1,12 +1,35 @@
 <div>
     <div class="row mb-2">
         <div class="col-12">
+            <div class="row mb-2">
+                <div class="col-12">
+                    <div class="card card-default color-palette-box">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{--  <h1 class="card-title">Configuración de Página Web</h1> --}}
+                                    <h5><i style="color: #17a2b8" class="fas fa-laptop-house  mr-1"></i>
+                                        <b style="color: rgb(48, 48, 48)">TERMINOS Y CONDICIONES</b></h5>
+
+                                </div>
+                                {{--  <div class="col-sm-6">
+                                    <ol class="breadcrumb float-sm-right">
+                                        <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                        <li class="breadcrumb-item active">Configuración</li>
+                                    </ol>
+                                </div> --}}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card shadow-lg m-0 px-2" style="border-radius: 25px">
                 <!-- /.card-header -->
                 <div class="card-body p-3">
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         @include('layouts.header-listado', [
-                            'label' => 'Termino Condicione',
+                            'label' => 'Termino Condicion',
                             'create_function' => "showModal('form', 'create')",
                             'condition_message' => session()->has('message'),
                             'find' => 'Buscar por seccion del termino condicion',
@@ -19,10 +42,10 @@
                                     <thead>
                                         <tr>
                                             <th style="width:20px" rowspan="1" colspan="1">#</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Seccion</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Descripcion</th>
+                                            <th style="width:75px" rowspan="1" colspan="1">Seccion</th>
+                                            <th style="width:300px" rowspan="1" colspan="1">Descripcion</th>
                                             <th style="width:50px" rowspan="1" colspan="1">Estado</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Opciones</th>
+                                            <th style="width:50px" rowspan="1" colspan="1">Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,7 +70,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="4" class="text-center">
+                                                <td colspan="5" class="text-center">
                                                     <h4>No hay registros</h4>
                                                 </td>
                                             </tr>
