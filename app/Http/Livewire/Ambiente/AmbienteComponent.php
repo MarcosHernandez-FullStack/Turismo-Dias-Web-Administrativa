@@ -110,4 +110,9 @@ class AmbienteComponent extends Component
         session()->flash('message', 'Ambiente actualizado con éxito');
         $this->dispatchBrowserEvent('closeModal');
     }
+
+    public function detail($id){
+        $this->showModal("form", "detail");
+        $this->ambiente=Ambiente::find($id);
+    }
 }

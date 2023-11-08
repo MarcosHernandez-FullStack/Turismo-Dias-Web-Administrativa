@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Feriado;
 use Illuminate\Database\Seeder;
-
+use App\Models\Feriado;
 class FeriadoSeeder extends Seeder
 {
     /**
@@ -14,13 +13,39 @@ class FeriadoSeeder extends Seeder
      */
     public function run()
     {
-        Feriado::insert([
-            ['fecha_inicio' => '2023-12-08', 'fecha_fin' => '2023-12-08', 'razon' => 'Día de la Inmaculada Concepción', 'estado' => '1', 'created_at' => '2023-11-01 20:45:02', 'updated_at' => '2023-11-01 20:45:02'],
-            ['fecha_inicio' => '2023-12-09', 'fecha_fin' => '2023-12-09', 'razon' => 'Batalla de Ayacucho', 'estado' => '1', 'created_at' => '2023-11-01 20:45:02', 'updated_at' => '2023-11-01 20:45:02'],
-            ['fecha_inicio' => '2023-12-25', 'fecha_fin' => '2023-12-25', 'razon' => 'Navidad', 'estado' => '1', 'created_at' => '2023-11-01 20:45:02', 'updated_at' => '2023-11-01 20:45:02'],
-            ['fecha_inicio' => '2023-12-26', 'fecha_fin' => '2023-12-26', 'razon' => 'Día no laborable para el sector público', 'estado' => '1', 'created_at' => '2023-11-01 20:45:02', 'updated_at' => '2023-11-01 20:45:02'],
-            ['fecha_inicio' => '2024-01-01', 'fecha_fin' => '2024-01-01', 'razon' => 'Año Nuevo', 'estado' => '1', 'created_at' => '2023-11-01 20:45:02', 'updated_at' => '2023-11-01 20:45:02'],
-            ['fecha_inicio' => '2024-01-02', 'fecha_fin' => '2024-01-02', 'razon' => 'Día no laborable para el sector público', 'estado' => '1', 'created_at' => '2023-11-01 20:45:02', 'updated_at' => '2023-11-01 20:45:02']
-        ]);
+        Feriado::insert(
+            [
+                [
+                    'fecha_inicio' => '2023-12-08',
+                    'fecha_fin' => '2023-12-08',
+                    'razon' => 'Día de la Inmaculada Concepción',
+                ],
+                [
+                    'fecha_inicio' => '2023-12-09',
+                    'fecha_fin' => '2023-12-09',
+                    'razon' => 'Batalla de Ayacucho',
+                ],
+                [
+                    'fecha_inicio' => '2023-12-25',
+                    'fecha_fin' => '2023-12-25',
+                    'razon' => 'Navidad',
+                ],
+                [
+                    'fecha_inicio' => '2023-12-26',
+                    'fecha_fin' => '2023-12-26',
+                    'razon' => 'Día no laborable para el sector público',
+                ],
+                [
+                    'fecha_inicio' => '2024-01-01',
+                    'fecha_fin' => '2024-01-01',
+                    'razon' => 'Año Nuevo',
+                ],
+                [
+                    'fecha_inicio' => '2024-01-02',
+                    'fecha_fin' => '2024-01-02',
+                    'razon' => 'Día no laborable para el sector público',
+                ],
+            ]
+        );
     }
 }

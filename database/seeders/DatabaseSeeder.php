@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RutaSeeder::class);
         $this->call(FaqSeeder::class);
         $this->call(LibroReclamacionSeeder::class);
+        $this->call(InstitucionalSeeder::class);
+        $this->call(ValorSeeder::class);
+        $this->call(TerminoCondicionSeeder::class);
         $this->call(FeriadoSeeder::class);
     }
 }

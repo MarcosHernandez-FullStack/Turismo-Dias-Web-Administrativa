@@ -269,12 +269,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="{{ route('rutas') }}" class="nav-link">
-                                <i class="fa-solid fa-route nav-icon"></i>
-                                <p>Rutas</p>
-                            </a>
-                        </li>
+            <li class="nav-item">
+              <a href="{{ route('rutas') }}" class="nav-link">
+                <i class="fa-solid fa-route nav-icon"></i>
+                <p>Rutas</p>
+              </a>
+            </li>
 
                         <li class="nav-item menu-close">
                             <a href="#" class="nav-link ">
@@ -283,12 +283,12 @@
                                     Condiciones de viaje
                                     <i class="right fas fa-angle-left"></i>
 
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./index.html" class="nav-link active">
-                                        <i class="fa-solid fa-file-circle-question nav-icon"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('faqs') }}" class="nav-link active">
+                    <i class="fa-solid fa-file-circle-question nav-icon"></i>
 
                                         <p>Preguntas y respuestas</p>
                                     </a>
@@ -297,13 +297,13 @@
                                     <a href="{{ route('eventos') }}" class="nav-link">
                                         <i class="fa-solid fa-calendar-days nav-icon"></i>
 
-                                        <p>Calendario de eventos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
-                                        <i class="fa-solid fa-file-contract nav-icon"></i>
-                                        <p>Términos y condiciones</p>
+                    <p>Calendario de eventos</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('terminos-condiciones') }}" class="nav-link">
+                    <i class="fa-solid fa-file-contract nav-icon"></i>
+                    <p>Términos y condiciones</p>
 
                                     </a>
                                 </li>

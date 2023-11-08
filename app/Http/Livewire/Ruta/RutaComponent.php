@@ -21,6 +21,7 @@ class RutaComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
 
+    
     public function mount(){
         $this->sort ='id';
         $this->direction ='asc';
@@ -99,8 +100,6 @@ class RutaComponent extends Component
     public function edit($id){
         $this->showModal("form", "update");
         $this->ruta=Ruta::find($id);
-        $this->ruta->hora_salida = date('H:i', strtotime($this->ruta->hora_salida));
-        $this->ruta->hora_llegada = date('H:i', strtotime($this->ruta->hora_llegada));
     }
 
     public function update(){
