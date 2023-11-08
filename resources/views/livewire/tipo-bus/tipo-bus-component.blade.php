@@ -8,7 +8,7 @@
                             <div>
                                 <i class="fa-solid fa-van-shuttle"></i> Tipos de Bus
                             </div>
-                            <i class="fa-solid fa-arrows-up-down"></i>
+                            <i class="fa-solid fa-arrows-up-down fa-bounce"></i>
                         </div>
                     </a>
                 </h4>
