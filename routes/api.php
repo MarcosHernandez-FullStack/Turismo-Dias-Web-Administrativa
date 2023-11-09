@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\BienvenidoController;
 use App\Http\Controllers\Api\FooterController;
 use App\Http\Controllers\Api\TerminoCondicionController;
 use App\Http\Controllers\Api\RutaController;
+use App\Http\Controllers\Api\FeriadoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,5 +60,9 @@ Route::group(['prefix' => 'rutas'], function ($router) {
     Route::get('/principal', [RutaController::class, 'principal']);
     Route::get('/detallesDeUnaCiudad/{ciudad_id}', [RutaController::class, 'detallesDeUnaCiudad']);
 
+});
+
+Route::group(['prefix' => 'feriados'], function ($router) {
+    Route::get('/all', [FeriadoController::class, 'index']);
 });
 

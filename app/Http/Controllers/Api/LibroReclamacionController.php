@@ -36,7 +36,7 @@ class LibroReclamacionController extends Controller
                     "instagram" => $configuracion->link_instagram,
                     "youtube" => $configuracion->link_youtube,
                     "linkedin" => $configuracion->link_linkedln,
-                    "twitter" => $configuracion->link_linkedln                  
+                    "twitter" => $configuracion->link_twitter                  
                     
                 ],
             ], 200); // 200 OK para indicar una respuesta exitosa.
