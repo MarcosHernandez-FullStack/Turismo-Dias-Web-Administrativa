@@ -185,49 +185,49 @@ class RutaSeeder extends Seeder
                 ],
 
 
-                //LIMA-CLASICO
+                //LIMA(LA VICTORIA)-CLASICO
                 [
-                    'ciudad_origen_id' => 16,
+                    'sub_ciudad_origen_id' => 1,
                     'ciudad_destino_id' => 2,
                     'hora_salida' => '04:00',
                     'hora_llegada' => '08:00',
                     'tipo_bus_id' => 1,
                 ],
-                //LIMA-CLASICO
+                //LIMA(PLAZA NORTE)-CLASICO
                 [
-                    'ciudad_origen_id' => 17,
+                    'sub_ciudad_origen_id' => 2,
                     'ciudad_destino_id' => 2,
                     'hora_salida' => '04:45',
                     'hora_llegada' => '08:00',
                     'tipo_bus_id' => 1,
                 ],
-                //LIMA-PLATA
+                //LIMA(LA VICTORIA)-PLATA
                 [
-                    'ciudad_origen_id' => 16,
+                    'sub_ciudad_origen_id' => 1,
                     'ciudad_destino_id' => 2,
                     'hora_salida' => '05:00',
                     'hora_llegada' => '09:00',
                     'tipo_bus_id' => 2,
                 ],
-                //LIMA-PLATA
+                //LIMA(PLAZA NORTE)-PLATA
                 [
-                    'ciudad_origen_id' => 17,
+                    'sub_ciudad_origen_id' => 2,
                     'ciudad_destino_id' => 2,
                     'hora_salida' => '05:45',
                     'hora_llegada' => '09:00',
                     'tipo_bus_id' => 2,
                 ],
-                //LIMA-ORO
+                //LIMA(LA VICTORIA)-ORO
                 [
-                    'ciudad_origen_id' => 16,
+                    'sub_ciudad_origen_id' => 1,
                     'ciudad_destino_id' => 2,
                     'hora_salida' => '06:00',
                     'hora_llegada' => '10:00',
                     'tipo_bus_id' => 3,
                 ],
-                //LIMA-ORO
+                //LIMA(PLAZA NORTE)-ORO
                 [
-                    'ciudad_origen_id' => 17,
+                    'sub_ciudad_origen_id' => 2,
                     'ciudad_destino_id' => 2,
                     'hora_salida' => '07:00',
                     'hora_llegada' => '10:00',
@@ -241,17 +241,17 @@ class RutaSeeder extends Seeder
                     'hora_llegada' => '08:30',
                     'tipo_bus_id' => 3,
                 ],
-                //LIMA-ORO
+                //LIMA(PLAZA NORTE)-ORO
                 [
-                    'ciudad_origen_id' => 17,
+                    'sub_ciudad_origen_id' => 2,
                     'ciudad_destino_id' => 4,
                     'hora_salida' => '08:15',
                     'hora_llegada' => '08:30',
                     'tipo_bus_id' => 3,
                 ],
-                //LIMA-ORO
+                //LIMA(LA VICTORIA)-ORO
                 [
-                    'ciudad_origen_id' => 16,
+                    'sub_ciudad_origen_id' => 1,
                     'ciudad_destino_id' => 15,
                     'hora_salida' => '09:00',
                     'hora_llegada' => '06:30',
@@ -397,7 +397,7 @@ class RutaSeeder extends Seeder
                 //TRUJILLO-ORO
                 [
                     'ciudad_origen_id' => 15,
-                    'ciudad_destino_id' => 17,
+                    'sub_ciudad_destino_id' => 2,
                     'hora_salida' => '08:00',
                     'hora_llegada' => '06:00',
                     'tipo_bus_id' => 3,

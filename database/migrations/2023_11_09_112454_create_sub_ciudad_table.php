@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRutaTable extends Migration
+class CreateSubCiudadTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateRutaTable extends Migration
      */
     public function up()
     {
-        Schema::create('ruta', function (Blueprint $table) {
+        Schema::create('sub_ciudad', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ciudad_origen_id')->nullable()->constrained('ciudad');
-            $table->foreignId('ciudad_destino_id')->nullable()->constrained('ciudad');
-            $table->string('hora_salida');
-            $table->string('hora_llegada');
+            $table->string('descripcion');
+            $table->foreignId('ciudad_id')->constrained('ciudad');
             $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo 
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateRutaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ruta');
+        Schema::dropIfExists('sub_ciudad');
     }
 }
