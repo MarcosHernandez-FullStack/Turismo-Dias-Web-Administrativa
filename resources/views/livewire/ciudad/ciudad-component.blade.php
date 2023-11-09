@@ -4,7 +4,12 @@
             <div class="card-header">
                 <h4 class="card-title w-100">
                     <a class="d-block w-100" data-toggle="collapse" href="#collapseCiudad">
-                        <i class="fa-solid fa-map-location-dot nav-icon"></i> Ciudades
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fa-solid fa-map-location-dot nav-icon"></i> Ciudades
+                            </div>
+                            <i class="fa-solid fa-arrows-up-down fa-bounce"></i>
+                        </div>
                     </a>
                 </h4>
             </div>

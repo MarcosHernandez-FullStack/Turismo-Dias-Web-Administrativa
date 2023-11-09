@@ -19,17 +19,17 @@ class TipoBusSeeder extends Seeder
                 [
                     'nombre' => 'CLASICO',
                     'descripcion' => 'Servicios higienicos, Reclinación 140°, Cargador entrada USB, Aire acondicionado',
-                    'ruta_foto' => 'public/servicio/tipo-bus-1.png'
+                    'ruta_foto' => 'public/tipoBus/tipo-bus-1.png'
                 ],
                 [
                     'nombre' => 'PLATA',
                     'descripcion' => 'Servicios higienicos, Reclinación 140°/160°, Cargador entrada USB, Aire acondicionado',
-                    'ruta_foto' => 'public/servicio/tipo-bus-2.png'
+                    'ruta_foto' => 'public/tipoBus/tipo-bus-2.png'
                 ],
                 [
                     'nombre' => 'ORO',
                     'descripcion' => 'Servicios higienicos, Reclinación 160°/160°, Cargador entrada USB, Aire acondicionado',
-                    'ruta_foto' => 'public/servicio/tipo-bus-3.png'
+                    'ruta_foto' => 'public/tipoBus/tipo-bus-3.png'
                 ],
 
 
