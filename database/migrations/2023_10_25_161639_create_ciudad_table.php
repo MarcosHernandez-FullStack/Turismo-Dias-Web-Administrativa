@@ -16,7 +16,7 @@ class CreateCiudadTable extends Migration
         Schema::create('ciudad', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->enum('seccion', [1, 2]); // '1' Principal, '2' Secundaria 
+            /* $table->enum('seccion', [1, 2]); // '1' Principal, '2' Secundaria  */
             $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo 
             $table->timestamps();
         });

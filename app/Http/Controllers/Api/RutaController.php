@@ -33,8 +33,8 @@ class RutaController extends Controller
                         return [
                             "id" => $ciudad->id,
                             "descripcion" => $ciudad->descripcion,
-                            'latitude' => $longitude,
-                            'longitude' => $latitude,
+                            'latitude' => $latitude,
+                            'longitude' => $longitude,
                         ];
                     }),
                     "call_center" => [
@@ -82,21 +82,23 @@ class RutaController extends Controller
                             "ruta_foto_tipo_bus" => env("APP_URL") . Storage::url($tipo_bus->ruta_foto),
                             "rutas" => $tipo_bus->rutas
                                 ->filter(function ($ruta) use ($ciudad_id) {
-                                    return $ruta->estado == '1' && $ruta->ciudad_origen_id == $ciudad_id;
+                                    return $ruta->estado == '1' && isset($ruta->ciudad_origen_id)? $ruta->ciudad_origen_id== $ciudad_id : $ruta->sub_ciudad_origen->ciudad->id== $ciudad_id;
                                 })
                                 ->map(function ($ruta) {
                                     return [
                                         "id" => $ruta->id,
-                                        "nombre_ruta" => $ruta->ciudad_origen->descripcion . '-' . $ruta->ciudad_destino->descripcion,
+                                        /* "nombre_ruta" => isset($ruta->ciudad_origen)?$ruta->ciudad_origen->descripcion:$ruta->sub_ciudad_origen->descripcion. '-' . isset($ruta->ciudad_destino)?$ruta->ciudad_destino->descripcion:$ruta->sub_ciudad_destino->descripcion, */
+                                        "nombre_origen" => isset($ruta->ciudad_origen)?$ruta->ciudad_origen->descripcion:$ruta->sub_ciudad_origen->descripcion,
+                                        "nombre_destino" => isset($ruta->ciudad_destino)?$ruta->ciudad_destino->descripcion:$ruta->sub_ciudad_destino->descripcion,
                                         "hora_salida" => $ruta->hora_salida,
                                         "hora_llegada" => $ruta->hora_llegada,
                                         "nombre_tipo_bus" => $ruta->tipo_bus->nombre,
                                         "descripcion_tipo_bus" => $ruta->tipo_bus->descripcion,
-
                                         "estado_tipo_bus" => $ruta->tipo_bus->estado
                                     ];
                                 })
                                 ->sortBy('hora_salida') //ordena de para ordenar de manera ascendente respecto a la hora_salida
+                                ->sortBy("nombre_origen") //ordena de para ordenar de manera ascendente respecto a la hora_salida
                                 ->values(), //se usa al final para reindexar los elementos de la colección, lo cual puede ser útil en caso de que quieras tener índices de 0 en adelante.
 
 
