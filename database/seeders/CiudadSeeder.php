@@ -60,12 +60,6 @@ class CiudadSeeder extends Seeder
                 [
                     'descripcion' => 'TRUJILLO'
                 ],
-                [
-                    'descripcion' => 'LIMA(LA VICTORIA)'
-                ],
-                [
-                    'descripcion' => 'LIMA(PLAZA NORTE)'
-                ],
             ]
         );
     }
