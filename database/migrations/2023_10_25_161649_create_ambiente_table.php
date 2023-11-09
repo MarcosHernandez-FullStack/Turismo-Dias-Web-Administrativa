@@ -17,8 +17,8 @@ class CreateAmbienteTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->enum('tipo', [1, 2, 3]); // '1' oficina, '2' terrapuerto, '3' almacen
-            $table->string('coordenada_longitud');
-            $table->string('coordenada_latitud');
+            $table->decimal('coordenada_longitud', $precision = 16, $scale = 10);
+            $table->decimal('coordenada_latitud', $precision = 16, $scale = 10);
             $table->string('direccion');
             $table->string('horario_atencion');
             $table->string('telefono');
