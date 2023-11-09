@@ -24,7 +24,7 @@ class FooterController extends Controller
                     "instagram" => $configuracion->link_instagram,
                     "youtube" => $configuracion->link_youtube,
                     "linkedin" => $configuracion->link_linkedln,
-                    "twitter" => $configuracion->link_linkedln,
+                    "twitter" => $configuracion->link_twitter,
                     "celularPrincipal" => $configuracion->celular_principal,
                     "slogan" => $configuracion->slogan,
                     
