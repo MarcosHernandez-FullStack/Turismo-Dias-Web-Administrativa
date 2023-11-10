@@ -20,6 +20,8 @@ class TerminoCondicionComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
 
+    protected $listeners = ['cambiar-estado' => 'cambiarEstado'];
+
     public function mount()
     {
         $this->sort ='id';
@@ -35,14 +37,16 @@ class TerminoCondicionComponent extends Component
 
     protected function rules(){
         return [
-           'termino_condicion.seccion' => 'required',
-           'termino_condicion.descripcion' => 'required',
+           'termino_condicion.seccion' => 'required|max:120',
+           'termino_condicion.descripcion' => 'required|max:255',
         ];
    }
 
    protected $messages = [
             'termino_condicion.seccion.required' => 'La seccion es requerida',
+            'termino_condicion.seccion.max' => 'La seccion debe contener como máximo 120 caracteres',
             'termino_condicion.descripcion.required' => 'La descripcion es requerida',
+            'termino_condicion.descripcion.max' => 'La descripcion debe contener como máximo 255 caracteres',
    ];
 
    public function updated($propertyName){
@@ -65,7 +69,10 @@ class TerminoCondicionComponent extends Component
 
     public function render()
     {
-        $termino_condiciones=TerminoCondicion::where('seccion', 'like', '%'.$this->search.'%')->paginate($this->paginacion);
+        $termino_condiciones=TerminoCondicion::where('seccion', 'like', '%'.$this->search.'%')
+        ->orWhere('descripcion', 'like', '%'.$this->search.'%')
+        ->orderBy('orden')
+        ->paginate($this->paginacion);
         return view('livewire.termino_condicion.termino_condicion-component', compact('termino_condiciones'))
                 ->extends('layouts.principal')
                 ->section('content');
@@ -73,9 +80,20 @@ class TerminoCondicionComponent extends Component
 
     public function save(){
         $this->validate();
+        $this->termino_condicion->orden = count(TerminoCondicion::all())+1;
         $this->termino_condicion->save();
-        session()->flash('message', 'TerminoCondicion registrado con éxito');
         $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+    }
+
+    public function confirmarCambioEstado($id)
+    {
+        $termino_condicion = TerminoCondicion::find($id);
+        $this->dispatchBrowserEvent('mostrar-confirmacion', [
+            'mensaje' => '¿Estás seguro de que deseas '.(($termino_condicion->estado == 1) ? 'desactivar':'activar').' este termino condicion?',
+            'evento' => 'cambiar-estado',
+            'data' => $id,
+        ]);
     }
 
     public function cambiarEstado($id){
@@ -85,7 +103,7 @@ class TerminoCondicionComponent extends Component
         }else{
             $termino_condicion->update(['estado' => '1']);
         }
-        session()->flash('message', 'Estado del Termino Condicion actualizado con éxito');  
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El termino condicion ha sido '.(($termino_condicion->estado == 1) ? 'activado':'desactivado').'!']); 
     }
 
     public function edit($id){
@@ -96,8 +114,18 @@ class TerminoCondicionComponent extends Component
     public function update(){
         $this->validate();
         $this->termino_condicion->update();
-        session()->flash('message', 'TerminoCondicion actualizado con éxito');
         $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+    }
+
+    public function ordenamiento ($direccion, $id){
+        $termino_condicion = TerminoCondicion::find($id);
+        $orden = $termino_condicion->orden;
+        $termino_condicion_cambio = ($direccion == 'up') ? TerminoCondicion::where('orden', $orden-1)->first() : TerminoCondicion::where('orden', $orden+1)->first();
+        $orden_cambio = $termino_condicion_cambio->orden;
+        $termino_condicion_cambio->update(['orden' => $orden]);
+        $termino_condicion->update(['orden' => $orden_cambio]);
+        session()->flash('orden', $orden);
     }
 
 

@@ -1714,6 +1714,7 @@
             $('[data-toggle="popover"]').popover()
         });
     </script>
+    
 
     @livewireScripts
     <script src="{{ asset('assets/dist/js/alpine.min.js') }}"></script>

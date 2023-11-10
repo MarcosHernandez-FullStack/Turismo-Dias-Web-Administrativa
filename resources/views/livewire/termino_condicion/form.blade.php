@@ -23,7 +23,9 @@
                 <label for="descripcion" class="form-label">
                     Descripcion
                 </label>
-                <textarea class="form-control form-control-sm rounded-lg" rows="5" id="descripcion" wire:model='termino_condicion.descripcion'></textarea>
+                <div wire:ignore>
+                    <textarea class="form-control form-control-sm rounded-lg" rows="5" id="editor" wire:model='termino_condicion.descripcion'></textarea>
+                </div>
                 @error('termino_condicion.descripcion')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -37,6 +39,21 @@
         </div>
     </form>
 @endsection
+@push('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .then( editor => {
+                editor.model.document.on( 'change:data', () => {
+                    @this.set('termino_condicion.descripcion', editor.getData());
+                } );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+@endpush
 
 
 

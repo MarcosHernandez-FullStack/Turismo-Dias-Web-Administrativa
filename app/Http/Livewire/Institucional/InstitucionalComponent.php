@@ -22,6 +22,8 @@ class InstitucionalComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
 
+    protected $listeners = ['delete-valor' => 'deleteValorCollection'];
+
     public function mount(){
         $this->sort ='id';
         $this->direction ='asc';
@@ -109,15 +111,24 @@ class InstitucionalComponent extends Component
         $this->reset('descripcion');
     }
 
+    public function confirmardeleteValorCollection($indiceElemento)
+    {
+        $this->dispatchBrowserEvent('mostrar-confirmacion', [
+            'mensaje' => '¿Estás seguro de que deseas eliminar este valor?',
+            'evento' => 'delete-valor',
+            'data' => $indiceElemento,
+        ]);
+    }
+
      public function deleteValorCollection($indiceElemento){
         $this->valores_collection->pull($indiceElemento);
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El valor ha sido eliminado!']);
     }
 
     public function cambiarEstado($id){
         $valor = Valor::find($id);            
         $valor->estado = $valor->estado=='1'? '0' : '1';
         $this->valores_collection->where('id',$id)->first()->update(['estado' => $valor->estado]);
-        session()->flash('message', 'Estado del Institucional actualizado con éxito');  
     }
 
     public function update(){
@@ -152,7 +163,7 @@ class InstitucionalComponent extends Component
         }
         $this->institucional= Institucional::count() ? Institucional::first() : new Institucional();
         $this->valores_collection = $this->institucional->valores;
-        session()->flash('message', 'Institucional actualizado con éxito');
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
     }
 
     public function saveServicioValor(){

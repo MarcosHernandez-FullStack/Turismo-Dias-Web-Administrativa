@@ -21,7 +21,8 @@ class RutaComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
 
-    
+    protected $listeners = ['cambiar-estado' => 'cambiarEstado'];
+
     public function mount(){
         $this->sort ='id';
         $this->direction ='asc';
@@ -72,7 +73,18 @@ class RutaComponent extends Component
 
     public function render()
     {
-        $rutas=Ruta::where('hora_salida', 'like', '%'.$this->search.'%')->paginate($this->paginacion);
+        $rutas=Ruta::where('hora_salida', 'like', '%'.$this->search.'%')
+        ->orWhere('hora_llegada', 'like', '%'.$this->search.'%')
+        ->orWhereHas('ciudad_origen', function($query){
+            $query->where('descripcion', 'like', '%'.$this->search.'%');
+        })
+        ->orWhereHas('ciudad_destino', function($query){
+            $query->where('descripcion', 'like', '%'.$this->search.'%');
+        })
+        ->orWhereHas('tipo_bus', function($query){
+            $query->where('nombre', 'like', '%'.$this->search.'%');
+        })
+        ->paginate($this->paginacion);
         $ciudades=Ciudad::where('estado','=','1')->get();
         $tipo_buses=TipoBus::where('estado','=','1')->get();
         return view('livewire.ruta.ruta-component', compact('rutas','ciudades','tipo_buses'))
@@ -83,8 +95,18 @@ class RutaComponent extends Component
     public function save(){
         $this->validate();
         $this->ruta->save();
-        session()->flash('message', 'Ruta registrado con éxito');
         $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+    }
+
+    public function confirmarCambioEstado($id)
+    {
+        $ruta = Ruta::find($id);
+        $this->dispatchBrowserEvent('mostrar-confirmacion', [
+            'mensaje' => '¿Estás seguro de que deseas '.(($ruta->estado == 1) ? 'desactivar':'activar').' esta ruta?',
+            'evento' => 'cambiar-estado',
+            'data' => $id,
+        ]);
     }
 
     public function cambiarEstado($id){
@@ -94,7 +116,7 @@ class RutaComponent extends Component
         }else{
             $ruta->update(['estado' => '1']);
         }
-        session()->flash('message', 'Estado del Ruta actualizado con éxito'); 
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'La ruta ha sido '.(($ruta->estado == 1) ? 'activado':'desactivado').'!']);
     }
 
     public function edit($id){
@@ -105,8 +127,8 @@ class RutaComponent extends Component
     public function update(){
         $this->validate();
         $this->ruta->update();
-        session()->flash('message', 'Ruta actualizado con éxito');
         $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
     }
 
 

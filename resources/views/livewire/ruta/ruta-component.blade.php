@@ -34,7 +34,7 @@
                             'label' => 'Ruta',
                             'create_function' => "showModal('form', 'create')",
                             'condition_message' => session()->has('message'),
-                            'find' => 'Buscar por hora_salida de la ruta',
+                            'find' => 'Buscar por campos de la ruta',
                         ])
                         <div class="row my-1">
 

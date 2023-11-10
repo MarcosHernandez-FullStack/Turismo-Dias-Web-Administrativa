@@ -32,7 +32,7 @@
                             'label' => 'Faq',
                             'create_function' => "showModal('form', 'create')",
                             'condition_message' => session()->has('message'),
-                            'find' => 'Buscar por pregunta del faq',
+                            'find' => 'Buscar por campos del faq',
                         ])
                         <div class="row my-1">
 

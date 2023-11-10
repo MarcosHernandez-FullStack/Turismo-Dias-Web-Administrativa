@@ -220,7 +220,7 @@
                                                         <button type="button"
                                                             class="btn btn-sm btn-danger btn-sm rounded-pill"
                                                             data-toggle="modal" data-target="#modal_usuario"
-                                                            wire:click="deleteValorCollection({{ $key }})"><i
+                                                            wire:click="confirmardeleteValorCollection({{ $key }})"><i
                                                                 class="fas fa-trash"></i>
                                                         </button>
                                                     </td>
