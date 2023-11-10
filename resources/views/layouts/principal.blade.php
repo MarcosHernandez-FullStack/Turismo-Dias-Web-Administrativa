@@ -269,12 +269,12 @@
                             </a>
                         </li>
 
-            <li class="nav-item">
-              <a href="{{ route('rutas') }}" class="nav-link">
-                <i class="fa-solid fa-route nav-icon"></i>
-                <p>Rutas</p>
-              </a>
-            </li>
+                        <li class="nav-item">
+                            <a href="{{ route('rutas') }}" class="nav-link">
+                                <i class="fa-solid fa-route nav-icon"></i>
+                                <p>Rutas</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item menu-close">
                             <a href="#" class="nav-link ">
@@ -283,12 +283,12 @@
                                     Condiciones de viaje
                                     <i class="right fas fa-angle-left"></i>
 
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('faqs') }}" class="nav-link active">
-                    <i class="fa-solid fa-file-circle-question nav-icon"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('faqs') }}" class="nav-link active">
+                                        <i class="fa-solid fa-file-circle-question nav-icon"></i>
 
                                         <p>Preguntas y respuestas</p>
                                     </a>
@@ -297,13 +297,13 @@
                                     <a href="{{ route('eventos') }}" class="nav-link">
                                         <i class="fa-solid fa-calendar-days nav-icon"></i>
 
-                    <p>Calendario de eventos</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('terminos-condiciones') }}" class="nav-link">
-                    <i class="fa-solid fa-file-contract nav-icon"></i>
-                    <p>Términos y condiciones</p>
+                                        <p>Calendario de eventos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('terminos-condiciones') }}" class="nav-link">
+                                        <i class="fa-solid fa-file-contract nav-icon"></i>
+                                        <p>Términos y condiciones</p>
 
                                     </a>
                                 </li>
@@ -1642,7 +1642,7 @@
 
     <script>
         /* periodo_actual = document.getElementById('periodo_actual');
-                                                                              periodo_actual.innerHTML = new Date().getFullYear(); */
+                                                                                                  periodo_actual.innerHTML = new Date().getFullYear(); */
         window.addEventListener('closeModal', event => {
             $("#modal_usuario").modal('hide');
         })
@@ -1666,46 +1666,46 @@
         });
         window.addEventListener('error', function(event) {
             Swal.fire(
-                'Aviso!',
+                'Error!',
                 event.detail.mensaje,
-                'info'
+                'error'
             )
         });
         window.addEventListener('warning', function(event) {
             Swal.fire(
-                'Aviso!',
+                'Cuidado!',
                 event.detail.mensaje,
-                'info'
+                'warning'
             )
         });
         window.addEventListener('question', function(event) {
             Swal.fire(
                 'Aviso!',
                 event.detail.mensaje,
-                'info'
+                'question'
             )
         });
 
-        window.addEventListener('mostrar-confirmacion',  function(event)  {
+        window.addEventListener('mostrar-confirmacion', function(event) {
             Swal.fire({
-            title: event.detail.mensaje,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si',
-            cancelButtonText: 'Cancelar',
-            reverseButtons: true,
+                title: event.detail.mensaje,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true,
             }).then((result) => {
-            if (result.isConfirmed) {
-                Livewire.emit( event.detail.evento,event.detail.data);
-            }else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire(
-                'Acción Cancelada',
-                'El registro no ha sufrido cambios.',
-                'error'
-                );
-            }
+                if (result.isConfirmed) {
+                    Livewire.emit(event.detail.evento, event.detail.data);
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Acción Cancelada',
+                        'El registro no ha sufrido cambios.',
+                        'error'
+                    );
+                }
             });
         });
         FilePond.registerPlugin(FilePondPluginFileValidateSize);
@@ -1716,8 +1716,9 @@
     </script>
 
     @livewireScripts
-    <script src="{{ asset('assets/dist/js/alpine.min.js') }}"></script>
     @stack('scripts')
+    <script src="{{ asset('assets/dist/js/alpine.min.js') }}"></script>
+
 </body>
 
 </html>

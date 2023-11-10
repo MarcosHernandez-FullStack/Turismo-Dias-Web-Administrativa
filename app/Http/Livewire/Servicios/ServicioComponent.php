@@ -2,13 +2,11 @@
 
 namespace App\Http\Livewire\Servicios;
 
+use App\Models\Servicio;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-use App\Models\Servicio;
-use Illuminate\Database\Eloquent\Collection;
-
 
 class ServicioComponent extends Component
 {
@@ -98,7 +96,7 @@ class ServicioComponent extends Component
         $this->servicio->save();
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
-        $this->ruta_foto=null;
+        $this->ruta_foto = null;
 
     }
 
@@ -112,21 +110,21 @@ class ServicioComponent extends Component
     {
         $servicio = Servicio::find($id);
         $this->dispatchBrowserEvent('mostrar-confirmacion', [
-            'mensaje' => '¿Estás seguro de que deseas '.(($servicio->estado == 1) ? 'desactivar':'activar').' este servicio?',
+            'mensaje' => '¿Estás seguro de que deseas ' . (($servicio->estado == 1) ? 'desactivar' : 'activar') . ' este servicio?',
             'evento' => 'cambiar-estado',
             'data' => $id,
         ]);
     }
 
-    public function cambiarEstado($id){
+    public function cambiarEstado($id)
+    {
         $servicio = Servicio::find($id);
-        if($servicio->estado == 1){
+        if ($servicio->estado == 1) {
             $servicio->update(['estado' => '0']);
-        }else{
+        } else {
             $servicio->update(['estado' => '1']);
         }
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'El servicio ha sido '.(($servicio->estado == 1) ? 'activado':'desactivado').'!']);
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El servicio ha sido ' . (($servicio->estado == 1) ? 'activado' : 'desactivado') . '!']);
     }
-
 
 }

@@ -18,7 +18,7 @@ class ConfiguracionSeeder extends Seeder
             [
                 'ruta_foto_principal' => 'public/configuracion/jXQ5jsOUVFPlBvPjJeXm6KcYUVRZtfssnliahUVt.png',
                 'slogan' => 'Viaja por todo el Norte y Nororiente de nuestro pais con Turismo Dias',
-                'ruta_video' => 'https://www.youtube.com/embed/jAcf4LCR8NM?si=p2r-i7fWagfonYxA',
+                'ruta_video' => 'https://www.youtube.com/watch?v=jAcf4LCR8NM',
                 'celular_principal' => '(+51) 978 334 357',
                 'celular_secundario' => '(+51) 987 654 321',
                 'correo_principal' => 'turismo-dias@gmail.com',
