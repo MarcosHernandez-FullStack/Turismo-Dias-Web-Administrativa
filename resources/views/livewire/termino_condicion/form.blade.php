@@ -42,9 +42,11 @@
 @push('scripts')
     <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
     <script>
+        let geditor;
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
             .then( editor => {
+                geditor = editor;
                 editor.model.document.on( 'change:data', () => {
                     @this.set('termino_condicion.descripcion', editor.getData());
                 } );
@@ -52,6 +54,12 @@
             .catch( error => {
                 console.error( error );
             } );
+        window.livewire.on('limpiar-descripcion', event => {
+            geditor.setData('');
+        });
+        window.livewire.on('cargar-descripcion', event => {
+            geditor.setData(event);
+        });
     </script>
 @endpush
 

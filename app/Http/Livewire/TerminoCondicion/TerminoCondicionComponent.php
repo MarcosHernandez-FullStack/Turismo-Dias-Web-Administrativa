@@ -62,6 +62,7 @@ class TerminoCondicionComponent extends Component
        $this->resetError();
        if($form == 'create'){
            $this->termino_condicion = new TerminoCondicion();
+           $this->emit('limpiar-descripcion');
        }
        $this->vista = $vista;
        $this->form = $form;
@@ -109,6 +110,7 @@ class TerminoCondicionComponent extends Component
     public function edit($id){
         $this->showModal("form", "update");
         $this->termino_condicion=TerminoCondicion::find($id);
+        $this->emit('cargar-descripcion', $this->termino_condicion->descripcion);
     }
 
     public function update(){
