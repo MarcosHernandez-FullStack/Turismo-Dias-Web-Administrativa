@@ -26,4 +26,14 @@ class Ruta extends Model
         return $this->belongsTo(Ciudad::class, 'ciudad_destino_id');
     }
 
+    public function sub_ciudad_origen()
+    {
+        return $this->belongsTo(SubCiudad::class, 'sub_ciudad_origen_id');
+    }
+
+    public function sub_ciudad_destino()
+    {
+        return $this->belongsTo(SubCiudad::class, 'sub_ciudad_destino_id');
+    }
+
 }
