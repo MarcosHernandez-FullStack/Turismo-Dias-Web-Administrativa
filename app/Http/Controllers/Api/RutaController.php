@@ -11,6 +11,7 @@ use App\Models\Ruta;
 use App\Models\Configuracion;
 use Illuminate\Support\Facades\DB;
 use App\Models\TipoBus;
+use Carbon\Carbon;
 
 class RutaController extends Controller
 {
@@ -43,7 +44,8 @@ class RutaController extends Controller
                         "correo_principal" => $configuracion->correo_principal,
                         "correo_secundario" => $configuracion->correo_secundario,
                         "horario_atencion_principal" => $configuracion->horario_atencion_principal,
-                    ]
+                    ],
+                    
                 ],
             ], 200); // 200 OK para indicar una respuesta exitosa.
         } catch (\Exception $e) {
@@ -90,8 +92,8 @@ class RutaController extends Controller
                                         /* "nombre_ruta" => isset($ruta->ciudad_origen)?$ruta->ciudad_origen->descripcion:$ruta->sub_ciudad_origen->descripcion. '-' . isset($ruta->ciudad_destino)?$ruta->ciudad_destino->descripcion:$ruta->sub_ciudad_destino->descripcion, */
                                         "nombre_origen" => isset($ruta->ciudad_origen)?$ruta->ciudad_origen->descripcion:$ruta->sub_ciudad_origen->descripcion,
                                         "nombre_destino" => isset($ruta->ciudad_destino)?$ruta->ciudad_destino->descripcion:$ruta->sub_ciudad_destino->descripcion,
-                                        "hora_salida" => $ruta->hora_salida,
-                                        "hora_llegada" => $ruta->hora_llegada,
+                                        "hora_salida" => Carbon::parse($ruta->hora_salida)->format('h:i a'),
+                                        "hora_llegada" => Carbon::parse($ruta->hora_llegada)->format('h:i a'),
                                         "nombre_tipo_bus" => $ruta->tipo_bus->nombre,
                                         "descripcion_tipo_bus" => $ruta->tipo_bus->descripcion,
                                         "estado_tipo_bus" => $ruta->tipo_bus->estado
