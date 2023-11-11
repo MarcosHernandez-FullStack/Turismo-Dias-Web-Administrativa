@@ -1714,6 +1714,7 @@
             $('[data-toggle="popover"]').popover()
         });
     </script>
+    
 
     @livewireScripts
     @stack('scripts')

@@ -33,15 +33,17 @@ class FaqComponent extends Component
 
     protected function rules(){
         return [
-           'faq.pregunta' => 'required',
-           'faq.respuesta' => 'required',
+           'faq.pregunta' => 'required|max:120',
+           'faq.respuesta' => 'required|max:255',
            'faq.tipo' => 'required',
         ];
    }
 
    protected $messages = [
          'faq.pregunta.required' => 'El nombre del faq es requerido',
+         'faq.pregunta.max' => 'El nombre del faq debe contener como máximo 120 caracteres',
          'faq.respuesta.required' => 'El tipo de faq es requerido',
+         'faq.respuesta.max' => 'El tipo de faq debe contener como máximo 255 caracteres',
          'faq.tipo.required' => 'La coordenada longitud es requerida',
    ];
 
@@ -64,7 +66,9 @@ class FaqComponent extends Component
    }
 
     public function render(){
-        $faqs=Faq::where('pregunta', 'like', '%'.$this->search.'%')->paginate($this->paginacion);
+        $faqs=Faq::where('pregunta', 'like', '%'.$this->search.'%')
+        ->orWhere('respuesta', 'like', '%'.$this->search.'%')   
+        ->paginate($this->paginacion);
         return view('livewire.faq.faq-component', compact('faqs'))
                 ->extends('layouts.principal')
                 ->section('content');
@@ -73,8 +77,8 @@ class FaqComponent extends Component
     public function save(){
         $this->validate();
         $this->faq->save();
-        session()->flash('message', 'Faq registrado con éxito');
         $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
     }
 
     public function cambiarEstado($id){
@@ -95,7 +99,7 @@ class FaqComponent extends Component
     public function update(){
         $this->validate();
         $this->faq->update();
-        session()->flash('message', 'Faq actualizado con éxito');
         $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
     }
 }

@@ -20,6 +20,8 @@ class AmbienteComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6; 
 
+    protected $listeners = ['cambiar-estado' => 'cambiarEstado'];
+
     public function mount(){
         $this->sort ='id';
         $this->direction ='asc';
@@ -34,26 +36,32 @@ class AmbienteComponent extends Component
 
     protected function rules(){
         return [
-           'ambiente.nombre' => 'required',
+           'ambiente.nombre' => 'required|max:255',
            'ambiente.tipo' => 'required',
-           'ambiente.coordenada_longitud' => 'required',
-           'ambiente.coordenada_latitud' => 'required',
-           'ambiente.direccion' => 'required',
-           'ambiente.horario_atencion' => 'required',
-           'ambiente.telefono' => 'required',
+           'ambiente.coordenada_longitud' => 'required|max:255',
+           'ambiente.coordenada_latitud' => 'required|max:255',
+           'ambiente.direccion' => 'required|max:255',
+           'ambiente.horario_atencion' => 'required|max:255',
+           'ambiente.telefono' => 'required|max:255',
            'ambiente.ciudad_id' => 'required',
         ];
    }
 
    protected $messages = [
-         'ambiente.nombre.required' => 'El nombre del ambiente es requerido',
-         'ambiente.tipo.required' => 'El tipo de ambiente es requerido',
-         'ambiente.coordenada_longitud.required' => 'La coordenada longitud es requerida',
-         'ambiente.coordenada_latitud.required' => 'La coordenada latitud es requerida',
-         'ambiente.direccion.required' => 'La dirección es requerida',
-         'ambiente.horario_atencion.required' => 'El horario de atención es requerido',
-         'ambiente.telefono.required' => 'El teléfono es requerido',
-         'ambiente.ciudad_id.required' => 'La ciudad es requerida',
+        'ambiente.nombre.required' => 'El nombre del ambiente es requerido',
+        'ambiente.nombre.max' => 'El nombre del ambiente debe contener como máximo 255 caracteres',
+        'ambiente.tipo.required' => 'El tipo de ambiente es requerido',
+        'ambiente.coordenada_longitud.required' => 'La coordenada longitud es requerida',
+        'ambiente.coordenada_longitud.max' => 'La coordenada longitud debe contener como máximo 255 caracteres',
+        'ambiente.coordenada_latitud.required' => 'La coordenada latitud es requerida',
+        'ambiente.coordenada_latitud.max' => 'La coordenada latitud debe contener como máximo 255 caracteres',
+        'ambiente.direccion.required' => 'La dirección es requerida',
+        'ambiente.direccion.max' => 'La dirección debe contener como máximo 255 caracteres',
+        'ambiente.horario_atencion.required' => 'El horario de atención es requerido',
+        'ambiente.horario_atencion.max' => 'El horario de atención debe contener como máximo 255 caracteres',
+        'ambiente.telefono.required' => 'El teléfono es requerido',
+        'ambiente.telefono.max' => 'El teléfono debe contener como máximo 255 caracteres',
+        'ambiente.ciudad_id.required' => 'La ciudad es requerida',
    ];
 
    public function updated($propertyName){
@@ -75,7 +83,15 @@ class AmbienteComponent extends Component
    }
 
     public function render(){
-        $ambientes=Ambiente::where('nombre', 'like', '%'.$this->search.'%')->paginate($this->paginacion);
+        $ambientes=Ambiente::where('nombre', 'like', '%'.$this->search.'%')
+        ->orWhere('tipo', 'like', '%'.$this->search.'%')
+        ->orWhere('direccion', 'like', '%'.$this->search.'%')
+        ->orWhere('horario_atencion', 'like', '%'.$this->search.'%')
+        ->orWhere('telefono', 'like', '%'.$this->search.'%')
+        ->orWhereHas('ciudad', function($query){
+            $query->where('descripcion', 'like', '%'.$this->search.'%');
+        })
+        ->paginate($this->paginacion);
         $ciudades=Ciudad::where('estado','=','1')->get();
         return view('livewire.ambiente.ambiente-component', compact('ambientes','ciudades'))
                 ->extends('layouts.principal')
@@ -85,8 +101,18 @@ class AmbienteComponent extends Component
     public function save(){
         $this->validate();
         $this->ambiente->save();
-        session()->flash('message', 'Ambiente registrado con éxito');
         $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+    }
+
+    public function confirmarCambioEstado($id)
+    {
+        $ambiente = Ambiente::find($id);
+        $this->dispatchBrowserEvent('mostrar-confirmacion', [
+            'mensaje' => '¿Estás seguro de que deseas '.(($ambiente->estado == 1) ? 'desactivar':'activar').' este ambiente?',
+            'evento' => 'cambiar-estado',
+            'data' => $id,
+        ]);
     }
 
     public function cambiarEstado($id){
@@ -96,7 +122,7 @@ class AmbienteComponent extends Component
         }else{
             $ambiente->update(['estado' => '1']);
         }
-        session()->flash('message', 'Estado del Ambiente actualizado con éxito'); 
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El ambiente ha sido '.(($ambiente->estado == 1) ? 'activado':'desactivado').'!']);
     }
 
     public function edit($id){
@@ -107,8 +133,8 @@ class AmbienteComponent extends Component
     public function update(){
         $this->validate();
         $this->ambiente->update();
-        session()->flash('message', 'Ambiente actualizado con éxito');
         $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
     }
 
     public function detail($id){

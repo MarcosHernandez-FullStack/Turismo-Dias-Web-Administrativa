@@ -33,7 +33,7 @@
                             'label' => 'Ambiente',
                             'create_function' => "showModal('form', 'create')",
                             'condition_message' => session()->has('message'),
-                            'find' => 'Buscar por nombre del ambiente',
+                            'find' => 'Buscar por campos del ambiente',
                         ])
                         <div class="row my-1">
 
@@ -67,7 +67,7 @@
                                                 <td>{{ $ambiente->ciudad->descripcion }}</td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $ambiente->estado == '1' ? 'success' : 'warning' }}"
-                                                        wire:click='cambiarEstado({{ $ambiente->id }})'>{{ $ambiente->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                        wire:click='confirmarCambioEstado({{ $ambiente->id }})'>{{ $ambiente->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
                                                 </td>
                                                 <td>
                                                     <button type="button"
@@ -77,7 +77,7 @@
                                                             class="fas fa-pen"></i>
                                                     </button>
                                                     <button type="button"
-                                                        class="btn btn-sm btn-secondary btn-sm rounded-pill"
+                                                        class="btn btn-sm btn-info btn-sm rounded-pill"
                                                         data-toggle="modal" data-target="#modal_usuario"
                                                         wire:click="detail({{ $ambiente->id }})"><i
                                                             class="fas fa-eye"></i>
