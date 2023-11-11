@@ -59,8 +59,8 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $ruta->hora_salida}}</td>
                                                 <td>{{ $ruta->hora_llegada}}</td>
-                                                <td>{{ $ruta->ciudad_origen->descripcion }}</td>
-                                                <td>{{ $ruta->ciudad_destino->descripcion }}</td>
+                                                <td>{{ $ruta->ciudad_origen->descripcion??$ruta->sub_ciudad_origen->descripcion }}</td>
+                                                <td>{{ $ruta->ciudad_destino->descripcion??$ruta->sub_ciudad_destino->descripcion }}</td>
                                                 <td>{{ $ruta->tipo_bus->nombre }}</td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $ruta->estado == '1' ? 'success' : 'warning' }}"
