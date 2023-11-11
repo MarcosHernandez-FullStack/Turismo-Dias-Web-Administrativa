@@ -90,8 +90,8 @@ class ServicioComponent extends Component
 
     public function save()
     {
+        $this->validate();
         try {
-            $this->validate();
             if ($this->ruta_foto) {
                 if ($this->ruta_foto != $this->servicio->ruta_foto) {
                     if (Storage::exists($this->servicio->ruta_foto)) {

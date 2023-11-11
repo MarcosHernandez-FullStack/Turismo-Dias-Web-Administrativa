@@ -98,8 +98,8 @@ class ImagenesComponent extends Component
     //FUNCION PARA GUARDAR EN BASE DE DATOS
     public function save()
     {
+        $this->validate();
         try {
-            $this->validate();
             if ($this->ruta_logo) {
                 if ($this->ruta_logo != $this->configuracion->ruta_logo) {
                     if (Storage::exists($this->configuracion->ruta_logo)) {

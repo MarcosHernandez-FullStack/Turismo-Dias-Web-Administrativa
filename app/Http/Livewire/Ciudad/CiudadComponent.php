@@ -82,8 +82,8 @@ class CiudadComponent extends Component
 
     public function save()
     {
+        $this->validate();
         try {
-            $this->validate();
             $this->ciudad->save();
             $this->dispatchBrowserEvent('closeModalCiudad');
             $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
@@ -133,6 +133,16 @@ class CiudadComponent extends Component
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
+    }
+
+    public function enviarCiudad($id)
+    {
+        try {
+            $this->emit('enviarCiudad', $id);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
+
     }
 
 }

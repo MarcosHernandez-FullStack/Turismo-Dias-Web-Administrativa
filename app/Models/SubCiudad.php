@@ -18,12 +18,12 @@ class SubCiudad extends Model
 
     public function rutas_sub_ciudad_origen()
     {
-        return $this->hasMany(Rutas::class, 'sub_ciudad_origen_id');
+        return $this->hasMany(Ruta::class, 'sub_ciudad_origen_id');
     }
 
     public function rutas_sub_ciudad_destino()
     {
-        return $this->hasMany(Rutas::class, 'sub_ciudad_destino_id');
+        return $this->hasMany(Ruta::class, 'sub_ciudad_destino_id');
     }
 
 }

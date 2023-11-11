@@ -66,17 +66,23 @@ class LibroReclamacionComponent extends Component
 
     public function render()
     {
-        $fechaIntroducida = $this->fechaIntroducida;
-        if ($this->filtroEstado !== null) {
-            $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
-                $query->whereDate('created_at', '=', $fechaIntroducida);
-            })->where('estado', '=', $this->filtroEstado)->orderBy('created_at', 'desc')->paginate($this->paginacion);
-        } else {
-            $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
-                $query->whereDate('created_at', '=', $fechaIntroducida);
-            })->orderBy('created_at', 'desc')->paginate($this->paginacion);
+        $reclamos = [];
+        $nroReclamosNuevos = null;
+        try {
+            $fechaIntroducida = $this->fechaIntroducida;
+            if ($this->filtroEstado !== null) {
+                $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
+                    $query->whereDate('created_at', '=', $fechaIntroducida);
+                })->where('estado', '=', $this->filtroEstado)->orderBy('created_at', 'desc')->paginate($this->paginacion);
+            } else {
+                $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
+                    $query->whereDate('created_at', '=', $fechaIntroducida);
+                })->orderBy('created_at', 'desc')->paginate($this->paginacion);
+            }
+            $nroReclamosNuevos = LibroReclamacion::where('estado', '=', '1')->count();
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
-        $nroReclamosNuevos = LibroReclamacion::where('estado', '=', '1')->count();
         return view('livewire.libro-reclamacion.libro-reclamacion-component', compact('reclamos', 'nroReclamosNuevos'))
             ->extends('layouts.principal')
             ->section('content');
@@ -85,17 +91,25 @@ class LibroReclamacionComponent extends Component
     public function save()
     {
         $this->validate();
-        $this->reclamo->save();
-        $this->dispatchBrowserEvent('closeModal');
-        $this->cambiarTab('reclamante');
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+        try {
+            $this->reclamo->save();
+            $this->dispatchBrowserEvent('closeModal');
+            $this->cambiarTab('reclamante');
+            $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
 
     }
 
     public function edit($id)
     {
-        $this->showModal("form", "update");
-        $this->reclamo = LibroReclamacion::find($id);
+        try {
+            $this->reclamo = LibroReclamacion::find($id);
+            $this->showModal("form", "update");
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
     }
 
     public function cambiarTab($tab)

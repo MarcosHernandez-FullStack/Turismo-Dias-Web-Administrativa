@@ -92,8 +92,8 @@ class SubtitulosComponent extends Component
     //FUNCION PARA GUARDAR EN BASE DE DATOS
     public function save()
     {
+        $this->validate();
         try {
-            $this->validate();
             if ($this->configuracion == $this->configuracionOriginal) {
                 $this->closeModal();
                 $this->dispatchBrowserEvent('info', ['mensaje' => 'El registro no ha sufrido cambios!']);

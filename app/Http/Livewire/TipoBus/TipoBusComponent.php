@@ -81,8 +81,8 @@ class TipoBusComponent extends Component
 
     public function save()
     {
+        $this->validate();
         try {
-            $this->validate();
             if ($this->ruta_foto) {
                 if ($this->ruta_foto != $this->tipoBus->ruta_foto) {
                     if (Storage::exists($this->tipoBus->ruta_foto)) {

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Configuracion;
+use Illuminate\Database\Seeder;
 
 class ConfiguracionSeeder extends Seeder
 {
@@ -18,7 +18,7 @@ class ConfiguracionSeeder extends Seeder
             [
                 'ruta_foto_principal' => 'public/configuracion/jXQ5jsOUVFPlBvPjJeXm6KcYUVRZtfssnliahUVt.png',
                 'slogan' => 'Viaja por todo el Norte y Nororiente de nuestro pais con Turismo Dias',
-                'ruta_video' => 'https://www.youtube.com/watch?v=jAcf4LCR8NM',
+                'ruta_video' => 'https://www.youtube.com/embed/jAcf4LCR8NM?si=be0lgVX_czG3xuj-',
                 'celular_principal' => '(+51) 978 334 357',
                 'celular_secundario' => '(+51) 987 654 321',
                 'correo_principal' => 'turismo-dias@gmail.com',
@@ -38,7 +38,7 @@ class ConfiguracionSeeder extends Seeder
                 'subtitulo_termino_condicion' => 'Consulta todos nuestros términos y condiciones',
                 'ruta_foto_header_seccion' => 'public/configuracion/7zcbO8g5YXZxdJXQT1bP0p3jQGpqN7fYaUJNpNpM.jpg',
                 'created_at' => '2023-11-04 22:11:18',
-                'updated_at' => '2023-11-05 00:15:47'
+                'updated_at' => '2023-11-05 00:15:47',
             ],
         ]);
     }

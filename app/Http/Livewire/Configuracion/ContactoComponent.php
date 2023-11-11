@@ -15,9 +15,9 @@ class ContactoComponent extends Component
 
     //DEFINICION DE REGLAS DE VALIDACION
     protected $rules = [
-        'configuracion.celular_principal' => 'required|max:12',
+        'configuracion.celular_principal' => 'required|max:20',
         'configuracion.correo_principal' => 'required|max:30',
-        'configuracion.celular_secundario' => 'nullable|max:12',
+        'configuracion.celular_secundario' => 'nullable|max:20',
         'configuracion.correo_secundario' => 'nullable|max:30',
         'configuracion.link_facebook' => 'nullable|url|max:50',
         'configuracion.link_instagram' => 'nullable|url|max:50',
@@ -29,9 +29,9 @@ class ContactoComponent extends Component
     protected $messages = [
         'configuracion.celular_principal.required' => 'El teléfono/celular principal es obligatorio.',
         'configuracion.correo_principal.required' => 'El correo principal es obligatorio.',
-        'configuracion.celular_principal.max' => 'El teléfono/celular principal debe tener un máximo de 12 caracteres.',
+        'configuracion.celular_principal.max' => 'El teléfono/celular principal debe tener un máximo de 20 caracteres.',
         'configuracion.correo_principal.max' => 'El correo principal debe tener un máximo de 30 caracteres.',
-        'configuracion.celular_secundario.max' => 'El teléfono/celular secundario debe tener un máximo de 12 caracteres.',
+        'configuracion.celular_secundario.max' => 'El teléfono/celular secundario debe tener un máximo de 20 caracteres.',
         'configuracion.correo_secundario.max' => 'El correo secundario debe tener un máximo de 30 caracteres.',
         'configuracion.link_facebook.max' => 'El link de Facebook debe tener un máximo de 50 caracteres.',
         'configuracion.link_instagram.max' => 'El link de Instagram debe tener un máximo de 50 caracteres.',
@@ -102,8 +102,8 @@ class ContactoComponent extends Component
     //FUNCION PARA GUARDAR EN BASE DE DATOS
     public function save()
     {
+        $this->validate();
         try {
-            $this->validate();
             if ($this->configuracion == $this->configuracionOriginal) {
                 $this->closeModal();
                 $this->dispatchBrowserEvent('info', ['mensaje' => 'El registro no ha sufrido cambios!']);

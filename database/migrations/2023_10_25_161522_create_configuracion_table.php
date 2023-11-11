@@ -19,8 +19,8 @@ class CreateConfiguracionTable extends Migration
             $table->string('ruta_logo')->nullable();
             $table->string('slogan', 80)->nullable();
             $table->string('ruta_video')->nullable();
-            $table->string('celular_principal', 12)->nullable();
-            $table->string('celular_secundario', 12)->nullable();
+            $table->string('celular_principal', 20)->nullable();
+            $table->string('celular_secundario', 20)->nullable();
             $table->string('correo_principal', 30)->nullable();
             $table->string('correo_secundario', 30)->nullable();
             $table->string('horario_atencion_principal', 30)->nullable();

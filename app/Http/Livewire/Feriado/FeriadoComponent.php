@@ -102,8 +102,8 @@ class FeriadoComponent extends Component
 
     public function save()
     {
+        $this->validate();
         try {
-            $this->validate();
             $this->feriado->save();
             $this->dispatchBrowserEvent('closeModal');
             $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);

@@ -12,11 +12,11 @@
 
                         </div>
                         <!--div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                    <li class="breadcrumb-item active">Ciudades</li>
-                                </ol>
-                            </div-->
+                                                            <ol class="breadcrumb float-sm-right">
+                                                                <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                                                <li class="breadcrumb-item active">Ciudades</li>
+                                                            </ol>
+                                                        </div-->
                     </div>
 
                 </div>
@@ -72,9 +72,10 @@
                                                                 <td>{{ $key + 1 }}</td>
                                                                 <td>{{ $ciudad->descripcion }}</td>
                                                                 <td><button type="button"
-                                                                        class="btn btn-sm btn-info btn-sm rounded-pill">
+                                                                        class="btn btn-sm btn-info btn-sm rounded-pill"
+                                                                        wire:click='enviarCiudad({{ $ciudad->id }})'>
                                                                         <i class="fas fa-eye"></i>
-                                                                    </button></td>
+                                                                    </button> {{ $ciudad->subciudades->count() }} </td>
                                                                 <td><span role="button"
                                                                         class="badge rounded-pill bg-{{ $ciudad->estado == '1' ? 'success' : 'warning' }}"
                                                                         wire:click='confirmarCambioEstado({{ $ciudad->id }})'>{{ $ciudad->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
@@ -87,7 +88,8 @@
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="4">No hay registros</td>
+                                                                <td colspan="4" class="text-center">No hay registros
+                                                                </td>
                                                             </tr>
                                                         @endforelse
 
@@ -98,6 +100,9 @@
                                     </div>
                                 </div>
                                 @include('layouts.footer-listado', ['elementosListado' => $ciudades])
+                            </div>
+                            <div class="col-12 col-md-6">
+                                @livewire('sub-ciudad.sub-ciudad-component')
                             </div>
                         </div>
 
