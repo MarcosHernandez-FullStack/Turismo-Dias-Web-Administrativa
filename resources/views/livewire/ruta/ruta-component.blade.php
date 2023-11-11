@@ -34,7 +34,7 @@
                             'label' => 'Ruta',
                             'create_function' => "showModal('form', 'create')",
                             'condition_message' => session()->has('message'),
-                            'find' => 'Buscar por hora_salida de la ruta',
+                            'find' => 'Buscar por campos de la ruta',
                         ])
                         <div class="row my-1">
 
@@ -59,8 +59,8 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $ruta->hora_salida}}</td>
                                                 <td>{{ $ruta->hora_llegada}}</td>
-                                                <td>{{ $ruta->ciudad_origen->descripcion }}</td>
-                                                <td>{{ $ruta->ciudad_destino->descripcion }}</td>
+                                                <td>{{ $ruta->ciudad_origen->descripcion??$ruta->sub_ciudad_origen->descripcion }}</td>
+                                                <td>{{ $ruta->ciudad_destino->descripcion??$ruta->sub_ciudad_destino->descripcion }}</td>
                                                 <td>{{ $ruta->tipo_bus->nombre }}</td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $ruta->estado == '1' ? 'success' : 'warning' }}"
