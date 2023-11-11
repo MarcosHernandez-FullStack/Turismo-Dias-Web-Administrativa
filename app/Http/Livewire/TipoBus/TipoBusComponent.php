@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\TipoBus;
 
+use App\Models\TipoBus;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
-use App\Models\TipoBus;
 use Livewire\WithFileUploads;
 
 class TipoBusComponent extends Component
@@ -13,7 +13,6 @@ class TipoBusComponent extends Component
     public $tipoBus, $ruta_foto;
     public $search, $sort, $direction;
     public $form, $vista;
-
 
     public function mount()
     {
@@ -34,7 +33,7 @@ class TipoBusComponent extends Component
         return [
             'tipoBus.nombre' => 'required|max:20',
             'tipoBus.descripcion' => 'required|max:120',
-            'ruta_foto' => 'nullable',
+            'ruta_foto' => 'image|nullable',
         ];
     }
 
@@ -44,6 +43,7 @@ class TipoBusComponent extends Component
         'ruta_foto.required' => 'La foto para el Tipo de Bus es obligatoria.',
         'tipoBus.nombre.max' => 'El nombre del Tipo de Bus debe tener un máximo de 20 caracteres.',
         'tipoBus.descripcion.max' => 'La descripción del Tipo de Bus debe tener un máximo de 120 caracteres.',
+        'ruta_foto.image' => 'El archivo debe ser de tipo imagen.',
     ];
 
     public function updated($propertyName)
@@ -70,31 +70,50 @@ class TipoBusComponent extends Component
 
     public function render()
     {
-        $tipobuses=TipoBus::where('estado','=','1')->get();
-        return view('livewire.tipo-bus.tipo-bus-component',compact('tipobuses'));
+        $tipobuses = [];
+        try {
+            $tipobuses = TipoBus::where('estado', '=', '1')->get();
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
+        return view('livewire.tipo-bus.tipo-bus-component', compact('tipobuses'));
     }
 
     public function save()
     {
-        $this->validate();
-        if ($this->ruta_foto) {
-            if ($this->ruta_foto != $this->tipoBus->ruta_foto) {
-                if (Storage::exists($this->tipoBus->ruta_foto)) {
-                    Storage::delete($this->tipoBus->ruta_foto);
+        try {
+            $this->validate();
+            if ($this->ruta_foto) {
+                if ($this->ruta_foto != $this->tipoBus->ruta_foto) {
+                    if (Storage::exists($this->tipoBus->ruta_foto)) {
+                        Storage::delete($this->tipoBus->ruta_foto);
+                    }
+                    $this->tipoBus->ruta_foto = $this->ruta_foto->store('public/tipoBus');
                 }
-                $this->tipoBus->ruta_foto = $this->ruta_foto->store('public/tipoBus');
             }
+            $this->tipoBus->save();
+            $this->dispatchBrowserEvent('closeModalTipoBus');
+            $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
-        $this->tipoBus->save();
-        $this->dispatchBrowserEvent('closeModalTipoBus');
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
-        $this->ruta_foto=null;
+        $this->limpiarImagenes();
     }
 
     public function edit($id)
     {
-        $this->showModal("form", "update");
-        $this->tipoBus = TipoBus::find($id);
+        try {
+            $this->tipoBus = TipoBus::find($id);
+            $this->showModal("form", "update");
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
+    }
+
+    public function limpiarImagenes()
+    {
+        $this->ruta_foto = null;
+        $this->dispatchBrowserEvent('removerImagenes');
     }
 
 }

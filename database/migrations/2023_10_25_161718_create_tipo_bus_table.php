@@ -15,10 +15,10 @@ class CreateTipoBusTable extends Migration
     {
         Schema::create('tipo_bus', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('descripcion');
+            $table->string('nombre', 20);
+            $table->string('descripcion', 120);
             $table->string('ruta_foto');
-            $table->enum('estado', [0, 1])->default(1); // '0' inactivo, '1' activo 
+            $table->enum('estado', [0, 1])->default(1); // '0' inactivo, '1' activo
             $table->timestamps();
         });
     }

@@ -7,7 +7,8 @@
                         <div class="col-sm-6">
                             {{--  <h1 class="card-title">Configuración de Página Web</h1> --}}
                             <h5><i style="color: #17a2b8" class="fa-solid fa-route  mr-1"></i>
-                                 <b style="color: rgb(48, 48, 48)">RUTAS: SALIDAS, LLEGADAS Y TIPOS DE BUSES</b></h5>
+                                <b style="color: rgb(48, 48, 48)">RUTAS: SALIDAS, LLEGADAS Y TIPOS DE BUSES</b>
+                            </h5>
 
                         </div>
 
@@ -22,11 +23,6 @@
                     <div class="row">
                         <div class="col-12">
                             @livewire('tipo-bus.tipo-bus-component')
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            @livewire('ciudad.ciudad-component')
                         </div>
                     </div>
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -57,8 +53,8 @@
                                         @forelse ($rutas as $key => $ruta)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $ruta->hora_salida}}</td>
-                                                <td>{{ $ruta->hora_llegada}}</td>
+                                                <td>{{ $ruta->hora_salida }}</td>
+                                                <td>{{ $ruta->hora_llegada }}</td>
                                                 <td>{{ $ruta->ciudad_origen->descripcion }}</td>
                                                 <td>{{ $ruta->ciudad_destino->descripcion }}</td>
                                                 <td>{{ $ruta->tipo_bus->nombre }}</td>

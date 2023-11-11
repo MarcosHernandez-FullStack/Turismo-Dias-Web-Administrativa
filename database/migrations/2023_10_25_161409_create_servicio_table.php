@@ -15,10 +15,10 @@ class CreateServicioTable extends Migration
     {
         Schema::create('servicio', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre', 35);
             $table->text('descripcion');
             $table->string('ruta_foto');
-            $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo 
+            $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo
             $table->timestamps();
         });
     }

@@ -69,44 +69,70 @@ class CiudadComponent extends Component
 
     public function render()
     {
-        $ciudades=Ciudad::where('descripcion', 'like', '%'.$this->search.'%')->paginate($this->paginacion);
-        return view('livewire.ciudad.ciudad-component',compact('ciudades'));
+        $ciudades = [];
+        try {
+            $ciudades = Ciudad::where('descripcion', 'like', '%' . $this->search . '%')->paginate($this->paginacion);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
+        return view('livewire.ciudad.ciudad-component', compact('ciudades'))
+            ->extends('layouts.principal')
+            ->section('content');
     }
 
     public function save()
     {
-        $this->validate();
-        $this->ciudad->save();
-        $this->dispatchBrowserEvent('closeModalCiudad');
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
-        $this->ruta_foto=null;
+        try {
+            $this->validate();
+            $this->ciudad->save();
+            $this->dispatchBrowserEvent('closeModalCiudad');
+            $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
+
     }
 
     public function edit($id)
     {
-        $this->showModal("form", "update");
-        $this->ciudad = Ciudad::find($id);
-    }
+        try {
+            $this->ciudad = Ciudad::find($id);
+            $this->showModal("form", "update");
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
 
+    }
 
     public function confirmarCambioEstado($id)
     {
-        $ciudad = Ciudad::find($id);
-        $this->dispatchBrowserEvent('mostrar-confirmacion', [
-            'mensaje' => '¿Estás seguro de que deseas '.(($ciudad->estado == 1) ? 'desactivar':'activar').' esta ciudad?',
-            'evento' => 'cambiar-estado-ciudad',
-            'data' => $id,
-        ]);
+        try {
+            $ciudad = Ciudad::find($id);
+            $this->dispatchBrowserEvent('mostrar-confirmacion', [
+                'mensaje' => '¿Estás seguro de que deseas ' . (($ciudad->estado == 1) ? 'desactivar' : 'activar') . ' esta ciudad?',
+                'evento' => 'cambiar-estado-ciudad',
+                'data' => $id,
+            ]);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
+
     }
 
-    public function cambiarEstado($id){
-        $ciudad = Ciudad::find($id);
-        if($ciudad->estado == 1){
-            $ciudad->update(['estado' => '0']);
-        }else{
-            $ciudad->update(['estado' => '1']);
+    public function cambiarEstado($id)
+    {
+        try {
+            $ciudad = Ciudad::find($id);
+            if ($ciudad->estado == 1) {
+                $ciudad->update(['estado' => '0']);
+            } else {
+                $ciudad->update(['estado' => '1']);
+            }
+            $this->dispatchBrowserEvent('success', ['mensaje' => 'La ciudad ha sido ' . (($ciudad->estado == 1) ? 'activada' : 'desactivada') . '!']);
+
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'La ciudad ha sido '.(($ciudad->estado == 1) ? 'activada':'desactivada').'!']);
     }
 
 }

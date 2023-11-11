@@ -2,10 +2,9 @@
 
 namespace App\Http\Livewire\LibroReclamacion;
 
+use App\Models\LibroReclamacion;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\LibroReclamacion;
-use Illuminate\Database\Eloquent\Collection;
 
 class LibroReclamacionComponent extends Component
 {
@@ -14,44 +13,50 @@ class LibroReclamacionComponent extends Component
     public $search, $sort, $direction;
     public $form, $vista;
     protected $paginationTheme = 'bootstrap';
-    public $paginacion = 6; 
-    public $filtroEstado='1';
+    public $paginacion = 6;
+    public $filtroEstado = '1';
     public $tab = 'reclamante';
     public $fechaIntroducida;
 
-    public function mount(){
-        $this->sort ='id';
-        $this->direction ='asc';
+    public function mount()
+    {
+        $this->sort = 'id';
+        $this->direction = 'asc';
         $this->form = 'create';
-        $this->vista = 'form'; 
-        $this->reclamo=new LibroReclamacion();
+        $this->vista = 'form';
+        $this->reclamo = new LibroReclamacion();
     }
 
-    public function updatingSearch(){
+    public function updatingSearch()
+    {
         $this->resetPage();
     }
-    protected function rules(){
+    protected function rules()
+    {
         return [
-           'reclamo.estado' => 'required',
+            'reclamo.estado' => 'required',
         ];
     }
 
     protected $messages = [
-            'reclamo.estado.required' => 'Es obligatorio que elija un estado para este reclamo.',
+        'reclamo.estado.required' => 'Es obligatorio que elija un estado para este reclamo.',
     ];
 
-    public function updated($propertyName){
+    public function updated($propertyName)
+    {
         $this->validateOnly($propertyName);
     }
- 
-    public function resetError(){
+
+    public function resetError()
+    {
         $this->resetErrorBag();
         $this->resetValidation();
     }
 
-    public function showModal($vista, $form){
+    public function showModal($vista, $form)
+    {
         $this->resetError();
-        if($form == 'create'){
+        if ($form == 'create') {
             $this->reclamo = new LibroReclamacion();
         }
         $this->vista = $vista;
@@ -61,45 +66,50 @@ class LibroReclamacionComponent extends Component
 
     public function render()
     {
-        $fechaIntroducida=$this->fechaIntroducida;
-        if ($this->filtroEstado!== null){
-            $reclamos=LibroReclamacion::when($fechaIntroducida,function ($query) use ($fechaIntroducida) {
+        $fechaIntroducida = $this->fechaIntroducida;
+        if ($this->filtroEstado !== null) {
+            $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
                 $query->whereDate('created_at', '=', $fechaIntroducida);
-            })->where('estado','=',$this->filtroEstado)->orderBy('created_at', 'desc')->paginate($this->paginacion);
-        }else{
-            $reclamos=LibroReclamacion::when($fechaIntroducida,function ($query) use ($fechaIntroducida) {
+            })->where('estado', '=', $this->filtroEstado)->orderBy('created_at', 'desc')->paginate($this->paginacion);
+        } else {
+            $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
                 $query->whereDate('created_at', '=', $fechaIntroducida);
             })->orderBy('created_at', 'desc')->paginate($this->paginacion);
         }
-        $nroReclamosNuevos=LibroReclamacion::where('estado','=','1')->count();
-        return view('livewire.libro-reclamacion.libro-reclamacion-component',compact('reclamos','nroReclamosNuevos'))
-                ->extends('layouts.principal')
-                ->section('content');
+        $nroReclamosNuevos = LibroReclamacion::where('estado', '=', '1')->count();
+        return view('livewire.libro-reclamacion.libro-reclamacion-component', compact('reclamos', 'nroReclamosNuevos'))
+            ->extends('layouts.principal')
+            ->section('content');
     }
 
-    public function save(){
+    public function save()
+    {
         $this->validate();
         $this->reclamo->save();
         $this->dispatchBrowserEvent('closeModal');
         $this->cambiarTab('reclamante');
-        $this->dispatchBrowserEvent('success',['mensaje' => 'El registro se ha guardado correctamente!']);
-        
+        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $this->showModal("form", "update");
-        $this->reclamo=LibroReclamacion::find($id);
+        $this->reclamo = LibroReclamacion::find($id);
     }
 
-    public function cambiarTab($tab){
-        $this->tab=$tab;
+    public function cambiarTab($tab)
+    {
+        $this->tab = $tab;
     }
 
-    public function cambiarFiltroEstado($filtroEstado){
-        $this->filtroEstado=$filtroEstado;
+    public function cambiarFiltroEstado($filtroEstado)
+    {
+        $this->filtroEstado = $filtroEstado;
     }
-    
-    public function refrescarTabla(){
+
+    public function refrescarTabla()
+    {
         $this->render();
     }
 }

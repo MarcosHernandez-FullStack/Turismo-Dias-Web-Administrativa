@@ -195,7 +195,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link"
+            <a href="{{ route('bienvenido') }}" class="brand-link"
                 style="background-color:white; justify-content: center; display: flex;">
                 <img src="{{ asset('assets/img/turismo-dias-logo.png') }}"
                     style="opacity: .8; width: 60%;height: 80%;">
@@ -255,12 +255,12 @@
                             </a>
                         </li>
 
-                        <!--li class="nav-item">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item">
+                            <a href="{{ route('ciudades') }}" class="nav-link">
                                 <i class="fa-solid fa-map-location-dot nav-icon"></i>
                                 <p>Ciudades</p>
                             </a>
-                        </li-->
+                        </li>
 
                         <li class="nav-item">
                             <a href="{{ route('ambientes') }}" class="nav-link">
@@ -1642,7 +1642,7 @@
 
     <script>
         /* periodo_actual = document.getElementById('periodo_actual');
-                                                                                                  periodo_actual.innerHTML = new Date().getFullYear(); */
+                                                                                                              periodo_actual.innerHTML = new Date().getFullYear(); */
         window.addEventListener('closeModal', event => {
             $("#modal_usuario").modal('hide');
         })
