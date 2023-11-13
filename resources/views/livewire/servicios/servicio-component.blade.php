@@ -1,7 +1,7 @@
 @section('content-header')
-    <div class="row mb-2">
+    <div class="row ">
         <div class="col-12">
-            <div class="card card-default color-palette-box">
+            <div class="m-0 card card-default color-palette-box">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6">
@@ -11,12 +11,12 @@
                             </h5>
 
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                <li class="breadcrumb-item active">Servicios</li>
-                            </ol>
-                        </div>
+                        <!--div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                    <li class="breadcrumb-item active">Servicios</li>
+                                </ol>
+                            </div-->
                     </div>
 
                 </div>
@@ -60,7 +60,8 @@
                                                         data-toggle="popover" title="Imagen del Servicio"
                                                         data-html="true"
                                                         data-template="<div class='popover'  role='tooltip'><div class='arrow'></div><h3 class='popover-header bg-info'></h3><div class='popover-body'></div></div>"
-                                                        data-content="<img class='w-100' src='{{ Storage::url($servicio->ruta_foto) }}' alt='...'>"><i class="fa-regular fa-eye"></i></span>
+                                                        data-content="<img class='w-100' src='{{ Storage::url($servicio->ruta_foto) }}' alt='...'>"><i
+                                                            class="fa-regular fa-eye"></i></span>
                                                 </td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $servicio->estado == '1' ? 'success' : 'warning' }}"
@@ -95,3 +96,44 @@
     </div>
     @include("livewire.servicios.$vista")
 </div>
+@push('scripts')
+    <script>
+        let fotoServicio;
+
+        function initFotoServicio(inputRef) {
+            fotoServicio = FilePond.create(inputRef, {
+                labelIdle: 'Arrastra y suelta tus archivos, o <span class=\'filepond--label-action\'> Busca </span>',
+                credits: {},
+                allowMultiple: false,
+                acceptedFileTypes: ['image/*'],
+                checkValidity: true,
+                labelFileLoading: 'Cargando',
+                labelFileLoadError: 'Error durante la carga',
+                labelFileProcessing: 'Subiendo',
+                labelFileProcessingComplete: 'Completado',
+                labelFileProcessingAborted: 'Cancelado',
+                labelTapToUndo: 'Presione para revertir',
+                labelTapToCancel: 'Presione para cancelar',
+                labelFileTypeNotAllowed: 'Tipo de archivo inválido',
+                fileValidateTypeLabelExpectedTypes: 'Inserte una imagen',
+                //VALIDACION DE TAMAÑO
+                maxFileSize: '1MB',
+                labelMaxFileSizeExceeded: 'El archivo es muy grande',
+                labelMaxFileSize: 'El tamaño máximo permitido es de {filesize}',
+                server: {
+                    process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                        @this.upload('ruta_foto', file, load, error, progress)
+                    },
+                    revert: (filename, load) => {
+                        @this.removeUpload('ruta_foto', filename, load)
+
+                    },
+                },
+            });
+        };
+
+        window.addEventListener('removerImagenes', event => {
+            fotoServicio.removeFiles();
+        });
+    </script>
+@endpush

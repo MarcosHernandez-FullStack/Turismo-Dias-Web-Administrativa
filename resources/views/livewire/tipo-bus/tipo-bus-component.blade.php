@@ -89,5 +89,42 @@
         window.addEventListener('showModalTipoBus', event => {
             $("#modalTipoBus").modal('show');
         });
+        let fotoBus;
+
+        function initFotoBus(inputRef) {
+            fotoBus = FilePond.create(inputRef, {
+                labelIdle: 'Arrastra y suelta tus archivos, o <span class=\'filepond--label-action\'> Busca </span>',
+                credits: {},
+                allowMultiple: false,
+                acceptedFileTypes: ['image/*'],
+                checkValidity: true,
+                labelFileLoading: 'Cargando',
+                labelFileLoadError: 'Error durante la carga',
+                labelFileProcessing: 'Subiendo',
+                labelFileProcessingComplete: 'Completado',
+                labelFileProcessingAborted: 'Cancelado',
+                labelTapToUndo: 'Presione para revertir',
+                labelTapToCancel: 'Presione para cancelar',
+                labelFileTypeNotAllowed: 'Tipo de archivo inválido',
+                fileValidateTypeLabelExpectedTypes: 'Inserte una imagen',
+                //VALIDACION DE TAMAÑO
+                maxFileSize: '1MB',
+                labelMaxFileSizeExceeded: 'El archivo es muy grande',
+                labelMaxFileSize: 'El tamaño máximo permitido es de {filesize}',
+                server: {
+                    process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                        @this.upload('ruta_foto', file, load, error, progress)
+                    },
+                    revert: (filename, load) => {
+                        @this.removeUpload('ruta_foto', filename, load)
+
+                    },
+                },
+            });
+        };
+
+        window.addEventListener('removerImagenes', event => {
+            fotoBus.removeFiles();
+        });
     </script>
 @endpush

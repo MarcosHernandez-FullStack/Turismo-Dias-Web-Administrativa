@@ -16,14 +16,19 @@ class Ciudad extends Model
         return $this->hasMany(Ambiente::class);
     }
 
+    public function subciudades()
+    {
+        return $this->hasMany(SubCiudad::class);
+    }
+
     public function rutas_ciudad_origen()
     {
-        return $this->hasMany(Rutas::class, 'ciudad_origen_id', 'ciudad_id');
+        return $this->hasMany(Ruta::class, 'ciudad_origen_id', 'ciudad_id');
     }
 
     public function rutas_ciudad_destino()
     {
-        return $this->hasMany(Rutas::class, 'ciudad_destino_id', 'ciudad_id');
+        return $this->hasMany(Ruta::class, 'ciudad_destino_id', 'ciudad_id');
     }
 
 }

@@ -17,8 +17,8 @@ class CreateFeriadoTable extends Migration
             $table->id();
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nullable();
-            $table->string('razon');
-            $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo 
+            $table->string('razon', 50);
+            $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo
             $table->timestamps();
         });
     }

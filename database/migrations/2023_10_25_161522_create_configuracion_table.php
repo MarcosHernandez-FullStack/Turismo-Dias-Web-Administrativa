@@ -17,27 +17,27 @@ class CreateConfiguracionTable extends Migration
             $table->id();
             $table->string('ruta_foto_principal')->nullable();
             $table->string('ruta_logo')->nullable();
-            $table->string('slogan')->nullable();
+            $table->string('slogan', 80)->nullable();
             $table->string('ruta_video')->nullable();
-            $table->string('celular_principal')->nullable();
-            $table->string('celular_secundario')->nullable();
-            $table->string('correo_principal')->nullable();
-            $table->string('correo_secundario')->nullable();
-            $table->string('horario_atencion_principal')->nullable();
-            $table->string('link_facebook')->nullable();
-            $table->string('link_instagram')->nullable();
-            $table->string('link_youtube')->nullable();
-            $table->string('link_twitter')->nullable();
-            $table->string('link_linkedln')->nullable();
-            $table->string('razon_social')->nullable();
-            $table->string('nombre')->nullable();
-            $table->string('subtitulo_servicio')->nullable();
-            $table->string('subtitulo_ruta')->nullable();
-            $table->string('subtitulo_libro_reclamacion')->nullable();
-            $table->string('subtitulo_evento')->nullable();
-            $table->string('subtitulo_termino_condicion')->nullable();
+            $table->string('celular_principal', 20)->nullable();
+            $table->string('celular_secundario', 20)->nullable();
+            $table->string('correo_principal', 30)->nullable();
+            $table->string('correo_secundario', 30)->nullable();
+            $table->string('horario_atencion_principal', 30)->nullable();
+            $table->string('link_facebook', 50)->nullable();
+            $table->string('link_instagram', 50)->nullable();
+            $table->string('link_youtube', 50)->nullable();
+            $table->string('link_twitter', 50)->nullable();
+            $table->string('link_linkedln', 50)->nullable();
+            $table->string('razon_social', 50)->nullable();
+            $table->string('nombre', 50)->nullable();
+            $table->string('subtitulo_servicio', 130)->nullable();
+            $table->string('subtitulo_ruta', 130)->nullable();
+            $table->string('subtitulo_libro_reclamacion', 130)->nullable();
+            $table->string('subtitulo_evento', 130)->nullable();
+            $table->string('subtitulo_termino_condicion', 130)->nullable();
             $table->string('ruta_foto_header_seccion')->nullable();
-            $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo 
+            $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo
             $table->timestamps();
         });
     }
