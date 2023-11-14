@@ -29,7 +29,7 @@
                 </label>
                 <select class="form-control form-control-sm rounded-pill" @if ($form == 'detail') disabled @endif id="tipo"  wire:model='ambiente.tipo'>
                     <option value="">Seleccionar una opción</option>
-                    <option value="1">Oficiona</option>
+                    <option value="1">Oficina</option>
                     <option value="2">Terrapuerto</option>
                     <option value="3">Almacen</option>
                 </select>

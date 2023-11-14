@@ -15,7 +15,7 @@ class CreateSubCiudadTable extends Migration
     {
         Schema::create('sub_ciudad', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion', 30);
+            $table->string('descripcion', 50);
             $table->foreignId('ciudad_id')->constrained('ciudad');
             $table->enum('estado', [0, 1])->default(1); // '0' Inactivo, '1' Activo
             $table->timestamps();
