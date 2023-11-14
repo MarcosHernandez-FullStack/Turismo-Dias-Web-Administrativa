@@ -28,7 +28,7 @@ class GeneralComponent extends Component
         'configuracion.horario_atencion_principal.required' => 'El horario de atención principal es obligatorio.',
         'configuracion.razon_social.max' => 'La razón social debe tener 50 caracteres como máximo.',
         'configuracion.nombre.max' => 'El nombre debe tener 50 caracteres como máximo.',
-        'configuracion.slogan.max' => 'El eslogan debe tener 70 caracteres como máximo.',
+        'configuracion.slogan.max' => 'El eslogan debe tener 80 caracteres como máximo.',
         'configuracion.horario_atencion_principal.max' => 'El horario de atención principal debe tener 30 caracteres como máximo.',
     ];
 
