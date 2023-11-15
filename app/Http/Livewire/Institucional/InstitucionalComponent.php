@@ -40,9 +40,9 @@ class InstitucionalComponent extends Component
     protected function rules(){
         return [
            'institucional.slogan_home' => 'required|max:70',
-           'institucional.breve_historia' => 'required|max:255',
-           'institucional.mision' => 'required|max:255',
-           'institucional.vision' => 'required|max:255',
+           'institucional.breve_historia' => 'required|max:230',
+           'institucional.mision' => 'required|max:230',
+           'institucional.vision' => 'required|max:230',
            'ruta_foto_principal' => (!$this->institucional->id)?'required|image|max:2048':'nullable|image|max:2048',
            'ruta_foto_secundaria' => (!$this->institucional->id)?'required|image|max:2048':'nullable|image|max:2048',
            'institucional.fecha_inicio' => 'required|date',
@@ -54,11 +54,11 @@ class InstitucionalComponent extends Component
             'institucional.slogan_home.required' => 'El slogan es requerido',
             'institucional.slogan_home.max' => 'El slogan debe tener máximo 70 caracteres',
             'institucional.breve_historia.required' => 'La breve historia es requerida',
-            'institucional.breve_historia.max' => 'La breve historia debe tener máximo 255 caracteres',
+            'institucional.breve_historia.max' => 'La breve historia debe tener máximo 230 caracteres',
             'institucional.mision.required' => 'La misión es requerida',
-            'institucional.mision.max' => 'La misión debe tener máximo 255 caracteres',
+            'institucional.mision.max' => 'La misión debe tener máximo 230 caracteres',
             'institucional.vision.required' => 'La visión es requerida',
-            'institucional.vision.max' => 'La visión debe tener máximo 255 caracteres',
+            'institucional.vision.max' => 'La visión debe tener máximo 230 caracteres',
             'ruta_foto_principal.required' => 'La foto principal es requerida',
             'ruta_foto_principal.image' => 'La foto principal debe ser una imagen',
             'ruta_foto_principal.max' => 'La foto principal debe pesar menos de 2MB',
@@ -100,11 +100,11 @@ class InstitucionalComponent extends Component
     public function addValorCollection(){
         $this->validate(
             [
-                'descripcion' => 'required|max:30',
+                'descripcion' => 'required|max:25',
             ],
             [
                 'descripcion.required' => 'La descripción es requerida',
-                'descripcion.max' => 'La descripción debe tener máximo 30 caracteres',
+                'descripcion.max' => 'La descripción debe tener máximo 25 caracteres',
             ]
         );
         $this->valores_collection->push(new Valor(['descripcion' => $this->descripcion]));

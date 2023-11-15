@@ -33,17 +33,17 @@ class FaqComponent extends Component
 
     protected function rules(){
         return [
-           'faq.pregunta' => 'required|max:120',
-           'faq.respuesta' => 'required|max:255',
+           'faq.pregunta' => 'required|max:80',
+           'faq.respuesta' => 'required|max:160',
            'faq.tipo' => 'required',
         ];
    }
 
    protected $messages = [
          'faq.pregunta.required' => 'El nombre del faq es requerido',
-         'faq.pregunta.max' => 'El nombre del faq debe contener como máximo 120 caracteres',
+         'faq.pregunta.max' => 'El nombre del faq debe contener como máximo 80 caracteres',
          'faq.respuesta.required' => 'El tipo de faq es requerido',
-         'faq.respuesta.max' => 'El tipo de faq debe contener como máximo 255 caracteres',
+         'faq.respuesta.max' => 'El tipo de faq debe contener como máximo 160 caracteres',
          'faq.tipo.required' => 'La coordenada longitud es requerida',
    ];
 

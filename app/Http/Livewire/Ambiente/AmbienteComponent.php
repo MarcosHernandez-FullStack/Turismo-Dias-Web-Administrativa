@@ -36,31 +36,33 @@ class AmbienteComponent extends Component
 
     protected function rules(){
         return [
-           'ambiente.nombre' => 'required|max:255',
+           'ambiente.nombre' => 'required|max:30',
            'ambiente.tipo' => 'required',
-           'ambiente.coordenada_longitud' => 'required|max:255',
-           'ambiente.coordenada_latitud' => 'required|max:255',
-           'ambiente.direccion' => 'required|max:255',
-           'ambiente.horario_atencion' => 'required|max:255',
-           'ambiente.telefono' => 'required|max:255',
+           'ambiente.coordenada_longitud' => 'required|numeric|between:-999999.9999999999,999999.9999999999',
+           'ambiente.coordenada_latitud' => 'required|numeric|between:-999999.9999999999,999999.9999999999',
+           'ambiente.direccion' => 'required|max:100',
+           'ambiente.horario_atencion' => 'required|max:150',
+           'ambiente.telefono' => 'required|max:13',
            'ambiente.ciudad_id' => 'required',
         ];
    }
 
    protected $messages = [
         'ambiente.nombre.required' => 'El nombre del ambiente es requerido',
-        'ambiente.nombre.max' => 'El nombre del ambiente debe contener como máximo 255 caracteres',
+        'ambiente.nombre.max' => 'El nombre del ambiente debe contener como máximo 30 caracteres',
         'ambiente.tipo.required' => 'El tipo de ambiente es requerido',
         'ambiente.coordenada_longitud.required' => 'La coordenada longitud es requerida',
-        'ambiente.coordenada_longitud.max' => 'La coordenada longitud debe contener como máximo 255 caracteres',
+        'ambiente.coordenada_longitud.numeric' => 'La coordenada longitud debe ser un número',
+        'ambiente.coordenada_longitud.between' => 'La coordenada longitud debe estar entre -999999.9999999999 y 999999.9999999999',
         'ambiente.coordenada_latitud.required' => 'La coordenada latitud es requerida',
-        'ambiente.coordenada_latitud.max' => 'La coordenada latitud debe contener como máximo 255 caracteres',
+        'ambiente.coordenada_latitud.numeric' => 'La coordenada latitud debe ser un número',
+        'ambiente.coordenada_latitud.between' => 'La coordenada latitud debe estar entre -999999.9999999999 y 999999.9999999999',
         'ambiente.direccion.required' => 'La dirección es requerida',
-        'ambiente.direccion.max' => 'La dirección debe contener como máximo 255 caracteres',
+        'ambiente.direccion.max' => 'La dirección debe contener como máximo 100 caracteres',
         'ambiente.horario_atencion.required' => 'El horario de atención es requerido',
-        'ambiente.horario_atencion.max' => 'El horario de atención debe contener como máximo 255 caracteres',
+        'ambiente.horario_atencion.max' => 'El horario de atención debe contener como máximo 150 caracteres',
         'ambiente.telefono.required' => 'El teléfono es requerido',
-        'ambiente.telefono.max' => 'El teléfono debe contener como máximo 255 caracteres',
+        'ambiente.telefono.max' => 'El teléfono debe contener como máximo 13 caracteres',
         'ambiente.ciudad_id.required' => 'La ciudad es requerida',
    ];
 
