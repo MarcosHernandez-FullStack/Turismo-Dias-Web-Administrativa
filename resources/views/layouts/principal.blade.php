@@ -214,6 +214,11 @@
                         <a href="#" class="d-block">Alexander Cuy</a>
                     </div>
                 </div>
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="info">
+                        @livewire('logout-component')
+                    </div>
+                </div>
 
                 <!-- SidebarSearch Form -->
                 {{-- <div class="form-inline">

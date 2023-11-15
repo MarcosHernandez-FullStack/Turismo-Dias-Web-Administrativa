@@ -11,6 +11,7 @@ use App\Http\Livewire\Ruta\RutaComponent;
 use App\Http\Livewire\Servicios\ServicioComponent;
 use App\Http\Livewire\TerminoCondicion\TerminoCondicionComponent;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Loginv1Component;
 
 // use App\Http\Livewire\Valor\ValorComponent;
 /*
@@ -29,27 +30,30 @@ return view('welcome');
 }); */
 
 //Route::get('/', BienvenidoComponent::class)->name('bienvenido');
-Route::get('/', function () {
-    return redirect()->route('configuracion');
-})->name('bienvenido');
-Route::get('/configuracion', [ConfiguracionController::class, 'render'])->name('configuracion');
+Route::get('/login', Loginv1Component::class)->name('login');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return redirect()->route('configuracion');
+    })->name('bienvenido');
+    Route::get('/configuracion', [ConfiguracionController::class, 'render'])->name('configuracion');
 
-Route::get('/servicios', ServicioComponent::class)->name('servicios');
+    Route::get('/servicios', ServicioComponent::class)->name('servicios');
 
-Route::get('/ambientes', AmbienteComponent::class)->name('ambientes');
+    Route::get('/ambientes', AmbienteComponent::class)->name('ambientes');
 
-Route::get('/libro-reclamaciones', LibroReclamacionComponent::class)->name('libro-reclamaciones');
+    Route::get('/libro-reclamaciones', LibroReclamacionComponent::class)->name('libro-reclamaciones');
 
-Route::get('/faqs', FaqComponent::class)->name('faqs');
+    Route::get('/faqs', FaqComponent::class)->name('faqs');
 
-Route::get('/institucional', InstitucionalComponent::class)->name('institucional');
+    Route::get('/institucional', InstitucionalComponent::class)->name('institucional');
 
-Route::get('/rutas', RutaComponent::class)->name('rutas');
+    Route::get('/rutas', RutaComponent::class)->name('rutas');
 
-Route::get('/ciudades', CiudadComponent::class)->name('ciudades');
+    Route::get('/ciudades', CiudadComponent::class)->name('ciudades');
 
-Route::get('/terminos-condiciones', TerminoCondicionComponent::class)->name('terminos-condiciones');
+    Route::get('/terminos-condiciones', TerminoCondicionComponent::class)->name('terminos-condiciones');
 
-Route::get('/eventos', FeriadoComponent::class)->name('eventos');
+    Route::get('/eventos', FeriadoComponent::class)->name('eventos');
 
-// Route::get('/valores', ValorComponent::class)->name('valores'); //en detalle insinstitucional
+    // Route::get('/valores', ValorComponent::class)->name('valores'); //en detalle insinstitucional
+});
