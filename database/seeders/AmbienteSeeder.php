@@ -17,7 +17,7 @@ class AmbienteSeeder extends Seeder
         Ambiente::insert(
             [
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-7.619349571307369',
                     'coordenada_longitud' => '-78.04651461118492',
@@ -27,7 +27,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '1',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-7.169277906947396',
                     'coordenada_longitud' => '-78.49935732474903',
@@ -37,7 +37,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '2',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-7.220315757404323',
                     'coordenada_longitud' => '-79.4338664734544',
@@ -47,7 +47,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '3',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-6.774972807314014',
                     'coordenada_longitud' => '-79.84086754798415',
@@ -57,7 +57,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '4',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-7.221201250915764',
                     'coordenada_longitud' => '-78.83842270379817',
@@ -67,7 +67,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '5',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-9.104641573352891',
                     'coordenada_longitud' => '-78.5577858481776',
@@ -77,7 +77,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '6',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-5.716060201763289',
                     'coordenada_longitud' => '-78.80385760235674',
@@ -87,7 +87,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '7',
                 ],
                 [
-                    'nombre' => 'OFICINA 2',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-5.7174560441466',
                     'coordenada_longitud' => '-78.80343274093227',
@@ -97,7 +97,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '7',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-12.064914041814859',
                     'coordenada_longitud' => '-77.03253476749774',
@@ -107,7 +107,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '8',
                 ],
                 [
-                    'nombre' => 'OFICINA 2',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-12.00697039943493',
                     'coordenada_longitud' => '-77.05983148717102',
@@ -117,7 +117,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '8',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-6.044957379566646',
                     'coordenada_longitud' => '-76.9702329445253',
@@ -127,7 +127,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '9',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-5.908688128732039',
                     'coordenada_longitud' => '-77.3158939995273',
@@ -137,7 +137,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '10',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-7.399274442246691',
                     'coordenada_longitud' => '-79.56751454635669',
@@ -147,7 +147,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '11',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-5.201744678968791',
                     'coordenada_longitud' => '-80.63148210591729',
@@ -157,7 +157,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '12',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-7.333236819831224',
                     'coordenada_longitud' => '-78.17152892863437',
@@ -167,7 +167,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '13',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-6.482889625527211',
                     'coordenada_longitud' => '-76.3816309152708',
@@ -177,7 +177,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '14',
                 ],
                 [
-                    'nombre' => 'OFICINA 1',
+                    'nombre' => 'OFICINA',
                     'tipo' => '1',
                     'coordenada_latitud' => '-8.094579814340284',
                     'coordenada_longitud' => '-79.0383563443035',
@@ -187,7 +187,7 @@ class AmbienteSeeder extends Seeder
                     'ciudad_id' => '15',
                 ],
                 [
-                    'nombre' => 'OFICINA 2',
+                    'nombre' => 'OFICINA',
                     'tipo' => '2',
                     'coordenada_latitud' => '-8.137695979844915',
                     'coordenada_longitud' => '-79.0177129481968',
@@ -196,7 +196,7 @@ class AmbienteSeeder extends Seeder
                     'telefono' => '#',
                     'ciudad_id' => '15',
                 ],
-                
+
             ]
         );
     }

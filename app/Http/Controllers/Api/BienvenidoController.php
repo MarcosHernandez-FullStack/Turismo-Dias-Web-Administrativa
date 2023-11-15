@@ -18,14 +18,21 @@ class BienvenidoController extends Controller
             $institucional = Institucional::with(['valores' => function ($query) {
                 $query->where('estado', '1');
             }])->where('estado', '1')->first();
+
             $servicios = Servicio::where('estado', '1')->get();
+
             $tipobuses = TipoBus::with(['rutas' => function ($query) {
                 $query->where('estado', '1');
             }])->where('estado', '1')->get();
+
+
             $configuracion = Configuracion::where('estado', '1')->first();
+
+
             $fecha_inicio = date('d/m/Y', strtotime($institucional->fecha_inicio));
             $fechaActual = now();
             $aniosDeDiferencia = $fechaActual->diffInYears($fecha_inicio);
+
             return response()->json([
                 "status" => "success",
                 "data" => [
@@ -55,7 +62,6 @@ class BienvenidoController extends Controller
                             "ruta_foto" => env("APP_URL") . Storage::url($servicio->ruta_foto),
                             "estado" => $servicio->estado,
                         ];
-
                     }),
                     "tipobuses" => $tipobuses->map(function ($tipobus) {
                         return [
@@ -74,7 +80,6 @@ class BienvenidoController extends Controller
                             }),
 
                         ];
-
                     }),
                     "configuracion" => [
                         "foto" => env("APP_URL") . Storage::url($configuracion->ruta_foto_principal),
