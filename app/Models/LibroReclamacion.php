@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
-
 
 class LibroReclamacion extends Model
 {
@@ -16,7 +15,7 @@ class LibroReclamacion extends Model
 
     public function tiempoTranscurridoDesde($campo)
     {
-        $createdAt =Carbon::parse($campo);
+        $createdAt = Carbon::parse($campo);
         $now = Carbon::now();
         $diff = $now->diff($createdAt);
 
@@ -31,12 +30,12 @@ class LibroReclamacion extends Model
 
         foreach ($units as $unit => $value) {
             if ($value >= 1) {
-                if ($unit == 'mes'){
-                    $unit = $value > 1 ? $unit.'es': $unit; // Agregar 's' para plural si el valor es mayor que 1
-                }else{
-                    $unit = $value > 1 ? $unit.'s' : $unit; // Agregar 's' para plural si el valor es mayor que 1
+                if ($unit == 'mes') {
+                    $unit = intval($value) > 1 ? $unit . 'es' : $unit; // Agregar 's' para plural si el valor es mayor que 1
+                } else {
+                    $unit = intval($value) > 1 ? $unit . 's' : $unit; // Agregar 's' para plural si el valor es mayor que 1
                 }
-                return "hace $value $unit";
+                return "hace " . intval($value) . " $unit";
             }
         }
 

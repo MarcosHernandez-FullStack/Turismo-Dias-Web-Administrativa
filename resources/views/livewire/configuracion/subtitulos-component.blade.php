@@ -15,7 +15,7 @@
     <div class="modal fade @if($verModal)show @endif" id="SubtitulosModal" tabindex="-1" role="dialog"
         aria-labelledby="SubtitulosModalTitle" aria-hidden="true" @if($verModal)
         style="padding-right: 17px; display: block;" @endif>
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-info text-light">
                     <h5 class="modal-title" id="SubtitulosModalTitle">Subtítulos</h5>
@@ -23,48 +23,48 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
+                <div class="modal-body row">
+                    <div class="form-group col-md-6">
                         <label for="subtitulo_servicio">Subtítulo de Servicios</label>
-                        <input type="text" wire:model='configuracion.subtitulo_servicio'
+                        <textarea  wire:model='configuracion.subtitulo_servicio'
                             class="form-control @error('configuracion.subtitulo_servicio') is-invalid @enderror"
-                            id="subtitulo_servicio" placeholder="Ingresar Subtítulo de Servicios">
+                            id="subtitulo_servicio" ></textarea>
                         @error('configuracion.subtitulo_servicio')
                         <span id="subtitulo_servicio-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="subtitulo_ruta">Subtítulo de Rutas</label>
-                        <input type="text" wire:model='configuracion.subtitulo_ruta'
+                        <textarea  wire:model='configuracion.subtitulo_ruta'
                             class="form-control @error('configuracion.subtitulo_ruta') is-invalid @enderror" id="subtitulo_ruta"
-                            placeholder="Ingresar Subtítulo de Rutas">
+                            ></textarea>
                         @error('configuracion.subtitulo_ruta')
                         <span id="subtitulo_ruta-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="subtitulo_libro_reclamacion">Subtítulo de Libro de Reclamaciones</label>
-                        <input type="text" wire:model='configuracion.subtitulo_libro_reclamacion'
+                        <textarea  wire:model='configuracion.subtitulo_libro_reclamacion'
                             class="form-control @error('configuracion.subtitulo_libro_reclamacion') is-invalid @enderror"
-                            id="subtitulo_libro_reclamacion" placeholder="Ingresar Subtítulo de Libro de Reclamaciones">
+                            id="subtitulo_libro_reclamacion" ></textarea>
                         @error('configuracion.subtitulo_libro_reclamacion')
                         <span id="subtitulo_libro_reclamacion-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="subtitulo_evento">Subtítulo de Eventos</label>
-                        <input type="text" wire:model='configuracion.subtitulo_evento'
+                        <textarea  wire:model='configuracion.subtitulo_evento'
                             class="form-control @error('configuracion.subtitulo_evento') is-invalid @enderror"
-                            id="subtitulo_evento" placeholder="Ingresar Subtítulo de Eventos">
+                            id="subtitulo_evento" ></textarea>
                         @error('configuracion.subtitulo_evento')
                         <span id="subtitulo_evento-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12">
                         <label for="subtitulo_termino_condicion">Subtítulo de Términos y Condiciones</label>
-                        <input type="text" wire:model='configuracion.subtitulo_termino_condicion'
+                        <textarea  wire:model='configuracion.subtitulo_termino_condicion'
                             class="form-control @error('configuracion.subtitulo_termino_condicion') is-invalid @enderror"
-                            id="subtitulo_termino_condicion" placeholder="Ingresar Subtítulo de Términos y Condiciones">
+                            id="subtitulo_termino_condicion" ></textarea>
                         @error('configuracion.subtitulo_termino_condicion')
                         <span id="subtitulo_termino_condicion-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror

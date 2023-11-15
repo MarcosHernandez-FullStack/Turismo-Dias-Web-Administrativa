@@ -13,9 +13,9 @@
         </a>
     </div>
 
-    <div class="modal fade @if($verModal)show @endif" id="ContactoModal" tabindex="-1" role="dialog"
-        aria-labelledby="ContactoModalTitle" aria-hidden="true" @if($verModal)
-        style="padding-right: 17px; display: block;" @endif>
+    <div class="modal fade @if ($verModal) show @endif" id="ContactoModal" tabindex="-1"
+        role="dialog" aria-labelledby="ContactoModalTitle" aria-hidden="true"
+        @if ($verModal) style="padding-right: 17px; display: block;" @endif>
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-info text-light">
@@ -43,7 +43,8 @@
                                                 class="form-control @error('configuracion.celular_principal') is-invalid @enderror"
                                                 id="celular_principal" placeholder="Ingrese un Telefóno/Celular">
                                             @error('configuracion.celular_principal')
-                                            <span id="celular_principal-error" class="error invalid-feedback">{{$message}}</span>
+                                                <span id="celular_principal-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -60,7 +61,8 @@
                                                 class="form-control @error('configuracion.celular_secundario') is-invalid @enderror"
                                                 id="celular_secundario" placeholder="Ingrese un Telefóno/Celular">
                                             @error('configuracion.celular_secundario')
-                                            <span id="celular_secundario-error" class="error invalid-feedback">{{$message}}</span>
+                                                <span id="celular_secundario-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -76,7 +78,8 @@
                                                 class="form-control @error('configuracion.correo_principal') is-invalid @enderror"
                                                 id="correo_principal" placeholder="Ingrese un correo">
                                             @error('configuracion.correo_principal')
-                                            <span id="correo_principal-error" class="error invalid-feedback">{{$message}}</span>
+                                                <span id="correo_principal-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -92,7 +95,8 @@
                                                 class="form-control @error('configuracion.correo_secundario') is-invalid @enderror"
                                                 id="correo_secundario" placeholder="Ingrese un correo">
                                             @error('configuracion.correo_secundario')
-                                            <span id="correo_secundario-error" class="error invalid-feedback">{{$message}}</span>
+                                                <span id="correo_secundario-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -118,7 +122,8 @@
                                                 class="form-control @error('configuracion.link_facebook') is-invalid @enderror"
                                                 id="link_facebook" placeholder="Ingrese URL de Facebook">
                                             @error('configuracion.link_facebook')
-                                            <span id="link_facebook-error" class="error invalid-feedback">{{$message}}</span>
+                                                <span id="link_facebook-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -135,7 +140,8 @@
                                                 class="form-control @error('configuracion.link_instagram') is-invalid @enderror"
                                                 id="link_instagram" placeholder="Ingrese URL de Instagram">
                                             @error('configuracion.link_instagram')
-                                            <span id="link_instagram-error" class="error invalid-feedback">{{$message}}</span>
+                                                <span id="link_instagram-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -152,7 +158,26 @@
                                                 class="form-control @error('configuracion.link_youtube') is-invalid @enderror"
                                                 id="link_youtube" placeholder="Ingrese URL de Youtube">
                                             @error('configuracion.link_youtube')
-                                            <span id="link_youtube-error" class="error invalid-feedback">{{$message}}</span>
+                                                <span id="link_youtube-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="link_twitter">X-Twitter</label>
+                                        <div class="input-group mb-0">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa-brands fa-x-twitter"></i>
+                                            </div>
+                                            <input type="text" wire:model='configuracion.link_twitter'
+                                                class="form-control @error('configuracion.link_twitter') is-invalid @enderror"
+                                                id="link_twitter" placeholder="Ingrese URL de Twitter">
+                                            @error('configuracion.link_twitter')
+                                                <span id="link_twitter-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -169,7 +194,8 @@
                                                 class="form-control @error('configuracion.link_linkedln') is-invalid @enderror"
                                                 id="link_linkedln" placeholder="Ingrese URL de LinkedIn">
                                             @error('configuracion.link_linkedln')
-                                            <span id="link_linkedln-error" class="error invalid-feedback">{{$message}}</span>
+                                                <span id="link_linkedln-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -180,8 +206,10 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm rounded-pill btn-secondary" data-dismiss="modal"><i class="fas fa-times" aria-hidden="true"></i> Cerrar</button>
-                    <button type="button" class="btn btn-sm rounded-pill btn-info" wire:click="save"><i class="fas fa-save" aria-hidden="true"></i> Guardar</button>
+                    <button type="button" class="btn btn-sm rounded-pill btn-secondary" data-dismiss="modal"><i
+                            class="fas fa-times" aria-hidden="true"></i> Cerrar</button>
+                    <button type="button" class="btn btn-sm rounded-pill btn-info" wire:click="save"><i
+                            class="fas fa-save" aria-hidden="true"></i> Guardar</button>
                 </div>
             </div>
 
@@ -189,12 +217,12 @@
     </div>
 </div>
 @push('scripts')
-<script>
-    window.addEventListener('closeModalContacto', event => {
+    <script>
+        window.addEventListener('closeModalContacto', event => {
             $("#ContactoModal").modal('hide');
         });
-    window.addEventListener('showModalContacto', event => {
-        $("#ContactoModal").modal('show');
-    });
-</script>
+        window.addEventListener('showModalContacto', event => {
+            $("#ContactoModal").modal('show');
+        });
+    </script>
 @endpush

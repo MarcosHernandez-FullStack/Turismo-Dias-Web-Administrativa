@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Configuracion;
 
-use Livewire\Component;
 use App\Models\Configuracion;
+use Livewire\Component;
 
 class SubtitulosComponent extends Component
 {
@@ -11,7 +11,7 @@ class SubtitulosComponent extends Component
     public $configuracionOriginal;
     //VARIABLE PARA VERIFICAR SI EL MODAL ESTA ABIERTO O CERRADO
     //DEBIDO A QUE LA VALIDACION  RENDERIZA DE NUEVO EL COMPONENTE, SE CIERRA AUTOMATICAMENTE
-    public $verModal=false; 
+    public $verModal = false;
 
     //DEFINICION DE REGLAS DE VALIDACION
     protected $rules = [
@@ -22,7 +22,7 @@ class SubtitulosComponent extends Component
         'configuracion.subtitulo_termino_condicion' => 'required|max:130',
     ];
 
-   protected $messages = [
+    protected $messages = [
         'configuracion.subtitulo_servicio.required' => 'El Subtítulo de Servicios es obligatorio.',
         'configuracion.subtitulo_ruta.required' => 'El Subtítulo de Rutas es obligatorio.',
         'configuracion.subtitulo_libro_reclamacion.required' => 'El Subtítulo del Libro de Reclamaciones es obligatorio.',
@@ -34,14 +34,20 @@ class SubtitulosComponent extends Component
         'configuracion.subtitulo_evento.max' => 'El Subtítulo solo puede tener un máximo de 130 caracteres.',
         'configuracion.subtitulo_termino_condicion.max' => 'El Subtítulo solo puede tener un máximo de 130 caracteres.',
     ];
-    
-    //SE VERIFICA SI EXISTE LA CONFIGURACON, DE LO CONTRARIO CREA UNA 
-    public function mount(){
-        $this->configuracion=Configuracion::first();
-        if(!isset($this->configuracion)){
-            $this->configuracion=new Configuracion();
+
+    //SE VERIFICA SI EXISTE LA CONFIGURACON, DE LO CONTRARIO CREA UNA
+    public function mount()
+    {
+        try {
+            $this->configuracion = Configuracion::first();
+        } catch (\Exception $e) {
+            $this->configuracion = null;
         }
-        $this->configuracionOriginal=$this->configuracion;
+
+        if (!isset($this->configuracion)) {
+            $this->configuracion = new Configuracion();
+        }
+        $this->configuracionOriginal = $this->configuracion;
     }
 
     public function render()
@@ -50,52 +56,58 @@ class SubtitulosComponent extends Component
     }
 
     //FUNCION PARA MOSTRAR ERRORES DE VALIDACION EN TIEMPO REAL
-    public function updated($propertyName){
+    public function updated($propertyName)
+    {
         $this->validateOnly($propertyName);
     }
 
     //FUNCION PARA RESETEAR VARIABLES Y ERRORES DE VALIDACION
-    public function resetError(){
+    public function resetError()
+    {
         $this->resetErrorBag();
         $this->resetValidation();
     }
 
     //FUNCION PARA RESETEAR VALORES DE MI VARIABLE
     //EVITA ESTAR CONSULTANDO CONTINUAMENTE AL ABRIR EL MODAL
-    public function resetValues(){
-        $this->configuracion=$this->configuracionOriginal;
+    public function resetValues()
+    {
+        $this->configuracion = $this->configuracionOriginal;
     }
 
-    public function showModal(){
+    public function showModal()
+    {
         $this->resetError();
         $this->resetValues();
-        $this->verModal=true;
+        $this->verModal = true;
         $this->dispatchBrowserEvent('showModalSubtitulos');
     }
 
-    public function closeModal(){
-        $this->verModal=false;
+    public function closeModal()
+    {
+        $this->verModal = false;
         $this->dispatchBrowserEvent('closeModalSubtitulos');
     }
 
     //FUNCION PARA GUARDAR EN BASE DE DATOS
-    public function save(){
+    public function save()
+    {
         $this->validate();
-        if ($this->configuracion==$this->configuracionOriginal){
-            $this->closeModal();
-            $this->dispatchBrowserEvent('info',['mensaje' => 'El registro no ha sufrido cambios!']);
-        }else{
-            $this->configuracion->save();
-            $this->closeModal();
-            $this->configuracion=Configuracion::first(); //CONSULTA LOS VALORES GUARDADOS EN BD
-            $this->configuracionOriginal=$this->configuracion; //LE ASIGAN AL AUXILIAR DE ORIGINAL PARA UNA POSTERIOR EDICIÓN
-            $this->dispatchBrowserEvent('success',['mensaje' => 'El registro se ha guardado correctamente!']);
+        try {
+            if ($this->configuracion == $this->configuracionOriginal) {
+                $this->closeModal();
+                $this->dispatchBrowserEvent('info', ['mensaje' => 'El registro no ha sufrido cambios!']);
+            } else {
+                $this->configuracion->save();
+                $this->closeModal();
+                $this->configuracion = Configuracion::first(); //CONSULTA LOS VALORES GUARDADOS EN BD
+                $this->configuracionOriginal = $this->configuracion; //LE ASIGAN AL AUXILIAR DE ORIGINAL PARA UNA POSTERIOR EDICIÓN
+                $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+            }
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
-        
+
     }
-
-
-
-
 
 }

@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\FAQController;
-use App\Http\Controllers\Api\LibroReclamacionController;
-use App\Http\Controllers\Api\ServicioController;
-use App\Http\Controllers\Api\InstitucionalController;
 use App\Http\Controllers\Api\BienvenidoController;
-use App\Http\Controllers\Api\FooterController;
-use App\Http\Controllers\Api\TerminoCondicionController;
-use App\Http\Controllers\Api\RutaController;
+use App\Http\Controllers\Api\FAQController;
 use App\Http\Controllers\Api\FeriadoController;
+use App\Http\Controllers\Api\FooterController;
+use App\Http\Controllers\Api\InstitucionalController;
+use App\Http\Controllers\Api\LibroReclamacionController;
+use App\Http\Controllers\Api\RutaController;
+use App\Http\Controllers\Api\ServicioController;
+use App\Http\Controllers\Api\TerminoCondicionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,12 +21,11 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 
 Route::group(['prefix' => 'faq'], function ($router) {
     Route::get('/all', [FAQController::class, 'index']);
@@ -59,10 +58,11 @@ Route::group(['prefix' => 'termino-condicion'], function ($router) {
 Route::group(['prefix' => 'rutas'], function ($router) {
     Route::get('/principal', [RutaController::class, 'principal']);
     Route::get('/detallesDeUnaCiudad/{ciudad_id}', [RutaController::class, 'detallesDeUnaCiudad']);
+    Route::get('/destinos', [RutaController::class, 'destinos']);
+    Route::get('/salidas', [RutaController::class, 'salidas']);
 
 });
 
 Route::group(['prefix' => 'feriados'], function ($router) {
     Route::get('/all', [FeriadoController::class, 'index']);
 });
-

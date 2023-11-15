@@ -2,13 +2,11 @@
 
 namespace App\Http\Livewire\Servicios;
 
+use App\Models\Servicio;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-use App\Models\Servicio;
-use Illuminate\Database\Eloquent\Collection;
-
 
 class ServicioComponent extends Component
 {
@@ -41,7 +39,7 @@ class ServicioComponent extends Component
         return [
             'servicio.nombre' => 'required|max:35',
             'servicio.descripcion' => 'required|max:255',
-            'ruta_foto' => 'nullable',
+            'ruta_foto' => 'image|nullable',
         ];
     }
 
@@ -51,6 +49,7 @@ class ServicioComponent extends Component
         'ruta_foto.required' => 'La foto para el servicio es obligatoria.',
         'servicio.nombre.max' => 'El nombre del servicio debe tener un máximo de 35 caracteres.',
         'servicio.descripcion.max' => 'La descripción del servicio debe tener un máximo de 255 caracteres.',
+        'ruta_foto.image' => 'El archivo debe ser de tipo imagen.',
     ];
 
     public function updated($propertyName)
@@ -77,8 +76,13 @@ class ServicioComponent extends Component
 
     public function render()
     {
-        $servicios = Servicio::where('nombre', 'like', '%' . $this->search . '%')
-            ->orderBy($this->sort, $this->direction)->paginate($this->paginacion);
+        $servicios = [];
+        try {
+            $servicios = Servicio::where('nombre', 'like', '%' . $this->search . '%')
+                ->orderBy($this->sort, $this->direction)->paginate($this->paginacion);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
         return view('livewire.servicios.servicio-component', compact('servicios'))
             ->extends('layouts.principal')
             ->section('content');
@@ -87,46 +91,70 @@ class ServicioComponent extends Component
     public function save()
     {
         $this->validate();
-        if ($this->ruta_foto) {
-            if ($this->ruta_foto != $this->servicio->ruta_foto) {
-                if (Storage::exists($this->servicio->ruta_foto)) {
-                    Storage::delete($this->servicio->ruta_foto);
+        try {
+            if ($this->ruta_foto) {
+                if ($this->ruta_foto != $this->servicio->ruta_foto) {
+                    if (Storage::exists($this->servicio->ruta_foto)) {
+                        Storage::delete($this->servicio->ruta_foto);
+                    }
+                    $this->servicio->ruta_foto = $this->ruta_foto->store('public/servicio');
                 }
-                $this->servicio->ruta_foto = $this->ruta_foto->store('public/servicio');
             }
-        }
-        $this->servicio->save();
-        $this->dispatchBrowserEvent('closeModal');
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
-        $this->ruta_foto=null;
+            $this->servicio->save();
+            $this->dispatchBrowserEvent('closeModal');
+            $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
 
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
+        $this->limpiarImagenes();
     }
 
     public function edit($id)
     {
-        $this->showModal("form", "update");
-        $this->servicio = Servicio::find($id);
+        try {
+            $this->servicio = Servicio::find($id);
+            $this->showModal("form", "update");
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
     }
 
     public function confirmarCambioEstado($id)
     {
-        $servicio = Servicio::find($id);
-        $this->dispatchBrowserEvent('mostrar-confirmacion', [
-            'mensaje' => '¿Estás seguro de que deseas '.(($servicio->estado == 1) ? 'desactivar':'activar').' este servicio?',
-            'evento' => 'cambiar-estado',
-            'data' => $id,
-        ]);
-    }
-
-    public function cambiarEstado($id){
-        $servicio = Servicio::find($id);
-        if($servicio->estado == 1){
-            $servicio->update(['estado' => '0']);
-        }else{
-            $servicio->update(['estado' => '1']);
+        try {
+            $servicio = Servicio::find($id);
+            $this->dispatchBrowserEvent('mostrar-confirmacion', [
+                'mensaje' => '¿Estás seguro de que deseas ' . (($servicio->estado == 1) ? 'desactivar' : 'activar') . ' este servicio?',
+                'evento' => 'cambiar-estado',
+                'data' => $id,
+            ]);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'El servicio ha sido '.(($servicio->estado == 1) ? 'activado':'desactivado').'!']);
+
     }
 
+    public function cambiarEstado($id)
+    {
+        try {
+            $servicio = Servicio::find($id);
+            if ($servicio->estado == 1) {
+                $servicio->update(['estado' => '0']);
+            } else {
+                $servicio->update(['estado' => '1']);
+            }
+            $this->dispatchBrowserEvent('success', ['mensaje' => 'El servicio ha sido ' . (($servicio->estado == 1) ? 'activado' : 'desactivado') . '!']);
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
+        }
+
+    }
+
+    public function limpiarImagenes()
+    {
+        $this->ruta_foto = null;
+        $this->dispatchBrowserEvent('removerImagenes');
+    }
 
 }
