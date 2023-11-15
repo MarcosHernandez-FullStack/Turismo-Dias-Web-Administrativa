@@ -5,6 +5,7 @@ use App\Http\Livewire\Ambiente\AmbienteComponent;
 use App\Http\Livewire\Ciudad\CiudadComponent;
 use App\Http\Livewire\Faq\FaqComponent;
 use App\Http\Livewire\Feriado\FeriadoComponent;
+use App\Http\Livewire\InicioSesion\InicioSesionComponent;
 use App\Http\Livewire\Institucional\InstitucionalComponent;
 use App\Http\Livewire\LibroReclamacion\LibroReclamacionComponent;
 use App\Http\Livewire\Ruta\RutaComponent;
@@ -51,5 +52,7 @@ Route::get('/ciudades', CiudadComponent::class)->name('ciudades');
 Route::get('/terminos-condiciones', TerminoCondicionComponent::class)->name('terminos-condiciones');
 
 Route::get('/eventos', FeriadoComponent::class)->name('eventos');
+
+Route::get('/inicio-sesion', InicioSesionComponent::class)->name('inicio-sesion');
 
 // Route::get('/valores', ValorComponent::class)->name('valores'); //en detalle insinstitucional
