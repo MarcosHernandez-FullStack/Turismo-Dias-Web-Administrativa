@@ -10,7 +10,8 @@ class SubCiudadComponent extends Component
 {
     public $ciudad, $subCiudad;
     public $form;
-    protected $listeners = ['enviarCiudad' => 'recepcionarCiudad', 'cambiar-estado-subciudad' => 'cambiarEstado'];
+    protected $listeners = ['enviarCiudad' => 'recepcionarCiudad',
+        'cambiar-estado-subciudad' => 'cambiarEstado'];
 
     public function mount()
     {
@@ -82,6 +83,7 @@ class SubCiudadComponent extends Component
                 $this->subCiudad->save();
                 $this->mount();
                 $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
+                $this->emit('actualizaCiudades');
             }
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);

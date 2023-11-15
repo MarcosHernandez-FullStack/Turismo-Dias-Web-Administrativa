@@ -17,7 +17,8 @@ class CiudadComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
 
-    protected $listeners = ['cambiar-estado-ciudad' => 'cambiarEstado'];
+    protected $listeners = ['cambiar-estado-ciudad' => 'cambiarEstado',
+        'actualizaCiudades' => 'render'];
 
     public function mount()
     {
@@ -138,6 +139,8 @@ class CiudadComponent extends Component
     public function enviarCiudad($id)
     {
         try {
+            $ciudad = Ciudad::find($id);
+            $this->dispatchBrowserEvent('info', ['mensaje' => 'A continuación, puedes registrar/editar las subciudades de ' . $ciudad->descripcion . '!']);
             $this->emit('enviarCiudad', $id);
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
