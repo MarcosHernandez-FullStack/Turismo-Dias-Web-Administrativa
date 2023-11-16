@@ -12,11 +12,11 @@
 
                         </div>
                         <!--div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                    <li class="breadcrumb-item active">Libro de Reclamaciones</li>
-                                </ol>
-                            </div-->
+                                    <ol class="breadcrumb float-sm-right">
+                                        <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                        <li class="breadcrumb-item active">Libro de Reclamaciones</li>
+                                    </ol>
+                                </div-->
                     </div>
 
                 </div>
@@ -126,6 +126,18 @@
                                     </div>
                                     <div class="table-responsive mailbox-messages">
                                         <table class="table table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Cliente</th>
+                                                    <th>Producto/Servicio</th>
+                                                    <th>Reclamo</th>
+                                                    <th>Tiempo Transcurrido</th>
+                                                    @if ($this->filtroEstado == null)
+                                                        <th>Estado</th>
+                                                    @endif
+                                                    <th style="width:100px">Opciones</th>
+                                                </tr>
+                                            </thead>
                                             <tbody>
                                                 @forelse ($reclamos as $key => $reclamo)
                                                     <tr>

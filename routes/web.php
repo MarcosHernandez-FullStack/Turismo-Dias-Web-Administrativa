@@ -5,6 +5,7 @@ use App\Http\Livewire\Ambiente\AmbienteComponent;
 use App\Http\Livewire\Ciudad\CiudadComponent;
 use App\Http\Livewire\Faq\FaqComponent;
 use App\Http\Livewire\Feriado\FeriadoComponent;
+use App\Http\Livewire\InicioSesion\InicioSesionComponent;
 use App\Http\Livewire\Institucional\InstitucionalComponent;
 use App\Http\Livewire\LibroReclamacion\LibroReclamacionComponent;
 use App\Http\Livewire\Ruta\RutaComponent;
@@ -55,5 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/eventos', FeriadoComponent::class)->name('eventos');
 
-    // Route::get('/valores', ValorComponent::class)->name('valores'); //en detalle insinstitucional
-});
+    Route::get('/inicio-sesion', InicioSesionComponent::class)->name('inicio-sesion');
+    
+// Route::get('/valores', ValorComponent::class)->name('valores'); //en detalle insinstitucional
+    });

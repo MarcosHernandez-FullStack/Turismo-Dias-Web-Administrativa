@@ -15,12 +15,12 @@ class CreateLibroReclamacionTable extends Migration
     {
         Schema::create('libro_reclamacion', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_completo_consumidor');
-            $table->string('direccion_consumidor');
-            $table->string('email_consumidor');
-            $table->string('nombre_completo_apoderado_consumidor');
-            $table->string('documento_identidad_consumidor');
-            $table->string('telefono_consumidor');
+            $table->string('nombre_completo_consumidor', 120);
+            $table->string('direccion_consumidor', 120);
+            $table->string('email_consumidor', 120);
+            $table->string('nombre_completo_apoderado_consumidor', 120);
+            $table->string('documento_identidad_consumidor', 20);
+            $table->string('telefono_consumidor', 20);
             $table->enum('tipo_bien', [1, 2]); // '1' Servicio, '2' Producto
             $table->string('descripcion_bien');
             $table->string('monto_reclamado_bien');

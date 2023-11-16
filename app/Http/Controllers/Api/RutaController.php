@@ -44,7 +44,7 @@ class RutaController extends Controller
                         "correo_secundario" => $configuracion->correo_secundario,
                         "horario_atencion_principal" => $configuracion->horario_atencion_principal,
                     ],
-
+                    "fotoHeader" => env("APP_URL") . Storage::url($configuracion->ruta_foto_header_seccion)
                 ],
             ], 200); // 200 OK para indicar una respuesta exitosa.
         } catch (\Exception $e) {
@@ -176,6 +176,8 @@ class RutaController extends Controller
                         })->sortBy('hora_salida') //ordena de para ordenar de manera ascendente respecto a la hora_salida
                             ->sortBy("nombre_origen")
                             ->values(),
+
+
                     ],
                 ], 200); // 200 OK para indicar una respuesta exitosa.
             } else {
