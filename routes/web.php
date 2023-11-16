@@ -12,7 +12,6 @@ use App\Http\Livewire\Ruta\RutaComponent;
 use App\Http\Livewire\Servicios\ServicioComponent;
 use App\Http\Livewire\TerminoCondicion\TerminoCondicionComponent;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Loginv1Component;
 
 // use App\Http\Livewire\Valor\ValorComponent;
 /*
@@ -31,7 +30,8 @@ return view('welcome');
 }); */
 
 //Route::get('/', BienvenidoComponent::class)->name('bienvenido');
-Route::get('/login', Loginv1Component::class)->name('login');
+Route::get('/inicio-sesion', InicioSesionComponent::class)->name('inicio-sesion');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
         return redirect()->route('configuracion');
@@ -55,8 +55,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/terminos-condiciones', TerminoCondicionComponent::class)->name('terminos-condiciones');
 
     Route::get('/eventos', FeriadoComponent::class)->name('eventos');
-
-    Route::get('/inicio-sesion', InicioSesionComponent::class)->name('inicio-sesion');
     
-// Route::get('/valores', ValorComponent::class)->name('valores'); //en detalle insinstitucional
-    });
+});

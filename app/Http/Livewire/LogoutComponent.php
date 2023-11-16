@@ -9,7 +9,7 @@ class LogoutComponent extends Component
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('login');
+        return redirect()->route('inicio-sesion');
     }
     
     public function render()

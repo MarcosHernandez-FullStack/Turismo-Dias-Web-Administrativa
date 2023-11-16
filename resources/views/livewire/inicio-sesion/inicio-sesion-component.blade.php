@@ -6,19 +6,24 @@
         </div>
         <div class="login-wrapper my-auto">
             <h1 class="login-title">Iniciar Sesión</h1>
-            <form action="#!">
+            <form wire:submit.prevent="login">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control"
-                        placeholder="email@ejemplo.com">
+                        placeholder="email@ejemplo.com" wire:model='email'>
+                    @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="form-group mb-4">
                     <label for="password">Contraseña</label>
                     <input type="password" name="password" id="password" class="form-control"
-                        placeholder="Ingresa tu contraseña">
+                        placeholder="Ingresa tu contraseña" wire:model='password'>
+                    @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
-                <input name="login" id="login" class="btn btn-block login-btn" type="button"
-                    value="Iniciar Sesión">
+                <button type="submit" class="btn btn-block login-btn" wire:click="login">Iniciar Sesión</button>
             </form>
         </div>
     </div>
