@@ -44,11 +44,11 @@
                                                         </div>
                                                         <div class="col-12 col-md-6 d-flex align-items-center">
                                                             @if (isset($tipoBus->ruta_foto))
-                                                                <img style="height: 120px; max-width: 100%;"
+                                                                <img style="height: 120px; max-width: 100%;object-fit: contain;"
                                                                     src="{{ Storage::url($tipoBus->ruta_foto) }}"
                                                                     alt="...">
                                                             @else
-                                                                <img style="height: 120px; max-width: 100%;"
+                                                                <img style="height: 120px; max-width: 100%;object-fit: contain;"
                                                                     src="{{ asset('assets/img/1280x720.png') }}"
                                                                     alt="...">
                                                             @endif

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 card  m-0 bg-info">
                 <div class="card-header p-1 ">
-                    <p class="card-title">Sub-Ciudades @if ($this->ciudad)
+                    <p class="card-title">Distritos @if ($this->ciudad)
                             de {{ $this->ciudad->descripcion }}
                         @endif
                     </p>
@@ -14,7 +14,7 @@
             <div class="col-12 {{ $this->form == 'update' ? 'col-md-8' : 'col-md-8' }}">
                 <div class="form-group ">
                     <label for="descripcion" class="m-0">{{ $this->form == 'update' ? 'Editar' : 'Registrar' }}
-                        Sub-Ciudad</label>
+                        Distrito</label>
                     <input type="text"
                         class="form-control form-control-sm ml-1 rounded-pill @error('subCiudad.descripcion') is-invalid @enderror"
                         placeholder="Ingresar descripción" wire:model="subCiudad.descripcion"
@@ -36,7 +36,7 @@
                             @else
                                 <i class="fas fa-plus"></i>
                             @endif
-                            {{ $this->form == 'update' ? 'Guardar' : 'Añadir Sub-Ciudad' }}
+                            {{ $this->form == 'update' ? 'Guardar' : 'Añadir Distrito' }}
                         </button>
                     </div>
                     @if ($this->form == 'update')
@@ -66,7 +66,7 @@
                                     <th style="width: 20px">#</th>
                                     <th>Descripción</th>
                                     <th style="width:100px">Estado</th>
-                                    <th style="width:100px">Opciones</th>
+                                    <th style="width:100px">Editar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,7 +77,7 @@
                                             <td>{{ $subciudad->descripcion }}</td>
                                             <td><span role="button"
                                                     class="badge rounded-pill bg-{{ $subciudad->estado == '1' ? 'success' : 'warning' }}"
-                                                    wire:click='confirmarCambioEstado({{ $subciudad->id }})'>{{ $subciudad->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                    wire:click='cambiarEstado({{ $subciudad->id }})'>{{ $subciudad->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
                                             </td>
                                             <td><button type="button"
                                                     class="btn btn-sm btn-warning btn-sm rounded-pill"

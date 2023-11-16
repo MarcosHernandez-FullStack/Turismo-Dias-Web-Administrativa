@@ -147,7 +147,7 @@ class FeriadoComponent extends Component
             } else {
                 $feriado->update(['estado' => '1']);
             }
-            $this->dispatchBrowserEvent('success', ['mensaje' => 'El feriado ha sido ' . (($feriado->estado == 1) ? 'activado' : 'desactivado') . '!']);
+            //$this->dispatchBrowserEvent('success', ['mensaje' => 'El feriado ha sido ' . (($feriado->estado == 1) ? 'activado' : 'desactivado') . '!']);
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }

@@ -33,7 +33,7 @@ class CreateConfiguracionTable extends Migration
             $table->string('nombre', 50)->nullable();
             $table->string('subtitulo_servicio', 130)->nullable();
             $table->string('subtitulo_ruta', 130)->nullable();
-            $table->string('subtitulo_libro_reclamacion', 130)->nullable();
+            $table->text('subtitulo_libro_reclamacion')->nullable();
             $table->string('subtitulo_evento', 130)->nullable();
             $table->string('subtitulo_termino_condicion', 130)->nullable();
             $table->string('ruta_foto_header_seccion')->nullable();

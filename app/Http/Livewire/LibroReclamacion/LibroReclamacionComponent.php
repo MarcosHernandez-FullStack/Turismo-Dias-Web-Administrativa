@@ -15,6 +15,7 @@ class LibroReclamacionComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
     public $filtroEstado = '1';
+    public $filtroEstadoMsg;
     public $tab = 'reclamante';
     public $fechaIntroducida;
 
@@ -71,9 +72,17 @@ class LibroReclamacionComponent extends Component
         try {
             $fechaIntroducida = $this->fechaIntroducida;
             if ($this->filtroEstado !== null) {
-                $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
-                    $query->whereDate('created_at', '=', $fechaIntroducida);
-                })->where('estado', '=', $this->filtroEstado)->orderBy('created_at', 'desc')->paginate($this->paginacion);
+                if ($this->filtroEstado == '3') {
+                    $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
+                        $query->whereDate('created_at', '=', $fechaIntroducida);
+                    })->when($this->filtroEstadoMsg != "", function ($query) {
+                        $query->where('estado', '=', $this->filtroEstadoMsg);
+                    })->where('tipo_reclamacion_detalle', '=', $this->filtroEstado)->orderBy('created_at', 'desc')->paginate($this->paginacion);
+                } else {
+                    $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
+                        $query->whereDate('created_at', '=', $fechaIntroducida);
+                    })->where('estado', '=', $this->filtroEstado)->orderBy('created_at', 'desc')->paginate($this->paginacion);
+                }
             } else {
                 $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
                     $query->whereDate('created_at', '=', $fechaIntroducida);

@@ -136,7 +136,7 @@ class SubCiudadComponent extends Component
             } else {
                 $subCiudad->update(['estado' => '1']);
             }
-            $this->dispatchBrowserEvent('success', ['mensaje' => 'La Sub-Ciudad ha sido ' . (($subCiudad->estado == 1) ? 'activada' : 'desactivada') . '!']);
+            //$this->dispatchBrowserEvent('success', ['mensaje' => 'La Sub-Ciudad ha sido ' . (($subCiudad->estado == 1) ? 'activada' : 'desactivada') . '!']);
 
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);

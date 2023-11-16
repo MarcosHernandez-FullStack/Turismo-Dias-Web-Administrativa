@@ -12,11 +12,11 @@
 
                         </div>
                         <!--div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                    <li class="breadcrumb-item active">Servicios</li>
-                                </ol>
-                            </div-->
+                                        <ol class="breadcrumb float-sm-right">
+                                            <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                            <li class="breadcrumb-item active">Servicios</li>
+                                        </ol>
+                                    </div-->
                     </div>
 
                 </div>
@@ -48,7 +48,7 @@
                                             <th style="width:100px" rowspan="1" colspan="1">Nombre</th>
                                             <th style="width:50px" rowspan="1" colspan="1">Imagen</th>
                                             <th style="width:100px" rowspan="1" colspan="1">Estado</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Opciones</th>
+                                            <th style="width:100px" rowspan="1" colspan="1">Editar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -65,7 +65,7 @@
                                                 </td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $servicio->estado == '1' ? 'success' : 'warning' }}"
-                                                        wire:click='confirmarCambioEstado({{ $servicio->id }})'>{{ $servicio->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                        wire:click='cambiarEstado({{ $servicio->id }})'>{{ $servicio->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
                                                 </td>
                                                 <td>
                                                     <button type="button"

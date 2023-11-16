@@ -12,11 +12,11 @@
 
                         </div>
                         <!--div class="col-sm-6">
-                                                            <ol class="breadcrumb float-sm-right">
-                                                                <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                                                <li class="breadcrumb-item active">Ciudades</li>
-                                                            </ol>
-                                                        </div-->
+                                                                                            <ol class="breadcrumb float-sm-right">
+                                                                                                <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                                                                                <li class="breadcrumb-item active">Ciudades</li>
+                                                                                            </ol>
+                                                                                        </div-->
                     </div>
 
                 </div>
@@ -32,7 +32,7 @@
                 <div class="card-body p-3">
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row ">
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 ">
                                 <div class="row">
                                     <div class="col-12 col-md-6">
                                         <div class="form-group d-flex align-items-center">
@@ -61,9 +61,9 @@
                                                         <tr>
                                                             <th style="width: 20px">#</th>
                                                             <th>Descripción</th>
-                                                            <th style="width:120px">Sub-Ciudades</th>
-                                                            <th style="width:100px">Estado</th>
-                                                            <th style="width:100px">Opciones</th>
+                                                            <th>N° Distritos</th>
+                                                            <th>Estado</th>
+                                                            <th>Editar</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -71,14 +71,10 @@
                                                             <tr>
                                                                 <td>{{ $key + 1 }}</td>
                                                                 <td>{{ $ciudad->descripcion }}</td>
-                                                                <td><button type="button"
-                                                                        class="btn btn-sm btn-info btn-sm rounded-pill"
-                                                                        wire:click='enviarCiudad({{ $ciudad->id }})'>
-                                                                        <i class="fas fa-eye"></i>
-                                                                    </button> {{ $ciudad->subciudades->count() }} </td>
+                                                                <td>{{ $ciudad->subciudades->count() }} </td>
                                                                 <td><span role="button"
                                                                         class="badge rounded-pill bg-{{ $ciudad->estado == '1' ? 'success' : 'warning' }}"
-                                                                        wire:click='confirmarCambioEstado({{ $ciudad->id }})'>{{ $ciudad->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                                        wire:click='cambiarEstado({{ $ciudad->id }})'>{{ $ciudad->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
                                                                 </td>
                                                                 <td><button type="button"
                                                                         class="btn btn-sm btn-warning btn-sm rounded-pill"
@@ -101,9 +97,7 @@
                                 </div>
                                 @include('layouts.footer-listado', ['elementosListado' => $ciudades])
                             </div>
-                            <div class="col-12 col-md-6">
-                                @livewire('sub-ciudad.sub-ciudad-component')
-                            </div>
+
                         </div>
 
                     </div>

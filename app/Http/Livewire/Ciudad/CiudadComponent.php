@@ -99,6 +99,7 @@ class CiudadComponent extends Component
         try {
             $this->ciudad = Ciudad::find($id);
             $this->showModal("form", "update");
+            $this->emit('enviarCiudad', $id);
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
@@ -129,7 +130,7 @@ class CiudadComponent extends Component
             } else {
                 $ciudad->update(['estado' => '1']);
             }
-            $this->dispatchBrowserEvent('success', ['mensaje' => 'La ciudad ha sido ' . (($ciudad->estado == 1) ? 'activada' : 'desactivada') . '!']);
+            //$this->dispatchBrowserEvent('success', ['mensaje' => 'La ciudad ha sido ' . (($ciudad->estado == 1) ? 'activada' : 'desactivada') . '!']);
 
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
