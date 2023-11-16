@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Configuracion;
+use Illuminate\Support\Facades\Storage;
 
 class FooterController extends Controller
 {
@@ -27,6 +28,7 @@ class FooterController extends Controller
                     "twitter" => $configuracion->link_twitter,
                     "celularPrincipal" => $configuracion->celular_principal,
                     "slogan" => $configuracion->slogan,
+                    "logo" => env("APP_URL") . Storage::url($configuracion->ruta_logo),
                     
                     
                 ],
