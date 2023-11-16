@@ -214,6 +214,11 @@
                         <a href="#" class="d-block">Alexander Cuy</a>
                     </div>
                 </div>
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="info">
+                        @livewire('logout-component')
+                    </div>
+                </div>
 
                 <!-- SidebarSearch Form -->
                 {{-- <div class="form-inline">
@@ -1713,6 +1718,14 @@
         $(function() {
             $('[data-toggle="popover"]').popover()
         });
+    </script>
+    <script>
+      function validarImagen(e) {
+          if (e.files[0] && !['jpg', 'jpeg', 'png', 'gif'].includes(e.files[0].name.split('.').pop().toLowerCase())) {
+              Swal.fire({icon: 'warning',title: 'Oops...',text: 'El archivo seleccionado no es una imagen',});
+              e.value = '';
+          }
+      }
     </script>
     
 

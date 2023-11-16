@@ -16,9 +16,9 @@ class CreateInstitucionalTable extends Migration
         Schema::create('institucional', function (Blueprint $table) {
             $table->id();
             $table->string('slogan_home',70);
-            $table->string('breve_historia');
-            $table->string('mision');
-            $table->string('vision');
+            $table->string('breve_historia',230);
+            $table->string('mision',230);
+            $table->string('vision',230);
             $table->string('ruta_foto_principal');
             $table->string('ruta_foto_secundaria');
             $table->date('fecha_inicio')->nullable();

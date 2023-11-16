@@ -30,29 +30,30 @@ return view('welcome');
 }); */
 
 //Route::get('/', BienvenidoComponent::class)->name('bienvenido');
-Route::get('/', function () {
-    return redirect()->route('configuracion');
-})->name('bienvenido');
-Route::get('/configuracion', [ConfiguracionController::class, 'render'])->name('configuracion');
-
-Route::get('/servicios', ServicioComponent::class)->name('servicios');
-
-Route::get('/ambientes', AmbienteComponent::class)->name('ambientes');
-
-Route::get('/libro-reclamaciones', LibroReclamacionComponent::class)->name('libro-reclamaciones');
-
-Route::get('/faqs', FaqComponent::class)->name('faqs');
-
-Route::get('/institucional', InstitucionalComponent::class)->name('institucional');
-
-Route::get('/rutas', RutaComponent::class)->name('rutas');
-
-Route::get('/ciudades', CiudadComponent::class)->name('ciudades');
-
-Route::get('/terminos-condiciones', TerminoCondicionComponent::class)->name('terminos-condiciones');
-
-Route::get('/eventos', FeriadoComponent::class)->name('eventos');
-
 Route::get('/inicio-sesion', InicioSesionComponent::class)->name('inicio-sesion');
 
-// Route::get('/valores', ValorComponent::class)->name('valores'); //en detalle insinstitucional
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return redirect()->route('configuracion');
+    })->name('bienvenido');
+    Route::get('/configuracion', [ConfiguracionController::class, 'render'])->name('configuracion');
+
+    Route::get('/servicios', ServicioComponent::class)->name('servicios');
+
+    Route::get('/ambientes', AmbienteComponent::class)->name('ambientes');
+
+    Route::get('/libro-reclamaciones', LibroReclamacionComponent::class)->name('libro-reclamaciones');
+
+    Route::get('/faqs', FaqComponent::class)->name('faqs');
+
+    Route::get('/institucional', InstitucionalComponent::class)->name('institucional');
+
+    Route::get('/rutas', RutaComponent::class)->name('rutas');
+
+    Route::get('/ciudades', CiudadComponent::class)->name('ciudades');
+
+    Route::get('/terminos-condiciones', TerminoCondicionComponent::class)->name('terminos-condiciones');
+
+    Route::get('/eventos', FeriadoComponent::class)->name('eventos');
+    
+});
