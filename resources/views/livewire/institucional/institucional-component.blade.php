@@ -105,12 +105,12 @@
                                     <label for="foto" class="form-label text-capitalize">
                                        Imagen (Sección Inicio)
                                     </label>
-                                    <input type="file" class="form-control form-control-sm rounded-pill"
+                                    <input accept="image/*" type="file" onchange="validarImagen(this)" class="form-control form-control-sm rounded-pill"
                                         id="ruta_foto_principal" wire:model='ruta_foto_principal'>
                                     @error('ruta_foto_principal')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
-                                    @if ($ruta_foto_principal)
+                                    @if ($ruta_foto_principal && $boolruta_foto_principal)
                                         <div class="form-group col-md-12">
                                             {{-- titulo de foto --}}
                                             <label class="form-label text-capitalize">
@@ -134,7 +134,7 @@
                                     <label for="foto" class="form-label text-capitalize">
                                         Imagen (Sección Nosotros)
                                     </label>
-                                    <input type="file" class="form-control form-control-sm rounded-pill"
+                                    <input accept="image/*" type="file" onchange="validarImagen(this)" class="form-control form-control-sm rounded-pill"
                                         id="ruta_foto_secundaria" wire:model='ruta_foto_secundaria'>
                                     @error('ruta_foto_secundaria')
                                         <span class="text-danger">{{ $message }}</span>
