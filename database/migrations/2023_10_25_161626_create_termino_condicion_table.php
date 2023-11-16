@@ -16,11 +16,7 @@ class CreateTerminoCondicionTable extends Migration
         Schema::create('termino_condicion', function (Blueprint $table) {
             $table->id();
             $table->string('seccion',120);
-<<<<<<< HEAD
-            $table->text('descripcion',255);
-=======
-            $table->string('descripcion');
->>>>>>> 367f02f95879b8e97f1724f3bf6f3bc8666409b3
+            $table->text('descripcion');
             $table->bigInteger('orden')->nullable();
             $table->enum('estado', [0, 1])->default(1);
             $table->timestamps();

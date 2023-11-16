@@ -38,7 +38,7 @@
                             </button>
                         </div>
                     @endif
-                    <div class="col-md-6">
+                    <div class="@if($institucional->id) col-md-6 @else col-md-12 @endif">
                         {{-- <div class="row col-md-12 my-1 d-flex justify-content-between align-items-center">
                             <div class="row col-md-6">
                                 <div class="border-info border-bottom text-info h1 font-weight-bolder"
@@ -48,7 +48,7 @@
                         </div> --}}
                         <div class="row col-md-12">
                             <div class="col-md-12 row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-9">
                                     <label for="slogan_home" class="form-label">
                                         Eslogan (Acerca de Nosotros)
                                     </label>
@@ -58,7 +58,7 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-3">
                                     <label for="fecha_inicio" class="form-label">
                                         Fecha de inicio
                                     </label>
@@ -110,7 +110,7 @@
                                     @error('ruta_foto_principal')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
-                                    @if ($ruta_foto_principal && $boolruta_foto_principal)
+                                    @if ($ruta_foto_principal)
                                         <div class="form-group col-md-12">
                                             {{-- titulo de foto --}}
                                             <label class="form-label text-capitalize">
@@ -163,7 +163,14 @@
 
                             </div>
                         </div>
+                        <div class="row col-md-12 col-md-2 mb-5 mb-md-0">
+                            <button type="button" class="btn btn-info btn-sm rounded-pill" wire:click="update">
+                                <i class="fas fa-edit"></i>
+                                Guardar
+                            </button>
+                        </div>
                     </div>
+                    @if($institucional->id)
                     <div class="col-md-6">
                         <div class="row col-md-12">
                             <div class="row col-md-12">
@@ -198,7 +205,7 @@
                                                 <th style="width:100px" rowspan="1" colspan="1">Descripcion
                                                 </th>
                                                 <th style="width:50px" rowspan="1" colspan="1">Estado</th>
-                                                <th style="width:100px" rowspan="1" colspan="1">Opciones</th>
+                                                <th style="width:100px" rowspan="1" colspan="1">Eliminar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -220,7 +227,7 @@
                                                         <button type="button"
                                                             class="btn btn-sm btn-danger btn-sm rounded-pill"
                                                             data-toggle="modal" data-target="#modal_usuario"
-                                                            wire:click="confirmardeleteValorCollection({{ $key }})"><i
+                                                            wire:click="confirmardeleteValorCollection({{ $valor->id }})"><i
                                                                 class="fas fa-trash"></i>
                                                         </button>
                                                     </td>
@@ -239,12 +246,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row col-md-12 col-md-2 justify-content-end">
-                        <button type="button" class="btn btn-warning btn-sm rounded-pill" wire:click="update">
-                            <i class="fas fa-edit"></i>
-                            Guardar Todo
-                        </button>
-                    </div>
+                    @endif
                 </div>
                 <!-- /.card-body -->
             </div>

@@ -43,20 +43,6 @@
                 @enderror
             </div>
             <div class="form-group col-md-6">
-                <label for="sub_ciudad_origen_id" class="form-label">
-                    Sub Ciudad origen
-                </label>
-                <select class="form-control form-control-sm rounded-pill" id="sub_ciudad_origen_id" wire:model='ruta.sub_ciudad_origen_id'>
-                    <option value="">Seleccionar una opción</option>
-                    @foreach ($sub_ciudades_origenes as $sub_ciudad)
-                        <option value="{{ $sub_ciudad->id }}">{{ $sub_ciudad->descripcion }}</option>
-                    @endforeach
-                </select>
-                @error('ruta.sub_ciudad_origen_id')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-group col-md-6">
                 <label for="ciudad_destino_id" class="form-label">
                     Ciudad destino
                 </label>
@@ -70,9 +56,26 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
+            @if (count($sub_ciudades_origenes))
+            <div class="form-group col-md-6">
+                <label for="sub_ciudad_origen_id" class="form-label">
+                    Distrito de Ciudad origen
+                </label>
+                <select class="form-control form-control-sm rounded-pill" id="sub_ciudad_origen_id" wire:model='ruta.sub_ciudad_origen_id'>
+                    <option value="">Seleccionar una opción</option>
+                    @foreach ($sub_ciudades_origenes as $sub_ciudad)
+                        <option value="{{ $sub_ciudad->id }}">{{ $sub_ciudad->descripcion }}</option>
+                    @endforeach
+                </select>
+                @error('ruta.sub_ciudad_origen_id')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+            @endif
+            @if (count($sub_ciudades_destinos))
             <div class="form-group col-md-6">
                 <label for="sub_ciudad_destino_id" class="form-label">
-                    Sub Ciudad destino
+                    Distrito de Ciudad destino
                 </label>
                 <select class="form-control form-control-sm rounded-pill" id="sub_ciudad_destino_id" wire:model='ruta.sub_ciudad_destino_id'>
                     <option value="">Seleccionar una opción</option>
@@ -84,6 +87,7 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
+            @endif
             <div class="form-group col-md-6">
                 <label for="tipo_bus_id" class="form-label">
                     Tipo bus

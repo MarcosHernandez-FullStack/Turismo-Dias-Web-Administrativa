@@ -24,8 +24,6 @@ class RutaComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
 
-    protected $listeners = ['cambiar-estado' => 'cambiarEstado'];
-
     public function mount(){
         $this->sort ='id';
         $this->direction ='asc';
@@ -120,16 +118,6 @@ class RutaComponent extends Component
         $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
     }
 
-    public function confirmarCambioEstado($id)
-    {
-        $ruta = Ruta::find($id);
-        $this->dispatchBrowserEvent('mostrar-confirmacion', [
-            'mensaje' => '¿Estás seguro de que deseas '.(($ruta->estado == 1) ? 'desactivar':'activar').' esta ruta?',
-            'evento' => 'cambiar-estado',
-            'data' => $id,
-        ]);
-    }
-
     public function cambiarEstado($id){
         $ruta = Ruta::find($id);
         if($ruta->estado == 1){
@@ -137,7 +125,6 @@ class RutaComponent extends Component
         }else{
             $ruta->update(['estado' => '1']);
         }
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'La ruta ha sido '.(($ruta->estado == 1) ? 'activado':'desactivado').'!']);
     }
 
     public function edit($id){

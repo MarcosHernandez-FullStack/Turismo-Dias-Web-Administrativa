@@ -20,8 +20,6 @@ class AmbienteComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6; 
 
-    protected $listeners = ['cambiar-estado' => 'cambiarEstado'];
-
     public function mount(){
         $this->sort ='id';
         $this->direction ='asc';
@@ -42,7 +40,7 @@ class AmbienteComponent extends Component
            'ambiente.coordenada_latitud' => 'required|numeric|between:-999999.9999999999,999999.9999999999',
            'ambiente.direccion' => 'required|max:100',
            'ambiente.horario_atencion' => 'required|max:150',
-           'ambiente.telefono' => 'required|max:13',
+           'ambiente.telefono' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:20',
            'ambiente.ciudad_id' => 'required',
         ];
    }
@@ -62,7 +60,8 @@ class AmbienteComponent extends Component
         'ambiente.horario_atencion.required' => 'El horario de atención es requerido',
         'ambiente.horario_atencion.max' => 'El horario de atención debe contener como máximo 150 caracteres',
         'ambiente.telefono.required' => 'El teléfono es requerido',
-        'ambiente.telefono.max' => 'El teléfono debe contener como máximo 13 caracteres',
+        'ambiente.telefono.regex' => 'El teléfono debe ser un número',
+        'ambiente.telefono.max' => 'El teléfono debe contener como máximo 20 caracteres',
         'ambiente.ciudad_id.required' => 'La ciudad es requerida',
    ];
 
@@ -107,16 +106,6 @@ class AmbienteComponent extends Component
         $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
     }
 
-    public function confirmarCambioEstado($id)
-    {
-        $ambiente = Ambiente::find($id);
-        $this->dispatchBrowserEvent('mostrar-confirmacion', [
-            'mensaje' => '¿Estás seguro de que deseas '.(($ambiente->estado == 1) ? 'desactivar':'activar').' este ambiente?',
-            'evento' => 'cambiar-estado',
-            'data' => $id,
-        ]);
-    }
-
     public function cambiarEstado($id){
         $ambiente = Ambiente::find($id);
         if($ambiente->estado == 1){
@@ -124,7 +113,6 @@ class AmbienteComponent extends Component
         }else{
             $ambiente->update(['estado' => '1']);
         }
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'El ambiente ha sido '.(($ambiente->estado == 1) ? 'activado':'desactivado').'!']);
     }
 
     public function edit($id){
