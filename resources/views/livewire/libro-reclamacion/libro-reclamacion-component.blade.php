@@ -12,11 +12,11 @@
 
                         </div>
                         <!--div class="col-sm-6">
-                                    <ol class="breadcrumb float-sm-right">
-                                        <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                        <li class="breadcrumb-item active">Libro de Reclamaciones</li>
-                                    </ol>
-                                </div-->
+                                                                                                                                                                                                    <ol class="breadcrumb float-sm-right">
+                                                                                                                                                                                                        <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                                                                                                                                                                                        <li class="breadcrumb-item active">Libro de Reclamaciones</li>
+                                                                                                                                                                                                    </ol>
+                                                                                                                                                                                                </div-->
                     </div>
 
                 </div>
@@ -72,6 +72,12 @@
                                                 <i class="fa-solid fa-border-all"></i> Todos
                                             </a>
                                         </li>
+                                        <li class="nav-item @if ($this->filtroEstado == '3') bg-info @endif"
+                                            style="cursor: pointer;" wire:click="cambiarFiltroEstado('3')">
+                                            <a class="nav-link">
+                                                <i class="fa-regular fa-message"></i> Mensajes
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -86,11 +92,12 @@
                                             Nuevos
                                         @elseif($this->filtroEstado == '2')
                                             Atendidos
+                                        @elseif($this->filtroEstado == '3')
+                                            Mensajes
                                         @else
                                             Todos
                                         @endif
                                     </h3>
-
                                     <div class="card-tools">
                                         <div class="input-group input-group-sm">
                                             <input type="date" class="form-control" placeholder="Buscar por fecha"
@@ -98,6 +105,19 @@
 
                                         </div>
                                     </div>
+                                    @if ($this->filtroEstado == '3')
+                                        <div class="card-tools mr-2">
+                                            <div class="input-group input-group-sm" wire:model="filtroEstadoMsg">
+                                                <select name="" class="form-control" id="">
+                                                    <option value="">Todos los estados</option>
+                                                    <option value="1">Nuevos</option>
+                                                    <option value="2">Atendidos</option>
+                                                    <option value="0">Archivados</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    @endif
                                     <!-- /.card-tools -->
                                 </div>
                                 <!-- /.card-header -->
@@ -128,54 +148,112 @@
                                         <table class="table table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Cliente</th>
-                                                    <th>Producto/Servicio</th>
-                                                    <th>Reclamo</th>
-                                                    <th>Tiempo Transcurrido</th>
-                                                    @if ($this->filtroEstado == null)
+                                                    @if ($this->filtroEstado == '3')
+                                                        <th>Cliente</th>
+                                                        <th>Correo</th>
+                                                        <th>Celular</th>
+                                                        <th>Tiempo Transcurrido</th>
                                                         <th>Estado</th>
+                                                        <th style="width:100px">Ver</th>
+                                                    @else
+                                                        <th>Cliente</th>
+                                                        <th>Tipo</th>
+                                                        <th>Producto/Servicio</th>
+                                                        <th>Reclamo</th>
+                                                        <th>Tiempo Transcurrido</th>
+                                                        @if ($this->filtroEstado == null)
+                                                            <th>Estado</th>
+                                                        @endif
+                                                        <th style="width:100px">Ver</th>
                                                     @endif
-                                                    <th style="width:100px">Opciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($reclamos as $key => $reclamo)
-                                                    <tr>
-                                                        <td class="mailbox-name">
-                                                            {{ $reclamo->nombre_completo_consumidor }}
-                                                        </td>
-                                                        <td class="mailbox-subject">
-                                                            <b>{{ $reclamo->descripcion_bien }}</b>
-                                                        </td>
-                                                        <td class="mailbox-subject">
-                                                            {{ $reclamo->descripcion_reclamacion_detalle }}
-                                                        </td>
-                                                        <td class="mailbox-date">
-                                                            {{ $reclamo->tiempoTranscurridoDesde($reclamo->created_at) }}
-                                                        </td>
-                                                        @if ($this->filtroEstado == null)
+                                                @if ($this->filtroEstado == '3')
+                                                    @forelse ($reclamos as $key => $reclamo)
+                                                        <tr>
+                                                            <td class="mailbox-name">
+                                                                {{ $reclamo->nombre_completo_consumidor }}
+                                                            </td>
                                                             <td class="mailbox-subject">
-                                                                @if ($reclamo->estado == '1')
-                                                                    Nuevo
-                                                                @elseif($reclamo->estado == '2')
-                                                                    Atendido
-                                                                @else
-                                                                    Archivado
+                                                                {{ $reclamo->email_consumidor }}
+                                                            </td>
+                                                            <td class="mailbox-subject">
+                                                                {{ $reclamo->telefono_consumidor }}
+                                                            </td>
+                                                            <td class="mailbox-date">
+                                                                {{ $reclamo->tiempoTranscurridoDesde($reclamo->created_at) }}
+                                                            </td>
+                                                            @if ($this->filtroEstado == null)
+                                                                <td class="mailbox-subject">
+                                                                    @if ($reclamo->estado == '1')
+                                                                        Nuevo
+                                                                    @elseif($reclamo->estado == '2')
+                                                                        Atendido
+                                                                    @else
+                                                                        Archivado
+                                                                    @endif
+                                                                </td>
+                                                            @endif
+                                                            <td><button wire:click="edit({{ $reclamo->id }})"
+                                                                    class="btn btn-sm rounded-pill btn-warning"><i
+                                                                        class="fa-solid fa-eye"></i> Ver</button></td>
+                                                        </tr>
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="6" class="text-center">
+                                                                <h4>No hay registros</h4>
+                                                            </td>
+                                                        </tr>
+                                                    @endforelse
+                                                @else
+                                                    @forelse ($reclamos as $key => $reclamo)
+                                                        <tr>
+                                                            <td class="mailbox-name">
+                                                                {{ $reclamo->nombre_completo_consumidor }}
+                                                            </td>
+                                                            <td class="mailbox-subject">
+                                                                @if ($reclamo->tipo_reclamacion_detalle == '1')
+                                                                    Reclamo
+                                                                @elseif($reclamo->tipo_reclamacion_detalle == '2')
+                                                                    Queja
+                                                                @elseif($reclamo->tipo_reclamacion_detalle == '3')
+                                                                    Mensaje
                                                                 @endif
                                                             </td>
-                                                        @endif
-                                                        <td><button wire:click="edit({{ $reclamo->id }})"
-                                                                class="btn btn-sm rounded-pill btn-warning"><i
-                                                                    class="fa-solid fa-eye"></i> Ver</button></td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td @if ($this->filtroEstado == null) colspan="6" @else colspan="5" @endif
-                                                            class="text-center">
-                                                            <h4>No hay registros</h4>
-                                                        </td>
-                                                    </tr>
-                                                @endforelse
+                                                            <td class="mailbox-subject">
+                                                                <b>{{ $reclamo->descripcion_bien }}</b>
+                                                            </td>
+                                                            <td class="mailbox-subject">
+                                                                {{ $reclamo->descripcion_reclamacion_detalle }}
+                                                            </td>
+                                                            <td class="mailbox-date">
+                                                                {{ $reclamo->tiempoTranscurridoDesde($reclamo->created_at) }}
+                                                            </td>
+                                                            @if ($this->filtroEstado == null)
+                                                                <td class="mailbox-subject">
+                                                                    @if ($reclamo->estado == '1')
+                                                                        Nuevo
+                                                                    @elseif($reclamo->estado == '2')
+                                                                        Atendido
+                                                                    @else
+                                                                        Archivado
+                                                                    @endif
+                                                                </td>
+                                                            @endif
+                                                            <td><button wire:click="edit({{ $reclamo->id }})"
+                                                                    class="btn btn-sm rounded-pill btn-warning"><i
+                                                                        class="fa-solid fa-eye"></i> Ver</button></td>
+                                                        </tr>
+                                                    @empty
+                                                        <tr>
+                                                            <td @if ($this->filtroEstado == null) colspan="7" @else colspan="6" @endif
+                                                                class="text-center">
+                                                                <h4>No hay registros</h4>
+                                                            </td>
+                                                        </tr>
+                                                    @endforelse
+                                                @endif
                                             </tbody>
                                         </table>
                                         <!-- /.table -->

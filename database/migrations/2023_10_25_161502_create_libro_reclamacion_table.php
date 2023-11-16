@@ -24,7 +24,7 @@ class CreateLibroReclamacionTable extends Migration
             $table->enum('tipo_bien', [1, 2]); // '1' Servicio, '2' Producto
             $table->string('descripcion_bien');
             $table->string('monto_reclamado_bien');
-            $table->enum('tipo_reclamacion_detalle', [1, 2]); // '1' Reclamo, '2' Queja
+            $table->enum('tipo_reclamacion_detalle', [1, 2, 3]); // '1' Reclamo, '2' Queja
             $table->string('descripcion_reclamacion_detalle');
             $table->string('pedido_reclamacion_detalle');
             $table->enum('estado', [0, 1, 2])->default(1); // '0' Archivado, '1' Nuevo, '2' Atendido

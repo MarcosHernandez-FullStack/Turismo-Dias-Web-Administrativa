@@ -30,7 +30,13 @@ class TipoBusComponent extends Component
 
     protected function rules()
     {
-        return [
+        return $this->form == 'create'
+        ? [
+            'tipoBus.nombre' => 'required|max:20',
+            'tipoBus.descripcion' => 'required|max:120',
+            'ruta_foto' => 'image',
+        ]
+        : [
             'tipoBus.nombre' => 'required|max:20',
             'tipoBus.descripcion' => 'required|max:120',
             'ruta_foto' => 'image|nullable',
@@ -60,6 +66,7 @@ class TipoBusComponent extends Component
     public function showModal($vista, $form)
     {
         $this->resetError();
+        $this->limpiarImagenes();
         if ($form == 'create') {
             $this->tipoBus = new TipoBus();
         }

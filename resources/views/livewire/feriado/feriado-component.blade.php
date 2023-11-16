@@ -12,11 +12,11 @@
 
                         </div>
                         <!--div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                    <li class="breadcrumb-item active">Calendario de Eventos</li>
-                                </ol>
-                            </div-->
+                                            <ol class="breadcrumb float-sm-right">
+                                                <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                                <li class="breadcrumb-item active">Calendario de Eventos</li>
+                                            </ol>
+                                        </div-->
                     </div>
 
                 </div>
@@ -85,7 +85,7 @@
                                     <button type="button" class="btn btn-info btn-sm rounded-pill" data-toggle="modal"
                                         data-target="#modal_usuario" wire:click="showModal('form', 'create')">
                                         <i class="fas fa-plus"></i>
-                                        Nuevo Feriado
+                                        Nuevo
                                     </button>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                                             <th rowspan="1" colspan="1">Fecha de Inicio</th>
                                             <th rowspan="1" colspan="1">Fecha de Fin</th>
                                             <th rowspan="1" colspan="1">Estado</th>
-                                            <th style="width:30px" rowspan="1" colspan="1">Opciones</th>
+                                            <th style="width:30px" rowspan="1" colspan="1">Editar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -116,7 +116,7 @@
                                                 </td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $feriado->estado == '1' ? 'success' : 'warning' }}"
-                                                        wire:click='confirmarCambioEstado({{ $feriado->id }})'>{{ $feriado->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                        wire:click='cambiarEstado({{ $feriado->id }})'>{{ $feriado->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
                                                 </td>
                                                 <td>
                                                     <button type="button"

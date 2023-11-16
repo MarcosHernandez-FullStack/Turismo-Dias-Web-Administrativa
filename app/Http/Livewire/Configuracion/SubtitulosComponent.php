@@ -17,7 +17,7 @@ class SubtitulosComponent extends Component
     protected $rules = [
         'configuracion.subtitulo_servicio' => 'required|max:130',
         'configuracion.subtitulo_ruta' => 'required|max:130',
-        'configuracion.subtitulo_libro_reclamacion' => 'required|max:130',
+        'configuracion.subtitulo_libro_reclamacion' => 'required|max:350',
         'configuracion.subtitulo_evento' => 'required|max:130',
         'configuracion.subtitulo_termino_condicion' => 'required|max:130',
     ];

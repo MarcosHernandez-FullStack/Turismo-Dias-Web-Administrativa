@@ -36,9 +36,15 @@ class ServicioComponent extends Component
 
     protected function rules()
     {
-        return [
+        return $this->form == 'create'
+        ? [
             'servicio.nombre' => 'required|max:35',
-            'servicio.descripcion' => 'required|max:255',
+            'servicio.descripcion' => 'required|max:100',
+            'ruta_foto' => 'image',
+        ]
+        : [
+            'servicio.nombre' => 'required|max:35',
+            'servicio.descripcion' => 'required|max:100',
             'ruta_foto' => 'image|nullable',
         ];
     }
@@ -48,7 +54,7 @@ class ServicioComponent extends Component
         'servicio.descripcion.required' => 'La descripción del servicio es obligatoria.',
         'ruta_foto.required' => 'La foto para el servicio es obligatoria.',
         'servicio.nombre.max' => 'El nombre del servicio debe tener un máximo de 35 caracteres.',
-        'servicio.descripcion.max' => 'La descripción del servicio debe tener un máximo de 255 caracteres.',
+        'servicio.descripcion.max' => 'La descripción del servicio debe tener un máximo de 100 caracteres.',
         'ruta_foto.image' => 'El archivo debe ser de tipo imagen.',
     ];
 
@@ -66,6 +72,7 @@ class ServicioComponent extends Component
     public function showModal($vista, $form)
     {
         $this->resetError();
+        $this->limpiarImagenes();
         if ($form == 'create') {
             $this->servicio = new Servicio();
         }
@@ -144,7 +151,7 @@ class ServicioComponent extends Component
             } else {
                 $servicio->update(['estado' => '1']);
             }
-            $this->dispatchBrowserEvent('success', ['mensaje' => 'El servicio ha sido ' . (($servicio->estado == 1) ? 'activado' : 'desactivado') . '!']);
+            //$this->dispatchBrowserEvent('success', ['mensaje' => 'El servicio ha sido ' . (($servicio->estado == 1) ? 'activado' : 'desactivado') . '!']);
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
