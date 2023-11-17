@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Turismo Dias</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -1647,7 +1647,7 @@
 
     <script>
         /* periodo_actual = document.getElementById('periodo_actual');
-                                                                                                              periodo_actual.innerHTML = new Date().getFullYear(); */
+                                                                                                                  periodo_actual.innerHTML = new Date().getFullYear(); */
         window.addEventListener('closeModal', event => {
             $("#modal_usuario").modal('hide');
         })
@@ -1720,14 +1720,18 @@
         });
     </script>
     <script>
-      function validarImagen(e) {
-          if (e.files[0] && !['jpg', 'jpeg', 'png', 'gif'].includes(e.files[0].name.split('.').pop().toLowerCase())) {
-              Swal.fire({icon: 'warning',title: 'Oops...',text: 'El archivo seleccionado no es una imagen',});
-              e.value = '';
-          }
-      }
+        function validarImagen(e) {
+            if (e.files[0] && !['jpg', 'jpeg', 'png', 'gif'].includes(e.files[0].name.split('.').pop().toLowerCase())) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'El archivo seleccionado no es una imagen',
+                });
+                e.value = '';
+            }
+        }
     </script>
-    
+
 
     @livewireScripts
     @stack('scripts')
