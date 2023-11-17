@@ -20,8 +20,6 @@ class TerminoCondicionComponent extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginacion = 6;
 
-    protected $listeners = ['cambiar-estado' => 'cambiarEstado'];
-
     public function mount()
     {
         $this->sort ='id';
@@ -38,7 +36,7 @@ class TerminoCondicionComponent extends Component
     protected function rules(){
         return [
            'termino_condicion.seccion' => 'required|max:120',
-           'termino_condicion.descripcion' => 'required|max:255',
+           'termino_condicion.descripcion' => 'required|max:3000',
         ];
    }
 
@@ -46,7 +44,7 @@ class TerminoCondicionComponent extends Component
             'termino_condicion.seccion.required' => 'La seccion es requerida',
             'termino_condicion.seccion.max' => 'La seccion debe contener como máximo 35 caracteres',
             'termino_condicion.descripcion.required' => 'La descripcion es requerida',
-            'termino_condicion.descripcion.max' => 'La descripcion debe contener como máximo 255 caracteres',
+            'termino_condicion.descripcion.max' => 'La descripcion debe contener como máximo 3000 caracteres',
    ];
 
    public function updated($propertyName){
@@ -87,16 +85,6 @@ class TerminoCondicionComponent extends Component
         $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
     }
 
-    public function confirmarCambioEstado($id)
-    {
-        $termino_condicion = TerminoCondicion::find($id);
-        $this->dispatchBrowserEvent('mostrar-confirmacion', [
-            'mensaje' => '¿Estás seguro de que deseas '.(($termino_condicion->estado == 1) ? 'desactivar':'activar').' este termino condicion?',
-            'evento' => 'cambiar-estado',
-            'data' => $id,
-        ]);
-    }
-
     public function cambiarEstado($id){
         $termino_condicion = TerminoCondicion::find($id);
         if($termino_condicion->estado == 1){
@@ -104,7 +92,6 @@ class TerminoCondicionComponent extends Component
         }else{
             $termino_condicion->update(['estado' => '1']);
         }
-        $this->dispatchBrowserEvent('success', ['mensaje' => 'El termino condicion ha sido '.(($termino_condicion->estado == 1) ? 'activado':'desactivado').'!']); 
     }
 
     public function edit($id){

@@ -29,7 +29,7 @@
                 <div class="card-body p-3">
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         @include('layouts.header-listado', [
-                            'label' => 'Faq',
+                            'label' => '',
                             'create_function' => "showModal('form', 'create')",
                             'condition_message' => session()->has('message'),
                             'find' => 'Buscar por campos del faq',

@@ -1721,7 +1721,7 @@
     </script>
     <script>
       function validarImagen(e) {
-          if (e.files[0] && !['jpg', 'jpeg', 'png', 'gif'].includes(e.files[0].name.split('.').pop().toLowerCase())) {
+          if (e.files[0] && !['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'].includes(e.files[0].name.split('.').pop().toLowerCase())) {
               Swal.fire({icon: 'warning',title: 'Oops...',text: 'El archivo seleccionado no es una imagen',});
               e.value = '';
           }
