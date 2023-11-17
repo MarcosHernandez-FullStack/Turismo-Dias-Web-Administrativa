@@ -16,8 +16,8 @@ class ContactoComponent extends Component
     //DEFINICION DE REGLAS DE VALIDACION
     protected $rules = [
         'configuracion.celular_principal' => 'required|max:20',
-        'configuracion.correo_principal' => 'required|max:30',
-        'configuracion.celular_secundario' => 'nullable|email|max:20',
+        'configuracion.correo_principal' => 'required|email|max:30',
+        'configuracion.celular_secundario' => 'nullable|max:20',
         'configuracion.correo_secundario' => 'nullable|email|max:30',
         'configuracion.link_facebook' => 'nullable|url|max:50',
         'configuracion.link_instagram' => 'nullable|url|max:50',
