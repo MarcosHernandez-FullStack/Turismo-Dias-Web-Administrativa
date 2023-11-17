@@ -107,21 +107,29 @@ class InstitucionalComponent extends Component
                 'descripcion.max' => 'La descripción debe tener máximo 25 caracteres',
             ]
         );
-        $this->valores_collection->push(new Valor(['descripcion' => $this->descripcion]));
+        //guardar directo a la bd
+        $this->institucional->valores()->create(['descripcion' => $this->descripcion]);
+        $this->institucional= Institucional::count() ? Institucional::first() : new Institucional();
+        $this->valores_collection = $this->institucional->valores;
+        // $this->valores_collection->push(new Valor(['descripcion' => $this->descripcion]));
         $this->reset('descripcion');
     }
 
-    public function confirmardeleteValorCollection($indiceElemento)
+    public function confirmardeleteValorCollection($id)
     {
         $this->dispatchBrowserEvent('mostrar-confirmacion', [
             'mensaje' => '¿Estás seguro de que deseas eliminar este valor?',
             'evento' => 'delete-valor',
-            'data' => $indiceElemento,
+            'data' => $id,
         ]);
     }
 
-     public function deleteValorCollection($indiceElemento){
-        $this->valores_collection->pull($indiceElemento);
+     public function deleteValorCollection($id){
+        //borrar directo a la bd
+        $valor = Valor::find($id);
+        $valor->delete();
+        $this->institucional= Institucional::count() ? Institucional::first() : new Institucional();
+        $this->valores_collection = $this->institucional->valores;
         $this->dispatchBrowserEvent('success', ['mensaje' => 'El valor ha sido eliminado!']);
     }
 
@@ -150,26 +158,9 @@ class InstitucionalComponent extends Component
         }
         $this->institucional->save();
 
-        foreach($this->valores_collection as $valor){
-            $valor->institucional_id = $this->institucional->id;
-            $valor->estado = $valor->estado??'1';
-            $valor->save();
-        }
-        $valores = Valor::where('institucional_id', $this->institucional->id)->get();
-        foreach($valores as $valor){
-            if(!$this->valores_collection->contains($valor)){
-                $valor->delete();
-            }
-        }
         $this->institucional= Institucional::count() ? Institucional::first() : new Institucional();
         $this->valores_collection = $this->institucional->valores;
         $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
-    }
-
-    public function saveServicioValor(){
-        $institucional=Institucional::find($this->institucional->id);
-        $ciudad=Valor::find($this->valor_id);
-        $institucional->ciudades()->attach($ciudad);
     }
 
 

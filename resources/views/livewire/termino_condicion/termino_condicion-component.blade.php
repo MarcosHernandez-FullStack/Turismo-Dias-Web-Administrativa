@@ -41,9 +41,9 @@
                                     aria-describedby="example1_info">
                                     <thead>
                                         <tr>
-                                            <th style="width:20px" rowspan="1" colspan="1">#</th>
-                                            <th style="width:60px" rowspan="1" colspan="1">Orden</th>
-                                            <th style="width:75px" rowspan="1" colspan="1">Seccion</th>
+                                            <th style="width:20px" rowspan="1" colspan="1">Orden</th>
+                                            <th style="width:10px" rowspan="1" colspan="1">Ordenar</th>
+                                            <th style="width:100px" rowspan="1" colspan="1">Seccion</th>
                                             <th style="width:300px" rowspan="1" colspan="1">Descripcion</th>
                                             <th style="width:50px" rowspan="1" colspan="1">Estado</th>
                                             <th style="width:50px" rowspan="1" colspan="1">Opciones</th>
@@ -52,30 +52,32 @@
                                     <tbody>
                                         @forelse ($termino_condiciones as $key => $termino_condicion)
                                             <tr>
-                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $termino_condicion->orden }}</td>
                                                 <td>
-                                                    <div class="btn-group">
+                                                    <div class="btn-group d-flex justify-content-around">
                                                         @if ($termino_condicion->orden != 1)
-                                                        <button type="button"
-                                                            class="btn btn-sm btn-outline-secondary rounded-pill"
-                                                            wire:click="ordenamiento('up', {{ $termino_condicion->id }})"><i
-                                                                class="fas fa-arrow-up"></i></button>
+                                                        <div>
+                                                            <button type="button"
+                                                            class="btn btn-success rounded-circle"
+                                                            wire:loading.attr="disabled"
+                                                            wire:click="ordenamiento('up', {{ $termino_condicion->id }})"><i class="fa-solid fa-lg fa-caret-up"></i></button>
+                                                        </div>
                                                         @endif
-                                                        <span class="btn btn-sm btn-outline-secondary rounded-pill"
-                                                            style="cursor: default">{{ $termino_condicion->orden }}</span>
                                                         @if ($termino_condicion->orden != $termino_condiciones->total())
-                                                        <button type="button"
-                                                            class="btn btn-sm btn-outline-secondary rounded-pill"
-                                                            wire:click="ordenamiento('down', {{ $termino_condicion->id }})"><i
-                                                                class="fas fa-arrow-down"></i></button>
-                                                        @endif
+                                                        <div>
+                                                            <button type="button"
+                                                            class="btn btn-info rounded-circle"
+                                                            wire:loading.attr="disabled"
+                                                            wire:click="ordenamiento('down', {{ $termino_condicion->id }})"><i class="fa-solid fa-lg fa-caret-down"></i></i></button>
+                                                        </div>
+                                                            @endif
                                                     </div>
                                                 </td>
                                                 <td>{{ $termino_condicion->seccion }}</td>
                                                 <td>{!! $termino_condicion->descripcion !!}</td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $termino_condicion->estado == '1' ? 'success' : 'warning' }}"
-                                                        wire:click='confirmarCambioEstado({{ $termino_condicion->id }})'>{{ $termino_condicion->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                        wire:click='cambiarEstado({{ $termino_condicion->id }})'>{{ $termino_condicion->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
                                                 </td>
                                                 <td>
                                                     <button type="button"

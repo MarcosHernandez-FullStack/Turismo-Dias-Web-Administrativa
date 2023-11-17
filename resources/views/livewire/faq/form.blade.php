@@ -3,7 +3,7 @@
     <form>
         <div class="modal-header bg-info text-light">
             <h5 class="modal-title">
-                {{ $form == 'create' ? 'Crear' : 'Editar' }} Faq
+                {{ $form == 'create' ? 'Crear' : 'Editar' }} Preguntas y Respuestas
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>

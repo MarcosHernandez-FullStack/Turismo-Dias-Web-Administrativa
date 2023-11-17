@@ -62,7 +62,7 @@
                                                 <td>{{ $ruta->tipo_bus->nombre }}</td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $ruta->estado == '1' ? 'success' : 'warning' }}"
-                                                        wire:click='confirmarCambioEstado({{ $ruta->id }})'>{{ $ruta->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
+                                                        wire:click='cambiarEstado({{ $ruta->id }})'>{{ $ruta->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
                                                 </td>
                                                 <td>
                                                     <button type="button"
