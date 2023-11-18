@@ -43,9 +43,8 @@
                                     <thead>
                                         <tr>
                                             <th style="width:20px" rowspan="1" colspan="1">Orden</th>
-                                            <th style="width:10px" rowspan="1" colspan="1">Ordenar</th>
-                                            <th style="width:100px" rowspan="1" colspan="1">Seccion</th>
-                                            <th style="width:300px" rowspan="1" colspan="1">Descripcion</th>
+                                            <th style="width:20px" rowspan="1" colspan="1">Ordenar</th>
+                                            <th style="width:200px" rowspan="1" colspan="1">Seccion</th>
                                             <th style="width:50px" rowspan="1" colspan="1">Estado</th>
                                             <th style="width:50px" rowspan="1" colspan="1">Opciones</th>
                                         </tr>
@@ -55,21 +54,21 @@
                                             <tr>
                                                 <td>{{ $termino_condicion->orden }}</td>
                                                 <td>
-                                                    <div class="btn-group d-flex justify-content-around"
+                                                    <div class="d-flex justify-content-around"
                                                         style="justify-content: start !important;">
                                                         @if ($termino_condicion->orden != 1)
-                                                            <a style=" color: #25979b;cursor: pointer; margin-right: 7%;"
+                                                            <button class="btn" style=" color: #25979b;cursor: pointer; margin-right: 7%;"
                                                                 wire:loading.attr="disabled"
                                                                 wire:click="ordenamiento('up', {{ $termino_condicion->id }})">
                                                                 <i class="fas fa-arrow-up"></i>
-                                                            </a>
+                                                            </button>
                                                         @endif
                                                         @if ($termino_condicion->orden != $termino_condiciones->total())
-                                                            <a style="color: #25979b; cursor: pointer;"
+                                                            <button class="btn" style="color: #25979b; cursor: pointer;"
                                                                 wire:loading.attr="disabled"
                                                                 wire:click="ordenamiento('down', {{ $termino_condicion->id }})">
                                                                 <i class="fas fa-arrow-down"></i>
-                                                            </a>
+                                                            </button>
                                                         @endif
                                                     </div>
 
@@ -95,7 +94,6 @@
                                                     </div> --}}
                                                 </td>
                                                 <td>{{ $termino_condicion->seccion }}</td>
-                                                <td>{!! $termino_condicion->descripcion !!}</td>
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $termino_condicion->estado == '1' ? 'success' : 'warning' }}"
                                                         wire:click='cambiarEstado({{ $termino_condicion->id }})'>{{ $termino_condicion->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>

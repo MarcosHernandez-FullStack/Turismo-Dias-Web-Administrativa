@@ -21,7 +21,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="tipo" class="form-label">
-                    Tipos de Faq
+                    Tipos
                 </label>
                 <select class="form-control form-control-sm rounded-pill" id="tipo" wire:model='faq.tipo'>
                     <option value="">Seleccionar una opción</option>

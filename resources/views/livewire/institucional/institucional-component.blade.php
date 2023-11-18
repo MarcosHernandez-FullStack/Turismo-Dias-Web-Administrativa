@@ -83,7 +83,7 @@
                                     <label for="mision" class="form-label">
                                         Misión
                                     </label>
-                                    <textarea type="text" rows="5" class="form-control form-control-sm rounded-lg" id="mision"
+                                    <textarea type="text" rows="8" class="form-control form-control-sm rounded-lg" id="mision"
                                         wire:model='institucional.mision'>
                                     </textarea>
                                     @error('institucional.mision')
@@ -94,7 +94,7 @@
                                     <label for="vision" class="form-label">
                                         Visión
                                     </label>
-                                    <textarea type="text" rows="5" class="form-control form-control-sm rounded-lg" id="vision"
+                                    <textarea type="text" rows="8" class="form-control form-control-sm rounded-lg" id="vision"
                                         wire:model='institucional.vision'>
                                     </textarea>
                                     @error('institucional.vision')
