@@ -62,6 +62,7 @@ class CiudadComponent extends Component
         $this->resetError();
         if ($form == 'create') {
             $this->ciudad = new Ciudad();
+            $this->emit('enviarCiudad', 0);
         }
         $this->vista = $vista;
         $this->form = $form;

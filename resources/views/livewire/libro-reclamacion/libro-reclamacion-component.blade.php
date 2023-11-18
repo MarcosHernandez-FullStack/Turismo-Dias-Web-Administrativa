@@ -12,11 +12,11 @@
 
                         </div>
                         <!--div class="col-sm-6">
-                                                                                                                                                                                                    <ol class="breadcrumb float-sm-right">
-                                                                                                                                                                                                        <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                                                                                                                                                                                        <li class="breadcrumb-item active">Libro de Reclamaciones</li>
-                                                                                                                                                                                                    </ol>
-                                                                                                                                                                                                </div-->
+                                                                                                                                                                                                                <ol class="breadcrumb float-sm-right">
+                                                                                                                                                                                                                    <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                                                                                                                                                                                                    <li class="breadcrumb-item active">Libro de Reclamaciones</li>
+                                                                                                                                                                                                                </ol>
+                                                                                                                                                                                                            </div-->
                     </div>
 
                 </div>
@@ -151,7 +151,7 @@
                                                     @if ($this->filtroEstado == '3')
                                                         <th>Cliente</th>
                                                         <th>Correo</th>
-                                                        <th>Celular</th>
+                                                        <th>DNI</th>
                                                         <th>Tiempo Transcurrido</th>
                                                         <th>Estado</th>
                                                         <th style="width:100px">Ver</th>
@@ -179,22 +179,20 @@
                                                                 {{ $reclamo->email_consumidor }}
                                                             </td>
                                                             <td class="mailbox-subject">
-                                                                {{ $reclamo->telefono_consumidor }}
+                                                                {{ $reclamo->documento_identidad_consumidor }}
                                                             </td>
                                                             <td class="mailbox-date">
                                                                 {{ $reclamo->tiempoTranscurridoDesde($reclamo->created_at) }}
                                                             </td>
-                                                            @if ($this->filtroEstado == null)
-                                                                <td class="mailbox-subject">
-                                                                    @if ($reclamo->estado == '1')
-                                                                        Nuevo
-                                                                    @elseif($reclamo->estado == '2')
-                                                                        Atendido
-                                                                    @else
-                                                                        Archivado
-                                                                    @endif
-                                                                </td>
-                                                            @endif
+                                                            <td class="mailbox-subject">
+                                                                @if ($reclamo->estado == '1')
+                                                                    Nuevo
+                                                                @elseif($reclamo->estado == '2')
+                                                                    Atendido
+                                                                @else
+                                                                    Archivado
+                                                                @endif
+                                                            </td>
                                                             <td><button wire:click="edit({{ $reclamo->id }})"
                                                                     class="btn btn-sm rounded-pill btn-warning"><i
                                                                         class="fa-solid fa-eye"></i> Ver</button></td>

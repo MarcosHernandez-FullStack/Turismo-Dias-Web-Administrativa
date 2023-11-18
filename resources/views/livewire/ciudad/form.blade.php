@@ -21,11 +21,14 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                @livewire('sub-ciudad.sub-ciudad-component')
+        @if ($this->form == 'update')
+            <div class="row">
+                <div class="col-12">
+                    @livewire('sub-ciudad.sub-ciudad-component')
+                </div>
             </div>
-        </div>
+        @endif
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-sm rounded-pill btn-secondary" data-dismiss="modal"><i

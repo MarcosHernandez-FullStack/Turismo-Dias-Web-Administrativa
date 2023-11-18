@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ asset('assets/img/logo1.ico') }}">
     <title>Turismo Dias</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -1647,7 +1648,7 @@
 
     <script>
         /* periodo_actual = document.getElementById('periodo_actual');
-                                                                                                                      periodo_actual.innerHTML = new Date().getFullYear(); */
+                                                                                                                          periodo_actual.innerHTML = new Date().getFullYear(); */
         window.addEventListener('closeModal', event => {
             $("#modal_usuario").modal('hide');
         })

@@ -50,7 +50,11 @@ class SubCiudadComponent extends Component
     public function recepcionarCiudad($ciudadId)
     {
         try {
-            $this->ciudad = Ciudad::find($ciudadId);
+            if ($ciudadId == 0) {
+                $this->ciudad = null;
+            } else {
+                $this->ciudad = Ciudad::find($ciudadId);
+            }
             $this->mount();
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
