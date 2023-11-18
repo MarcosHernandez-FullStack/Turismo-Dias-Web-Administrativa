@@ -9,7 +9,8 @@
                                 <div class="col-sm-12">
                                     {{--  <h1 class="card-title">Configuración de Página Web</h1> --}}
                                     <h5><i style="color: #17a2b8" class="fas fa-laptop-house  mr-1"></i>
-                                        <b style="color: rgb(48, 48, 48)">TERMINOS Y CONDICIONES</b></h5>
+                                        <b style="color: rgb(48, 48, 48)">TERMINOS Y CONDICIONES</b>
+                                    </h5>
 
                                 </div>
                                 {{--  <div class="col-sm-6">
@@ -54,24 +55,44 @@
                                             <tr>
                                                 <td>{{ $termino_condicion->orden }}</td>
                                                 <td>
-                                                    <div class="btn-group d-flex justify-content-around">
+                                                    <div class="btn-group d-flex justify-content-around"
+                                                        style="justify-content: start !important;">
                                                         @if ($termino_condicion->orden != 1)
-                                                        <div>
-                                                            <button type="button"
-                                                            class="btn btn-success rounded-circle"
-                                                            wire:loading.attr="disabled"
-                                                            wire:click="ordenamiento('up', {{ $termino_condicion->id }})"><i class="fa-solid fa-lg fa-caret-up"></i></button>
-                                                        </div>
+                                                            <a style=" color: #25979b;cursor: pointer; margin-right: 7%;"
+                                                                wire:loading.attr="disabled"
+                                                                wire:click="ordenamiento('up', {{ $termino_condicion->id }})">
+                                                                <i class="fas fa-arrow-up"></i>
+                                                            </a>
                                                         @endif
                                                         @if ($termino_condicion->orden != $termino_condiciones->total())
-                                                        <div>
-                                                            <button type="button"
-                                                            class="btn btn-info rounded-circle"
-                                                            wire:loading.attr="disabled"
-                                                            wire:click="ordenamiento('down', {{ $termino_condicion->id }})"><i class="fa-solid fa-lg fa-caret-down"></i></i></button>
-                                                        </div>
-                                                            @endif
+                                                            <a style="color: #25979b; cursor: pointer;"
+                                                                wire:loading.attr="disabled"
+                                                                wire:click="ordenamiento('down', {{ $termino_condicion->id }})">
+                                                                <i class="fas fa-arrow-down"></i>
+                                                            </a>
+                                                        @endif
                                                     </div>
+
+                                                    {{--  <div class="btn-group d-flex justify-content-around">
+                                                        @if ($termino_condicion->orden != 1)
+                                                            <div>
+                                                                <button type="button"
+                                                                    class="btn btn-success rounded-circle"
+                                                                    wire:loading.attr="disabled"
+                                                                    wire:click="ordenamiento('up', {{ $termino_condicion->id }})"><i
+                                                                        class="fa-solid fa-lg fa-caret-up"></i></button>
+                                                            </div>
+                                                        @endif
+                                                        @if ($termino_condicion->orden != $termino_condiciones->total())
+                                                            <div>
+                                                                <button type="button"
+                                                                    class="btn btn-info rounded-circle"
+                                                                    wire:loading.attr="disabled"
+                                                                    wire:click="ordenamiento('down', {{ $termino_condicion->id }})"><i
+                                                                        class="fa-solid fa-lg fa-caret-down"></i></i></button>
+                                                            </div>
+                                                        @endif
+                                                    </div> --}}
                                                 </td>
                                                 <td>{{ $termino_condicion->seccion }}</td>
                                                 <td>{!! $termino_condicion->descripcion !!}</td>
