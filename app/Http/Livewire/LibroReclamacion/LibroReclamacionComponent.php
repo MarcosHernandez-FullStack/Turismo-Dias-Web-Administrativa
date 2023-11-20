@@ -81,12 +81,15 @@ class LibroReclamacionComponent extends Component
                 } else {
                     $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
                         $query->whereDate('created_at', '=', $fechaIntroducida);
-                    })->where('estado', '=', $this->filtroEstado)->orderBy('created_at', 'desc')->paginate($this->paginacion);
+                    })->where('estado', '=', $this->filtroEstado)
+                        ->where('tipo_reclamacion_detalle', '!=', '3')
+                        ->orderBy('created_at', 'desc')->paginate($this->paginacion);
                 }
             } else {
                 $reclamos = LibroReclamacion::when($fechaIntroducida, function ($query) use ($fechaIntroducida) {
                     $query->whereDate('created_at', '=', $fechaIntroducida);
-                })->orderBy('created_at', 'desc')->paginate($this->paginacion);
+                })->where('tipo_reclamacion_detalle', '!=', '3')
+                    ->orderBy('created_at', 'desc')->paginate($this->paginacion);
             }
             $nroReclamosNuevos = LibroReclamacion::where('estado', '=', '1')->count();
         } catch (\Exception $e) {
