@@ -35,14 +35,13 @@ class TerminoCondicionComponent extends Component
 
     protected function rules(){
         return [
-           'termino_condicion.seccion' => 'required|max:120',
+           'termino_condicion.seccion' => 'required',
            'termino_condicion.descripcion' => 'required',
         ];
    }
 
    protected $messages = [
             'termino_condicion.seccion.required' => 'La seccion es requerida',
-            'termino_condicion.seccion.max' => 'La seccion debe contener como máximo 35 caracteres',
             'termino_condicion.descripcion.required' => 'La descripcion es requerida'
    ];
 
