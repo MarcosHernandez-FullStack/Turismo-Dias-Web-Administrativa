@@ -55,5 +55,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/terminos-condiciones', TerminoCondicionComponent::class)->name('terminos-condiciones');
 
     Route::get('/eventos', FeriadoComponent::class)->name('eventos');
-    
+
 });
