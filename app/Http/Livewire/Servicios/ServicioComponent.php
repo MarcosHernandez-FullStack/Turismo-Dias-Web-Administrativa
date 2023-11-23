@@ -87,6 +87,8 @@ class ServicioComponent extends Component
         try {
             $servicios = Servicio::where('nombre', 'like', '%' . $this->search . '%')
                 ->orderBy($this->sort, $this->direction)->paginate($this->paginacion);
+            $this->dispatchBrowserEvent('inicializaPopovers');
+
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
@@ -110,7 +112,7 @@ class ServicioComponent extends Component
             $this->servicio->save();
             $this->dispatchBrowserEvent('closeModal');
             $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
-
+            $this->dispatchBrowserEvent('inicializaPopovers');
         } catch (\Exception $e) {
             $this->dispatchBrowserEvent('error', ['mensaje' => strtok($e->getMessage(), ".")]);
         }
