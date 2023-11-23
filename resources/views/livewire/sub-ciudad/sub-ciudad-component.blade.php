@@ -30,7 +30,8 @@
                     <div class="col-12 {{ $this->form == 'update' ? 'col-md' : '' }} ">
                         <button type="button"
                             class="btn btn-{{ $this->form == 'update' ? 'success' : 'info' }} btn-sm rounded-pill"
-                            wire:click="save()" @if (!isset($this->ciudad)) disabled @endif>
+                            wire:loading.attr="disabled" wire:target="save" wire:click="save"
+                            @if (!isset($this->ciudad)) disabled @endif>
                             @if ($this->form == 'update')
                                 <i class="fa-regular fa-floppy-disk"></i>
                             @else

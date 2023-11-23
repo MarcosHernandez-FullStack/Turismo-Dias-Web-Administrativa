@@ -12,11 +12,11 @@
 
                         </div>
                         <!--div class="col-sm-6">
-                                        <ol class="breadcrumb float-sm-right">
-                                            <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                            <li class="breadcrumb-item active">Servicios</li>
-                                        </ol>
-                                    </div-->
+                                                <ol class="breadcrumb float-sm-right">
+                                                    <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                                    <li class="breadcrumb-item active">Servicios</li>
+                                                </ol>
+                                            </div-->
                     </div>
 
                 </div>
@@ -46,7 +46,7 @@
                                         <tr>
                                             <th style="width:20px" rowspan="1" colspan="1">#</th>
                                             <th style="width:100px" rowspan="1" colspan="1">Nombre</th>
-                                            <th style="width:50px" rowspan="1" colspan="1">Imagen</th>
+                                            <!--th style="width:50px" rowspan="1" colspan="1">Imagen</th-->
                                             <th style="width:100px" rowspan="1" colspan="1">Estado</th>
                                             <th style="width:100px" rowspan="1" colspan="1">Editar</th>
                                         </tr>
@@ -56,13 +56,13 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $servicio->nombre }}</td>
-                                                <td><span type="button" class="btn btn-sm btn-info rounded-pill"
+                                                <!--td><span type="button" class="btn btn-sm btn-info rounded-pill"
                                                         data-toggle="popover" title="Imagen del Servicio"
                                                         data-html="true"
                                                         data-template="<div class='popover'  role='tooltip'><div class='arrow'></div><h3 class='popover-header bg-info'></h3><div class='popover-body'></div></div>"
                                                         data-content="<img class='w-100' src='{{ Storage::url($servicio->ruta_foto) }}' alt='...'>"><i
                                                             class="fa-regular fa-eye"></i></span>
-                                                </td>
+                                                </td-->
                                                 <td><span role="button"
                                                         class="badge rounded-pill bg-{{ $servicio->estado == '1' ? 'success' : 'warning' }}"
                                                         wire:click='cambiarEstado({{ $servicio->id }})'>{{ $servicio->estado == '1' ? 'ACTIVO' : 'INACTIVO' }}</span>
@@ -117,7 +117,7 @@
                 labelFileTypeNotAllowed: 'Tipo de archivo inválido',
                 fileValidateTypeLabelExpectedTypes: 'Inserte una imagen',
                 //VALIDACION DE TAMAÑO
-                maxFileSize: '1MB',
+                maxFileSize: '500KB',
                 labelMaxFileSizeExceeded: 'El archivo es muy grande',
                 labelMaxFileSize: 'El tamaño máximo permitido es de {filesize}',
                 server: {

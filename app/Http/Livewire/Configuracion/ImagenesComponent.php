@@ -29,7 +29,7 @@ class ImagenesComponent extends Component
 
     protected $messages = [
         'ruta_foto_principal.image' => 'El archivo debe ser de tipo imagen.',
-        'configuracion.ruta_video.url' => 'El texto debe ser una URL embebida.',
+        'configuracion.ruta_video.url' => 'El texto debe ser una URL.',
         'ruta_foto_header_seccion.image' => 'El archivo debe ser de tipo imagen.',
         'ruta_logo.image' => 'El archivo debe ser de tipo imagen.',
         'configuracion.ruta_video.max' => 'El tamaño máximo de la URL es de 255 caracteres.',
@@ -126,12 +126,12 @@ class ImagenesComponent extends Component
             }
             if ($this->configuracion == $this->configuracionOriginal) {
                 $this->closeModal();
-                $this->cambiarTab('ruta_foto_principal_tab');
+                $this->cambiarTab('ruta_logo_tab');
                 $this->dispatchBrowserEvent('info', ['mensaje' => 'El registro no ha sufrido cambios!']);
             } else {
                 $this->configuracion->save();
                 $this->closeModal();
-                $this->cambiarTab('ruta_foto_principal_tab');
+                $this->cambiarTab('ruta_logo_tab');
                 $this->configuracion = Configuracion::first(); //CONSULTA LOS VALORES GUARDADOS EN BD
                 $this->configuracionOriginal = $this->configuracion; //LE ASIGAN AL AUXILIAR DE ORIGINAL PARA UNA POSTERIOR EDICIÓN
                 $this->dispatchBrowserEvent('success', ['mensaje' => 'El registro se ha guardado correctamente!']);
