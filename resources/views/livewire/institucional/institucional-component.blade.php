@@ -117,7 +117,7 @@
                                                 Foto Principal Nueva
                                             </label>
                                             <img src="{{ $ruta_foto_principal->temporaryUrl() }}"
-                                                class="img-thumbnail w-100" alt="foto">
+                                                class="img-thumbnail w-100" style="height:450px;object-fit:cover" alt="foto">
                                         </div>
                                     @endif
                                     @if ($institucional->ruta_foto_principal && !$ruta_foto_principal)
@@ -126,7 +126,7 @@
                                                 Imagen Registrada
                                             </label>
                                             <img src="{{ Storage::url($institucional->ruta_foto_principal) }}"
-                                                class="img-thumbnail w-100" alt="foto_guardada">
+                                                class="img-thumbnail w-100" style="height:450px;object-fit:cover" alt="foto_guardada">
                                         </div>
                                     @endif
                                 </div>
@@ -146,7 +146,7 @@
                                                 Foto Secundaria Nueva
                                             </label>
                                             <img src="{{ $ruta_foto_secundaria->temporaryUrl() }}"
-                                                class="img-thumbnail w-100" alt="foto">
+                                                class="img-thumbnail w-100" style="height:450px;object-fit:cover" alt="foto">
                                         </div>
                                     @endif
                                     @if ($institucional->ruta_foto_secundaria && !$ruta_foto_secundaria)
@@ -155,7 +155,7 @@
                                                 Imagen Registrada
                                             </label>
                                             <img src="{{ Storage::url($institucional->ruta_foto_secundaria) }}"
-                                                class="img-thumbnail w-100" alt="foto_guardada">
+                                                class="img-thumbnail w-100" style="height:450px;object-fit:cover" alt="foto_guardada">
                                         </div>
                                     @endif
                                 </div>
@@ -164,7 +164,8 @@
                             </div>
                         </div>
                         <div class="row col-md-12 col-md-2 mb-5 mb-md-0">
-                            <button type="button" class="btn btn-info btn-sm rounded-pill" wire:click="update">
+                            <button type="button" class="btn btn-info btn-sm rounded-pill" wire:loading.attr="disabled" wire:target="update,ruta_foto_principal,ruta_foto_secundaria"
+                             wire:click="update">
                                 <i class="fas fa-edit"></i>
                                 Guardar
                             </button>
