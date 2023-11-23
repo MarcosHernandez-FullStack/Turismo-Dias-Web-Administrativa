@@ -161,7 +161,7 @@ active show
                                                 id="ruta_video" placeholder="Ingresar URL del video a mostrar">
                                             @error('configuracion.ruta_video')
     <span id="ruta_video-error"
-                                                        class="error invalid-feedback">{{ $message }}</span>
+                                                            class="error invalid-feedback">{{ $message }}</span>
 @enderror
                                         </div>
                                         <div class="row">
@@ -253,7 +253,7 @@ active show
                 labelFileTypeNotAllowed: 'Tipo de archivo inválido',
                 fileValidateTypeLabelExpectedTypes: 'Inserte una imagen',
                 //VALIDACION DE TAMAÑO
-                maxFileSize: '1MB',
+                maxFileSize: '500KB',
                 labelMaxFileSizeExceeded: 'El archivo es muy grande',
                 labelMaxFileSize: 'El tamaño máximo permitido es de {filesize}',
                 server: {
@@ -285,7 +285,7 @@ active show
                 labelFileTypeNotAllowed: 'Tipo de archivo inválido',
                 fileValidateTypeLabelExpectedTypes: 'Inserte una imagen',
                 //VALIDACION DE TAMAÑO
-                maxFileSize: '1MB',
+                maxFileSize: '500KB',
                 labelMaxFileSizeExceeded: 'El archivo es muy grande',
                 labelMaxFileSize: 'El tamaño máximo permitido es de {filesize}',
                 server: {
@@ -317,7 +317,7 @@ active show
                 labelFileTypeNotAllowed: 'Tipo de archivo inválido',
                 fileValidateTypeLabelExpectedTypes: 'Inserte una imagen',
                 //VALIDACION DE TAMAÑO
-                maxFileSize: '1MB',
+                maxFileSize: '500KB',
                 labelMaxFileSizeExceeded: 'El archivo es muy grande',
                 labelMaxFileSize: 'El tamaño máximo permitido es de {filesize}',
                 server: {

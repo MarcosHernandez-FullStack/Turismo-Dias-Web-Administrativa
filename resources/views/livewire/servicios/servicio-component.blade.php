@@ -12,11 +12,11 @@
 
                         </div>
                         <!--div class="col-sm-6">
-                                            <ol class="breadcrumb float-sm-right">
-                                                <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
-                                                <li class="breadcrumb-item active">Servicios</li>
-                                            </ol>
-                                        </div-->
+                                                <ol class="breadcrumb float-sm-right">
+                                                    <li class="breadcrumb-item"><a href="{{ route('bienvenido') }}">Inicio</a></li>
+                                                    <li class="breadcrumb-item active">Servicios</li>
+                                                </ol>
+                                            </div-->
                     </div>
 
                 </div>
@@ -117,7 +117,7 @@
                 labelFileTypeNotAllowed: 'Tipo de archivo inválido',
                 fileValidateTypeLabelExpectedTypes: 'Inserte una imagen',
                 //VALIDACION DE TAMAÑO
-                maxFileSize: '1MB',
+                maxFileSize: '500KB',
                 labelMaxFileSizeExceeded: 'El archivo es muy grande',
                 labelMaxFileSize: 'El tamaño máximo permitido es de {filesize}',
                 server: {

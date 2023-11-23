@@ -108,7 +108,7 @@
                 labelFileTypeNotAllowed: 'Tipo de archivo inválido',
                 fileValidateTypeLabelExpectedTypes: 'Inserte una imagen',
                 //VALIDACION DE TAMAÑO
-                maxFileSize: '1MB',
+                maxFileSize: '500KB',
                 labelMaxFileSizeExceeded: 'El archivo es muy grande',
                 labelMaxFileSize: 'El tamaño máximo permitido es de {filesize}',
                 server: {
