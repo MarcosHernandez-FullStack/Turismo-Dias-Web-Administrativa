@@ -45,7 +45,7 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-sm rounded-pill btn-secondary" data-dismiss="modal"><i
                     class="fas fa-times"></i> Cerrar</button>
-            <button type="button" class="btn btn-sm rounded-pill btn-info"
+            <button type="button" class="btn btn-sm rounded-pill btn-info" wire:loading.attr="disabled" wire:target="save"
                 wire:click="save"> <i class="fas fa-save"></i>
                 {{ $form == 'create' ? 'Registrar' : 'Actualizar' }}</button>
         </div>

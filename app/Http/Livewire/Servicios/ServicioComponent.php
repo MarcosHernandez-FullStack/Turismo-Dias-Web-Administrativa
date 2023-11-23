@@ -44,7 +44,7 @@ class ServicioComponent extends Component
         ]
         : [
             'servicio.nombre' => 'required|max:35',
-            'servicio.descripcion' => 'required|max:100',
+            'servicio.descripcion' => 'required|max:120',
             'ruta_foto' => 'image|nullable',
         ];
     }
@@ -54,7 +54,7 @@ class ServicioComponent extends Component
         'servicio.descripcion.required' => 'La descripción del servicio es obligatoria.',
         'ruta_foto.required' => 'La foto para el servicio es obligatoria.',
         'servicio.nombre.max' => 'El nombre del servicio debe tener un máximo de 35 caracteres.',
-        'servicio.descripcion.max' => 'La descripción del servicio debe tener un máximo de 100 caracteres.',
+        'servicio.descripcion.max' => 'La descripción del servicio debe tener un máximo de 120 caracteres.',
         'ruta_foto.image' => 'El archivo debe ser de tipo imagen.',
     ];
 
