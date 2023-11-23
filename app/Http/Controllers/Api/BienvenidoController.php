@@ -25,9 +25,7 @@ class BienvenidoController extends Controller
                 $query->where('estado', '1');
             }])->where('estado', '1')->get();
 
-
             $configuracion = Configuracion::where('estado', '1')->first();
-
 
             $fecha_inicio = date('d/m/Y', strtotime($institucional->fecha_inicio));
             $fechaActual = now();
@@ -84,7 +82,7 @@ class BienvenidoController extends Controller
                     "configuracion" => [
                         "foto" => env("APP_URL") . Storage::url($configuracion->ruta_foto_principal),
                         "slogan" => $configuracion->slogan,
-                        "video" => $configuracion->obtenerURLDeVideo($configuracion->ruta_video),
+                        "video" => $configuracion->ruta_video,
                     ],
                 ],
             ], 200); // 200 OK para indicar una respuesta exitosa.

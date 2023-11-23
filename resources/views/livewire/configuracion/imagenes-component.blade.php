@@ -32,7 +32,7 @@
                                         <a class="nav-link @if ($tab == 'ruta_logo_tab') active @endif"
                                             id="ruta_logo_tab" data-toggle="pill" href="#ruta_logo_tabContent"
                                             wire:click="cambiarTab('ruta_logo_tab');" role="tab"
-                                            aria-controls="ruta_logo_tabContent" aria-selected="true">Logo</a>
+                                            aria-controls="ruta_logo_tabContent" aria-selected="true">Logo y Video</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link @if ($tab == 'ruta_foto_principal_tab') active @endif"
@@ -42,12 +42,12 @@
                                             aria-controls="ruta_foto_principal_tabContent"
                                             aria-selected="true">Principal</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!--li class="nav-item">
                                         <a class="nav-link  @if ($tab == 'ruta_video_tab') active @endif"
                                             id="ruta_video_tab" data-toggle="pill" href="#ruta_video_tabContent"
                                             wire:click="cambiarTab('ruta_video_tab');" role="tab"
                                             aria-controls="ruta_video_tabContent" aria-selected="false">Video</a>
-                                    </li>
+                                    </li-->
                                     <li class="nav-item">
                                         <a class="nav-link  @if ($tab == 'ruta_foto_header_seccion_tab') active @endif"
                                             id="ruta_foto_header_seccion_tab" data-toggle="pill"
@@ -64,6 +64,16 @@
                                         id="ruta_logo_tabContent" role="tabpanel"
                                         aria-labelledby="ruta_logo_tabContent-tab">
                                         <div class="form-group">
+                                            <label for="ruta_video">Video de bienvenida</label>
+                                            <input type="text" wire:model='configuracion.ruta_video'
+                                                class="form-control @error('configuracion.ruta_video') is-invalid @enderror"
+                                                id="ruta_video" placeholder="Ingresar URL del video a mostrar">
+                                            @error('configuracion.ruta_video')
+                                                <span id="ruta_video-error"
+                                                    class="error invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
                                             <label>Imagen de Logo</label>
                                             <div wire:ignore x-data x-init="initFotoLogo($refs.ruta_logo)">
                                                 <input wire:model='ruta_logo' type="file" x-ref="ruta_logo"
@@ -76,15 +86,28 @@
                                             @enderror
                                         </div>
                                         <div class="row">
-                                            <div class="col-12 p-0">
-                                                <div class="contenedor-imagen" style="height: 300px!important;">
+                                            <div class="col-12 p-0 d-flex justify-content-center">
+                                                <div class="contenedor-imagen"
+                                                    style="height: 180px!important;width: 450px!important">
                                                     @if (isset($ruta_logo))
-                                                        <img src="{{ $ruta_logo->temporaryUrl() }}" alt="...">
+                                                        <img style="max-width: 100%;
+                                                        max-height: 100%;
+                                                        object-fit: contain;
+                                                        object-position: center center;"
+                                                            src="{{ $ruta_logo->temporaryUrl() }}" alt="...">
                                                     @elseif (isset($configuracion->ruta_logo))
-                                                        <img src="{{ Storage::url($configuracion->ruta_logo) }}"
+                                                        <img style="max-width: 100%;
+                                                        max-height: 100%;
+                                                        object-fit: contain;
+                                                        object-position: center center;"
+                                                            src="{{ Storage::url($configuracion->ruta_logo) }}"
                                                             alt="...">
                                                     @else
-                                                        <img src="{{ asset('assets/img/2835x1890.png') }}"
+                                                        <img style="max-width: 100%;
+                                                        max-height: 100%;
+                                                        object-fit: contain;
+                                                        object-position: center center;"
+                                                            src="{{ asset('assets/img/2835x1890.png') }}"
                                                             alt="...">
                                                     @endif
                                                 </div>
@@ -126,7 +149,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade @if ($tab == 'ruta_video_tab') active show @endif"
+                                    <!--div class="tab-pane fade @if ($tab == 'ruta_video_tab')
+active show
+@endif"
                                         id="ruta_video_tabContent" role="tabpanel"
                                         aria-labelledby="ruta_video_tabContent-tab">
                                         <div class="form-group">
@@ -135,24 +160,24 @@
                                                 class="form-control @error('configuracion.ruta_video') is-invalid @enderror"
                                                 id="ruta_video" placeholder="Ingresar URL del video a mostrar">
                                             @error('configuracion.ruta_video')
-                                                <span id="ruta_video-error"
-                                                    class="error invalid-feedback">{{ $message }}</span>
-                                            @enderror
+    <span id="ruta_video-error"
+                                                        class="error invalid-feedback">{{ $message }}</span>
+@enderror
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="contenedor-video">
                                                     @if (isset($this->configuracion->ruta_video))
-                                                        {{-- !! $this->configuracion->ruta_video !! --}}
+{{-- !! $this->configuracion->ruta_video !! --}}
                                                         <iframe width="640" height="360"
                                                             src="{{ $this->configuracion->ruta_video }}"
                                                             frameborder="0" allowfullscreen></iframe>
                                                         </video>
-                                                    @endif
+@endif
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div-->
                                     <div class="tab-pane fade @if ($tab == 'ruta_foto_header_seccion_tab') active show @endif"
                                         id="ruta_foto_header_seccion_tabContent" role="tabpanel"
                                         aria-labelledby="ruta_foto_header_seccion_tabContent-tab">
