@@ -43,8 +43,8 @@ class InstitucionalComponent extends Component
            'institucional.breve_historia' => 'required|max:230',
            'institucional.mision' => 'required|max:230',
            'institucional.vision' => 'required|max:230',
-           'ruta_foto_principal' => (!$this->institucional->id)?'required|image|max:2048':'nullable|image|max:2048',
-           'ruta_foto_secundaria' => (!$this->institucional->id)?'required|image|max:2048':'nullable|image|max:2048',
+           'ruta_foto_principal' => (!$this->institucional->id)?'required|image|max:500':'nullable|image|max:500',
+           'ruta_foto_secundaria' => (!$this->institucional->id)?'required|image|max:500':'nullable|image|max:500',
            'institucional.fecha_inicio' => 'required|date',
            'valores_collection.*.descripcion' => 'required',
         ];
@@ -84,7 +84,7 @@ class InstitucionalComponent extends Component
        if($form == 'create'){
            $this->institucional = new Institucional();
            $this->reset('ruta_foto_principal','ruta_foto_secundaria');
-           $this->valores_collection = new Collection();    
+           $this->valores_collection = new Collection();
        }
        $this->vista = $vista;
        $this->form = $form;
@@ -134,7 +134,7 @@ class InstitucionalComponent extends Component
     }
 
     public function cambiarEstado($id){
-        $valor = Valor::find($id);            
+        $valor = Valor::find($id);
         $valor->estado = $valor->estado=='1'? '0' : '1';
         $this->valores_collection->where('id',$id)->first()->update(['estado' => $valor->estado]);
     }
@@ -142,13 +142,13 @@ class InstitucionalComponent extends Component
     public function update(){
         $this->validate();
         if($this->ruta_foto_principal){
-            if($this->ruta_foto_principal!=$this->institucional->ruta_foto_principal) 
+            if($this->ruta_foto_principal!=$this->institucional->ruta_foto_principal)
             if(Storage::exists($this->institucional->ruta_foto_principal))
                 Storage::delete($this->institucional->ruta_foto_principal);
             $this->institucional->ruta_foto_principal = $this->ruta_foto_principal->store('public/institucionales/principal');
         }
         if($this->ruta_foto_secundaria){
-            if($this->ruta_foto_secundaria!=$this->institucional->ruta_foto_secundaria) 
+            if($this->ruta_foto_secundaria!=$this->institucional->ruta_foto_secundaria)
             if(Storage::exists($this->institucional->ruta_foto_secundaria))
                 Storage::delete($this->institucional->ruta_foto_secundaria);
             $this->institucional->ruta_foto_secundaria = $this->ruta_foto_secundaria->store('public/institucionales/secundaria');

@@ -23,12 +23,12 @@ class InstitucionalSeeder extends Seeder
                     'mision' => 'Proporcionar una mejora constante de los servicios de transporte de pasajeros y de carga; con la tecnología más avanzada, ofreciendo un servicio personalizado y profesional, donde los clientes se sientan seguros y cómodos.',
                     'vision' => 'Ser una de las principales empresas de transporte de personas y de carga del Perú, siempre cuidando que la calidad y excelencia del servicio, beneficien tanto a los trabajadores como a los clientes.',
                     'fecha_inicio' => '1995-01-01',
-                    'ruta_foto_principal' => 'public/institucionales/principal-institucional.png',
-                    'ruta_foto_secundaria' => 'public/institucionales/secundaria-institucional.png',
+                    'ruta_foto_principal' => 'public/institucionales/principal/PHZ5ZauyJPOR92sh6zcBHeoRj6xUPAnWr0T4R74z.jpg',
+                    'ruta_foto_secundaria' => 'public/institucionales/secundaria/Up0nL6IDNda2qufPomIkHdYfAsNs08jRDGiaIAbP.jpg',
                     'estado' => '1'
 
-                ],             
-                
+                ],
+
             ]
         );
     }

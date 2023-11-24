@@ -14,7 +14,7 @@ class LibroReclamacionSeeder extends Seeder
      */
     public function run()
     {
-        LibroReclamacion::insert([
+        /* LibroReclamacion::insert([
             [
                 'nombre_completo_consumidor' => 'Juan Peréz',
                 'direccion_consumidor' => 'Av. America Sur',
@@ -47,6 +47,6 @@ class LibroReclamacionSeeder extends Seeder
                 'created_at' => '2023-11-02 15:31:38',
                 'updated_at' => '2023-11-02 15:31:38',
             ],
-        ]);
+        ]); */
     }
 }
