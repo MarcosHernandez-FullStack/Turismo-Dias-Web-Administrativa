@@ -16,15 +16,17 @@
         aria-labelledby="GeneralModalTitle" aria-hidden="true"
         @if ($verModal) style="padding-right: 17px; display: block;" @endif>
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form>
-                <div class="modal-content">
-                    <div class="modal-header bg-info text-light">
-                        <h5 class="modal-title" id="GeneralModalTitle">General</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+
+            <div class="modal-content">
+                <div class="modal-header bg-info text-light">
+                    <h5 class="modal-title" id="GeneralModalTitle">General</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
                     <div class="modal-body">
+
                         <div class="form-group">
                             <label for="razon_social">Razón Social</label>
                             <input type="text" wire:model='configuracion.razon_social'
@@ -69,8 +71,9 @@
                             wire:target="save" wire:click="save"><i class="fas fa-save" aria-hidden="true"></i>
                             Guardar</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>
